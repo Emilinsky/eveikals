@@ -1,9 +1,9 @@
 import React from 'react'
 
-const index = () => {
+const Home = () => {
   return (
-    <div>index</div>
+    <div>Home</div>
   )
 }
 
-export default index
+export default Home

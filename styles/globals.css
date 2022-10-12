@@ -534,17 +534,17 @@ span.text-red {
 	color: rgb(49, 168, 49);
 }
 
-.maylike-products-wrapper {
+.similar-products-wrapper {
 	margin-top: 120px;
 }
-.maylike-products-wrapper h2 {
+.similar-products-wrapper h2 {
 	text-align: center;
 	margin: 50px;
 	color: #324d67;
 
 	font-size: 28px;
 }
-.maylike-products-container {
+.similar-products-container {
 	display: flex;
 	justify-content: center;
 	gap: 15px;

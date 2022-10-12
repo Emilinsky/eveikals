@@ -18,8 +18,8 @@ const ProductDetails = ({ product, products }) => {
 					</div>
 					<div className='small-images-container'>
 						{image?.map((item, i) => (
-                     <img
-                        key={i}
+							<img
+								key={i}
 								src={urlFor(item)}
 								className={i === index ? "small-image selected-image" : "small-image"}
 								onMouseEnter={() => setIndex(i)}
@@ -57,7 +57,7 @@ const ProductDetails = ({ product, products }) => {
 						</p>
 					</div>
 					<div className='buttons'>
-						<button type='button' className='add-to-cart' onClick=''>
+						<button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>
 							Pievienot grozam
 						</button>
 						<button type='button' className='buy-now' onClick=''>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const Context = createContext();
 
@@ -9,7 +9,22 @@ export const StateContext = ({ children }) => {
 	const [totalQuantities, setTotalQuantities] = useState();
 	const [qty, setQty] = useState(1);
 
+	const incQty = () => {
+		setQty((prevQty) => prevQty + 1);
+	};
+	const decQty = () => {
+		setQty((prevQty) => {
+			prevQty - 1;
+			if (prevQty - 1 < 1) return 1;
+			return prevQty - 1;
+		});
+	};
+
 	return (
-		<Context.Provider value={{ showCart, cartItems, totalPrice, totalQuantities, qty }}>{children}</Context.Provider>
+		<Context.Provider value={{ showCart, cartItems, totalPrice, totalQuantities, qty, incQty, decQty }}>
+			{children}
+		</Context.Provider>
 	);
 };
+
+export const useStateContext = () => useContext(Context);

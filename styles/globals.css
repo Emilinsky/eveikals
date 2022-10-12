@@ -164,7 +164,7 @@ span.text-red {
 	text-transform: uppercase;
 }
 .hero-banner-image {
-   /* background-color: #5f5f5f; */
+	/* background-color: #5f5f5f; */
 	position: absolute;
 	top: 15%;
 	right: 20%;
@@ -243,10 +243,9 @@ span.text-red {
 }
 .footer-banner-image {
 	position: absolute;
-	/* top: -35%;
-  left: 8%; */
-	top: -25%;
-	left: 25%;
+	top: -10%;
+	left: 29%;
+	width: 40%;
 }
 .banner-desc .right {
 	line-height: 1.4;

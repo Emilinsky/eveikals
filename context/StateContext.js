@@ -34,18 +34,33 @@ export const StateContext = ({ children }) => {
 		toast.success(`${qty} ${product.name} pievienoti grozam.`);
 	};
 
+	const onRemove = (product) => {
+		foundProduct = cartItems.find((item) => item._id === product._id);
+		const newCartItems = cartItems.filter((item) => item._id !== product._id);
+
+		setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
+		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
+		setCartItems(newCartItems);
+	};
+
 	const toggleCartItemQuantity = (id, val) => {
 		foundProduct = cartItems.find((item) => item._id === id);
 		index = cartItems.findIndex((product) => product._id === id);
+		const newCartItems = cartItems.filter((item) => item._id !== id);
 
 		if (val === "inc") {
-			setCartItems([...cartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
+			setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
 			// react rule-breaking!!!!!!!!!! no manual mutation
 			// foundProduct.quantity += 1;
 			// cartItems[index] = foundProduct;
 			setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
 			setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
 		} else if (val === "dec") {
+			if (foundProduct.quantity > 1) {
+				setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 }]);
+				setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+				setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
+			}
 		}
 	};
 
@@ -62,7 +77,19 @@ export const StateContext = ({ children }) => {
 
 	return (
 		<Context.Provider
-			value={{ showCart, setShowCart, cartItems, totalPrice, totalQuantities, qty, incQty, decQty, onAdd }}
+			value={{
+				showCart,
+				setShowCart,
+				cartItems,
+				totalPrice,
+				totalQuantities,
+				qty,
+				incQty,
+				decQty,
+				onAdd,
+				toggleCartItemQuantity,
+				onRemove,
+			}}
 		>
 			{children}
 		</Context.Provider>

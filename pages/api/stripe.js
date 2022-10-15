@@ -1,4 +1,6 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
 	if (req.method === "POST") {
@@ -17,22 +19,22 @@ export default async function handler(req, res) {
 						shipping_rate: "shr_1LsmSKGSMAjLVvVP2mZpng5c",
 					},
 				],
-				line_items: req.body.cartItems.map((item) => {
+				line_items: req.body.map((item) => {
 					const img = item.image[0].asset._ref;
 					const newImage = img
 						.replace("image-", "https://cdn.sanity.io/images/1kdn8ha8/production/")
 						.replace("-webp", ".webp", "-jpeg", ".jpeg", "-png", ".png");
 					// console.log("IMAGE", newImage);
 					return {
-						price: {
+						price_data: {
 							currency: "eur",
-							producy_data: {
+							product_data: {
 								name: item.name,
 								images: [newImage],
 							},
 							unit_amount: item.price * 100,
 						},
-						ajustable_quantity: {
+						adjustable_quantity: {
 							enabled: true,
 							minimum: 1,
 						},

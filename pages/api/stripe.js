@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 			res.status(err.statusCode || 500).json(err.message);
 		}
 	} else {
-		res.setHeader("Allow", "POST");
+		res.setHeader("Allow", "POST"); 
 		res.status(405).end("Method Not Allowed");
 	}
 }

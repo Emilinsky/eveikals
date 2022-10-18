@@ -21,15 +21,20 @@ a {
 	margin: auto;
 	width: 100%;
 }
-.layout {
-	padding: 10px;
-}
 
 .navbar-container {
 	display: flex;
-	justify-content: space-between;
-	margin: 6px 18px;
+	justify-content: center;
+	margin: 0;
+	padding: 10px 35px;
 	position: relative;
+	border-bottom: 1px solid #324d67;
+	background-color: #dcdcdc;
+}
+.navbar-inner-cont {
+	display: flex;
+	justify-content: space-between;
+	width: 60%;
 }
 .marquee-text {
 	font-size: 29px;

@@ -10,15 +10,17 @@ const Navbar = () => {
 
 	return (
 		<div className='navbar-container'>
-			<p className='logo'>
-				<Link href='/'>Unda EL</Link>
-			</p>
+			<div className='navbar-inner-cont'>
+				<p className='logo'>
+					<Link href='/'>Unda EL</Link>
+				</p>
 
-			<button type='button' className='cart-icon' onClick={() => setShowCart(true)}>
-				<AiOutlineShopping />
-				<span className='cart-item-qty'>{totalQuantities}</span>
-			</button>
-			{showCart && <Cart />}
+				<button type='button' className='cart-icon' onClick={() => setShowCart(true)}>
+					<AiOutlineShopping />
+					<span className='cart-item-qty'>{totalQuantities}</span>
+				</button>
+				{showCart && <Cart />}
+			</div>
 		</div>
 	);
 };

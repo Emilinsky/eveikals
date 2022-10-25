@@ -5,6 +5,11 @@ import { urlFor } from "../lib/client";
 
 const Product = ({ product: { image, name, slug, price } }) => {
 	return (
+      // read more btn on product descriptions
+      // aspect-ratio sized img in product img
+      // work on product design
+      // 2 languages? make primary as latvian
+      
 		<div>
 			<Link href={`/product/${slug.current}`}>
 				<div className='product-card'>

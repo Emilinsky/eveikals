@@ -13,7 +13,7 @@ const HeroBanner = ({ HeroBanner }) => {
 
 				<div className=''>
 					<Link href={`/product/${HeroBanner.product}`}>
-						<button type='buton'>{HeroBanner.buttonText}</button>
+						<button type='button'>{HeroBanner.buttonText}</button>
 					</Link>
 					<div className='desc'>
 						<h5>Description</h5>

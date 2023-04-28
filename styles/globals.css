@@ -2,12 +2,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Antonio:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600&display=swap");
 
+:root {
+	--main-background-first: #f5fdd7;
+	--main-background-second: #acb7d7;
+	--primary-text-color: #3b3b3b;
+	--secondary-text-color: #efefef;
+	--primary-color: #00bea8;
+	--secondary-color: #004cff;
+	--red-color: #fa575c;
+	--banner-shadows: #0036b34e;
+	--banner-background: #ffffff5d;
+	--border-color: #ffffff94;
+}
+
 html,
 body,
 * {
 	padding: 0;
 	margin: 0;
-	font-family: "Poiret One", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+	font-family: "Bai Jamjuree", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
 		Droid Sans, Helvetica Neue, sans-serif;
 	box-sizing: border-box;
 }
@@ -16,12 +29,12 @@ body,
 }
 
 a {
-	color: inherit;
+	color: var(--primary-text-color);
 	text-decoration: none;
 }
 
 .layout {
-	background: linear-gradient(90deg, #d7fde2, #e0bff2);
+	background: linear-gradient(90deg, var(--main-background-first), var(--main-background-second));
 }
 
 .main-container {
@@ -36,8 +49,9 @@ a {
 	margin: 0;
 	padding: 1rem 2.1875rem;
 	position: relative;
-	border-bottom: 1px solid #ffffff70;
-	background-color: #fbfbfb5e;
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--banner-background);
+
 	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
 	/* backdrop-filter: blur(4px);
 	-webkit-backdrop-filter: blur(4px); */
@@ -51,7 +65,7 @@ a {
 	font-size: 2.375rem;
 	font-weight: 600;
 	margin: 60px 0px;
-	color: #f02d34;
+	color: var(--red-color);
 }
 .marquee {
 	position: relative;
@@ -80,28 +94,30 @@ a {
 }
 
 span.text-red {
-	-webkit-text-stroke: 1px #f02d34;
+	-webkit-text-stroke: 1px var(--red-color);
 	margin-left: 6px;
 }
 .logo {
-	background: linear-gradient(to left, #2351bd, #5623bd);
+	background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	color: #2351bd;
 	font-weight: 500;
 	font-size: 2.125rem;
 }
+.logo a {
+	font-family: "Poiret One", sans-serif;
+}
 .cart-cont {
-	background-color: #ffffff4f;
-	padding: 4px 10px 2px;
+	background-color: #ffffff1e;
+	padding: 4px 10px 0;
 	border-radius: 5px;
-	border: 1px solid #ffffff67;
-	box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.25);
+	border: 1px solid #ffffff20;
+	box-shadow: 0 1px 5px 0 rgba(31, 38, 135, 0.25);
 }
 .cart-icon {
 	font-size: 2rem;
-	color: gray;
+	color: var(--primary-color);
 	cursor: pointer;
 	position: relative;
 	transition: transform 0.4s ease;
@@ -113,10 +129,10 @@ span.text-red {
 }
 .cart-item-qty {
 	position: absolute;
-	right: -6px;
+	right: -8px;
 	font-size: 12px;
-	color: #eee;
-	background-color: #f02d34;
+	color: var(--secondary-text-color);
+	background-color: var(--red-color);
 	width: 18px;
 	height: 18px;
 	line-height: 1.4;
@@ -128,7 +144,7 @@ span.text-red {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 15px;
+	gap: 25px;
 	margin-top: 20px;
 	width: 100%;
 }
@@ -136,14 +152,16 @@ span.text-red {
 	cursor: pointer;
 	transform: scale(1, 1);
 	transition: transform 0.5s ease;
-	color: #324d67;
+	color: var(--primary-text-color);
 }
 .product-card:hover {
 	transform: scale(1.1, 1.1);
 }
 .product-image {
-	border-radius: 15px;
-	background-color: #ebebeb;
+	border-radius: 12px;
+	background-color: var(--banner-background);
+	padding: 10px;
+	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
 	transform: scale(1, 1);
 	transition: transform 0.5s ease;
 }
@@ -160,16 +178,16 @@ span.text-red {
 .hero-banner-container {
 	padding: 100px 40px;
 	margin-top: 6.25rem;
-	background-color: #ffffff53;
+	background-color: var(--banner-background);
+	border: 1px solid var(--border-color);
 	border-radius: 15px;
 	position: relative;
 	height: 500px;
-	border: 1px solid #ffffff60;
 	line-height: 0.9;
-	/* box-shadow: 0 2px 30px 0 #2351bd48;
-	backdrop-filter: blur(4px);
+	box-shadow: 0 2px 20px 0 var(--banner-shadows);
+	/* backdrop-filter: blur(4px);
 	-webkit-backdrop-filter: blur(4px); */
-	/* width: 100%; */
+	width: 100%;
 	/* z-index: 10; */
 }
 .hero-banner-container .cream-solo {
@@ -180,7 +198,7 @@ span.text-red {
 .hero-banner-container button {
 	border-radius: 8px;
 	padding: 12px 30px;
-	background: linear-gradient(to left, #00c6af, #00c6af);
+	background: linear-gradient(to left, #00bea8, #00bea8);
 	color: white;
 	border: none;
 	margin-top: 40px;
@@ -195,10 +213,10 @@ span.text-red {
 	font-size: 4rem;
 	margin-top: 14px;
 	font-family: "Bai Jamjuree", sans-serif;
-	color: rgb(46, 46, 46);
+	color: var(--primary-text-color);
 }
 .hero-banner-container h1 {
-	background: linear-gradient(to left, #004cff, #00c6af);
+	background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;

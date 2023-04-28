@@ -19,7 +19,7 @@ const Cart = () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(cartItems),
 		});
-cart-cont
+
 		if (response.statusCode === 500) return;
 		const data = await response.json();
 		toast.loading("Uz maksājumu...");
@@ -62,9 +62,7 @@ cart-cont
 												<span className='minus' onClick={() => toggleCartItemQuantity(item._id, "dec")}>
 													<AiOutlineMinus />
 												</span>
-												<span className='num'>
-													{item.quantity}
-												</span>
+												<span className='num'>{item.quantity}</span>
 												<span className='plus' onClick={() => toggleCartItemQuantity(item._id, "inc")}>
 													<AiOutlinePlus />
 												</span>

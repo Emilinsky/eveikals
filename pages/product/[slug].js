@@ -61,16 +61,15 @@ const ProductDetails = ({ product, products }) => {
 					</div>
 					<div className='buttons'>
 						<button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>
-							Pievienot grozam
-						</button>
+							Add to cart						</button>
 						<button type='button' className='buy-now' onClick={handleBuyNow}>
-							Nopirkt uzreiz
+							Buy now
 						</button>
 					</div>
 				</div>
 			</div>
 			<div className='similar-products-wrapper'>
-				<h2>Lidzigie produkti:</h2>
+				<h2>Similar products:</h2>
 				<div className='marquee'>
 					<div className='similar-products-container track'>
 						{products.map((item) => (

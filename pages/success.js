@@ -22,17 +22,17 @@ const Success = () => {
 				<p className='icon'>
 					<BsBagCheckFill />
 				</p>
-				<h2 className=''>Paldies par pirkumu!</h2>
-				<p className='email-msg'>Uz epastu nosutijam rekvizitus!</p>
+				<h2 className=''>Thank you for your purchase!</h2>
+				<p className='email-msg'>All the necessary info was sent to your email.</p>
 				<p className='description'>
-					Jautajumu gadijuma sutie mums zinu uz:
+					If you have any questions send us an email at:
 					<a className='email' href='mailto:edmundseizentals@gmail.com'>
-						edmundseizentals@gmail
+						store@info.com
 					</a>
 				</p>
 				<Link href='/'>
 					<button type='button' width='300px' className='btn'>
-						Apskatit citus produktus
+						Take a look at other products
 					</button>
 				</Link>
 			</div>

@@ -11,7 +11,7 @@ export const StateContext = ({ children }) => {
 	const [qty, setQty] = useState(1);
 
 	let foundProduct;
-   let index;
+	let index;
 
 	const onAdd = (product, quantity) => {
 		const checkProductInCart = cartItems.find((item) => item._id === product._id);
@@ -65,11 +65,10 @@ export const StateContext = ({ children }) => {
 	};
 
 	const incQty = () => {
-		setQty((prevQty) => prevQty + 1); 
+		setQty((prevQty) => prevQty + 1);
 	};
 	const decQty = () => {
 		setQty((prevQty) => {
-			prevQty - 1;
 			if (prevQty - 1 < 1) return 1;
 			return prevQty - 1;
 		});

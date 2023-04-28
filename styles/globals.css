@@ -16,6 +16,10 @@ a {
 	text-decoration: none;
 }
 
+.layout {
+	background: linear-gradient(rgba(21, 135, 241, 0.15) 0%, rgba(255, 166, 0, 0.15) 25%, rgba(255, 255, 0, 0.15) 50%, rgba(0, 128, 0, 0.15) 75%, rgba(0, 0, 255, 0.15) 100%);
+}
+
 .main-container {
 	max-width: 1400px;
 	margin: auto;
@@ -26,10 +30,10 @@ a {
 	display: flex;
 	justify-content: center;
 	margin: 0;
-	padding: 10px 35px;
+	padding: 1rem 2.1875rem;
 	position: relative;
 	border-bottom: 1px solid #324d67;
-	background-color: #dcdcdc;
+	background-color: #dcdcdcb7;
 }
 .navbar-inner-cont {
 	display: flex;

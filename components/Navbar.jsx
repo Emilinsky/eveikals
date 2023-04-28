@@ -12,7 +12,7 @@ const Navbar = () => {
 		<div className='navbar-container'>
 			<div className='navbar-inner-cont'>
 				<p className='logo'>
-					<Link href='/'>Unda EL</Link>
+					<Link href='/'>Shopfeast</Link>
 				</p>
 
 				<button type='button' className='cart-icon' onClick={() => setShowCart(true)}>

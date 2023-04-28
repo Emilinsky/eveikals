@@ -19,7 +19,7 @@ const Cart = () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(cartItems),
 		});
-
+cart-cont
 		if (response.statusCode === 500) return;
 		const data = await response.json();
 		toast.loading("Uz maksājumu...");

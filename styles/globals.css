@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600&display=swap");
+
 html,
 body,
 * {
 	padding: 0;
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-		Helvetica Neue, sans-serif;
+	font-family: "Poiret One", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+		Droid Sans, Helvetica Neue, sans-serif;
 	box-sizing: border-box;
 }
 ::-webkit-scrollbar {
@@ -17,7 +21,7 @@ a {
 }
 
 .layout {
-	background: linear-gradient(rgba(21, 135, 241, 0.15) 0%, rgba(255, 166, 0, 0.15) 25%, rgba(255, 255, 0, 0.15) 50%, rgba(0, 128, 0, 0.15) 75%, rgba(0, 0, 255, 0.15) 100%);
+	background: linear-gradient(90deg, #d7fde2, #e0bff2);
 }
 
 .main-container {
@@ -32,8 +36,11 @@ a {
 	margin: 0;
 	padding: 1rem 2.1875rem;
 	position: relative;
-	border-bottom: 1px solid #324d67;
-	background-color: #dcdcdcb7;
+	border-bottom: 1px solid #ffffff70;
+	background-color: #fbfbfb5e;
+	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
+	/* backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px); */
 }
 .navbar-inner-cont {
 	display: flex;
@@ -41,7 +48,7 @@ a {
 	width: 60%;
 }
 .marquee-text {
-	font-size: 29px;
+	font-size: 2.375rem;
 	font-weight: 600;
 	margin: 60px 0px;
 	color: #f02d34;
@@ -77,11 +84,23 @@ span.text-red {
 	margin-left: 6px;
 }
 .logo {
-	color: gray;
-	font-size: 18px;
+	background: linear-gradient(to left, #2351bd, #5623bd);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: #2351bd;
+	font-weight: 500;
+	font-size: 2.125rem;
+}
+.cart-cont {
+	background-color: #ffffff4f;
+	padding: 4px 10px 2px;
+	border-radius: 5px;
+	border: 1px solid #ffffff67;
+	box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.25);
 }
 .cart-icon {
-	font-size: 25px;
+	font-size: 2rem;
 	color: gray;
 	cursor: pointer;
 	position: relative;
@@ -94,12 +113,13 @@ span.text-red {
 }
 .cart-item-qty {
 	position: absolute;
-	right: -8px;
+	right: -6px;
 	font-size: 12px;
 	color: #eee;
 	background-color: #f02d34;
 	width: 18px;
 	height: 18px;
+	line-height: 1.4;
 	border-radius: 50%;
 	text-align: center;
 	font-weight: 600;
@@ -139,24 +159,33 @@ span.text-red {
 
 .hero-banner-container {
 	padding: 100px 40px;
-	background-color: #dcdcdc;
+	margin-top: 6.25rem;
+	background-color: #ffffff53;
 	border-radius: 15px;
 	position: relative;
 	height: 500px;
+	border: 1px solid #ffffff60;
 	line-height: 0.9;
-	width: 100%;
+	/* box-shadow: 0 2px 30px 0 #2351bd48;
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px); */
+	/* width: 100%; */
+	/* z-index: 10; */
 }
 .hero-banner-container .cream-solo {
-	font-size: 20px;
+	font-size: 1.5rem;
+	color: rgb(46, 46, 46);
+	font-family: "Bai Jamjuree", sans-serif;
 }
 .hero-banner-container button {
-	border-radius: 15px;
-	padding: 10px 16px;
-	background-color: #f02d34;
+	border-radius: 8px;
+	padding: 12px 30px;
+	background: linear-gradient(to left, #00c6af, #00c6af);
 	color: white;
 	border: none;
 	margin-top: 40px;
-	font-size: 18px;
+	font-family: "Bai Jamjuree", sans-serif;
+	font-size: 1.25rem;
 	font-weight: 500;
 	cursor: pointer;
 	z-index: 10000 !important;
@@ -164,18 +193,24 @@ span.text-red {
 
 .hero-banner-container h3 {
 	font-size: 4rem;
-	margin-top: 4px;
+	margin-top: 14px;
+	font-family: "Bai Jamjuree", sans-serif;
+	color: rgb(46, 46, 46);
 }
 .hero-banner-container h1 {
-	color: white;
-	font-size: 10em;
-	margin-left: -20px;
+	background: linear-gradient(to left, #004cff, #00c6af);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 9em;
+
+	margin: 20px 10px 10px -10px;
 	text-transform: uppercase;
 }
 .hero-banner-image {
 	/* background-color: #5f5f5f; */
 	position: absolute;
-	top: 15%;
+	top: 5%;
 	right: 20%;
 	width: 450px;
 	/* height: 450px; */
@@ -183,24 +218,23 @@ span.text-red {
 
 .desc {
 	position: absolute;
-	right: 10%;
-	bottom: 5%;
+	right: 3%;
+	bottom: 10%;
 	width: 300px;
 	line-height: 1.3;
+	font-family: "Bai Jamjuree", sans-serif;
+	font-size: 1.5rem;
+	font-weight: 600;
 	display: flex;
 	flex-direction: column;
-	color: #324d67;
+	color: rgb(46, 46, 46);
 }
 .desc p {
-	color: #5f5f5f;
-	font-weight: 100;
+	font-size: 1.125rem;
 	text-align: end;
 }
 .desc h5 {
 	margin-bottom: 12px;
-	font-weight: 700;
-	font-size: 16px;
-	/* color: black; */
 	align-self: flex-end;
 }
 .products-heading {

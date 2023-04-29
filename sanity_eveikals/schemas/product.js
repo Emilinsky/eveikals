@@ -37,6 +37,12 @@ export default {
 			type: "string",
 		},
 		{
+			name: "category",
+			title: "Category",
+			type: "reference",
+			to: [{ type: "category" }],
+		},
+		{
 			name: "createdAt",
 			title: "Created at",
 			type: "datetime",

@@ -15,8 +15,15 @@ const Navbar = () => {
 					<Link href='/'>Shopfeast</Link>
 				</p>
 				<nav className='nav-container'>
-					<Link href='/'>Home</Link>
-					<Link href='/products'>Products</Link>
+					<div className='link'>
+						<Link href='/'>Home</Link>
+					</div>
+					<div className='link'>
+						<Link href='/products'>Products</Link>
+					</div>
+					<div className='link'>
+						<Link href='/custom'>Customize</Link>
+					</div>
 				</nav>
 				<div className='cart-cont'>
 					<button type='button' className='cart-icon' onClick={() => setShowCart(true)}>

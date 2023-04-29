@@ -4,15 +4,20 @@ import { client } from "../lib/client";
 import { Product, ProductsBanner } from "../components";
 
 const Products = ({ products, bannerData, categories }) => {
-	const [selectedCategory, setSelectedCategory] = useState(null);
+	const [selectedCategories, setSelectedCategories] = useState([]);
 
 	const handleCategorySelect = (category) => {
-		setSelectedCategory(category);
+		if (selectedCategories.find((c) => c._id === category._id)) {
+			setSelectedCategories(selectedCategories.filter((c) => c._id !== category._id));
+		} else {
+			setSelectedCategories([...selectedCategories, category]);
+		}
 	};
 
-	const filteredProducts = selectedCategory
-		? products.filter((product) => product.category._ref === selectedCategory._id)
-		: products;
+	const filteredProducts =
+		selectedCategories.length > 0
+			? products.filter((product) => selectedCategories.find((category) => category._id === product.category._ref))
+			: products;
 
 	return (
 		<>
@@ -21,7 +26,9 @@ const Products = ({ products, bannerData, categories }) => {
 				<h1 className='header'>All Products</h1>
 				<div className='categories'>
 					{categories.map((category) => (
-						<button onClick={() => handleCategorySelect(category)}>{category.title}</button>
+						<button onClick={() => handleCategorySelect(category)}>
+							{selectedCategories.find((c) => c._id === category._id) && "✓"} {category.title}
+						</button>
 					))}
 				</div>
 			</div>
@@ -41,8 +48,6 @@ export const getServerSideProps = async () => {
 	const bannerData = await client.fetch(bannerQuery);
 	const categoryQuery = '*[_type == "category"]';
 	const categories = await client.fetch(categoryQuery);
-
-   console.log(categories); // add this line
 
 	return {
 		props: { products, bannerData, categories },

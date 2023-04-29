@@ -8,5 +8,6 @@ export default {
 			title: "Title",
 			type: "string",
 		},
+		// any other fields you might want
 	],
 };

@@ -151,18 +151,19 @@ span.text-red {
 }
 .product-card {
 	cursor: pointer;
+	flex-shrink: 1;
 	transform: scale(1, 1);
 	transition: transform 0.5s ease;
 	color: var(--primary-text-color);
+	background-color: var(--banner-background);
+	padding: 10px;
+	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
 }
 .product-card:hover {
 	transform: scale(1.1, 1.1);
 }
 .product-image {
 	border-radius: 12px;
-	background-color: var(--banner-background);
-	padding: 10px;
-	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
 	transform: scale(1, 1);
 	transition: transform 0.5s ease;
 }
@@ -275,7 +276,7 @@ span.text-red {
 	box-shadow: 0 2px 20px 0 var(--banner-shadows);
 	border-radius: 15px;
 	position: relative;
-	height: 350px;
+	height: min-content;
 	line-height: 1;
 	color: var(--secondary-text-color);
 	width: 100%;
@@ -306,10 +307,11 @@ span.text-red {
 }
 .banner-desc .left h3 {
 	font-weight: 900;
-	font-size: 80px;
+	font-size: 5rem;
 }
 .banner-desc .left p {
 	margin: 10px 0;
+	font-size: 1.25rem;
 }
 .footer-banner-image {
 	position: absolute;
@@ -326,10 +328,10 @@ span.text-red {
 }
 .banner-desc .right h3 {
 	font-weight: 800;
-	font-size: 60px;
+	font-size: 5rem;
 }
 .banner-desc .right p {
-	font-size: 18px;
+	font-size: 1.25rem;
 	margin: 18px 0;
 }
 .banner-desc .right .company-desc {
@@ -742,12 +744,7 @@ span.text-red {
 	.product-detail-container {
 		flex-wrap: wrap;
 	}
-	/* .product-detail-desc {
-		background-color: var(--banner-background);
-		border: 1px solid var(--border-color);
-		box-shadow: 0 2px 20px 0 var(--banner-shadows);
-		border-radius: 15px;
-	} */
+
 	.product-detail-container .product-detail-image {
 		width: 350px;
 		height: 350px;

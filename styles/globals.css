@@ -12,7 +12,7 @@
 	--red-color: #fa575c;
 	--banner-shadows: #0036b34e;
 	--banner-background: #ffffff5d;
-	--banner-background-dark: #4545455d;
+	--banner-background-dark: #45454578;
 	--border-color: #ffffff94;
 }
 
@@ -198,7 +198,8 @@ span.text-red {
 	color: var(--primary-text-color);
 }
 
-.hero-banner-container {
+.hero-banner-container,
+.products-banner-container {
 	padding: 100px 40px;
 	margin-top: 6.25rem;
 	background-color: var(--banner-background);
@@ -213,12 +214,17 @@ span.text-red {
 	width: 100%;
 	/* z-index: 10; */
 }
-.hero-banner-container .cream-solo {
+.products-banner-container {
+	height: 400px;
+}
+.hero-banner-container .cream-solo,
+.products-banner-container .cream-solo {
 	font-size: 1.5rem;
 	color: var(--primary-text-color);
 	font-family: "Bai Jamjuree", sans-serif;
 }
-.hero-banner-container button {
+.hero-banner-container button,
+.products-banner-container button {
 	border-radius: 8px;
 	padding: 12px 30px;
 	background: linear-gradient(to left, var(--primary-color), var(--primary-color));
@@ -232,13 +238,15 @@ span.text-red {
 	z-index: 10000 !important;
 }
 
-.hero-banner-container h3 {
+.hero-banner-container h3,
+.products-banner-container h3 {
 	font-size: 4rem;
 	margin-top: 14px;
 	font-family: "Bai Jamjuree", sans-serif;
 	color: var(--primary-text-color);
 }
-.hero-banner-container h1 {
+.hero-banner-container h1,
+.products-banner-container h1 {
 	background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
 	background-clip: text;
 	-webkit-background-clip: text;
@@ -253,6 +261,13 @@ span.text-red {
 	top: 5%;
 	right: 20%;
 	width: 450px;
+	/* height: 450px; */
+}
+.products-banner-image {
+	position: absolute;
+	top: 0%;
+	right: 20%;
+	width: 425px;
 	/* height: 450px; */
 }
 
@@ -277,10 +292,14 @@ span.text-red {
 	margin-bottom: 12px;
 	align-self: flex-end;
 }
+.home-heading,
 .products-heading {
 	text-align: center;
 	margin: 40px 0px;
 	color: var(--primary-text-color);
+}
+.products-heading {
+	margin: 100px 0 40px;
 }
 .products-heading h2 {
 	font-size: 40px;
@@ -706,7 +725,8 @@ span.text-red {
 }
 
 @media screen and (max-width: 800px) {
-	.hero-banner-container {
+	.hero-banner-container,
+	.products-banner-container {
 		height: 560px;
 	}
 	.hero-banner-image {
@@ -746,16 +766,20 @@ span.text-red {
 		flex-wrap: wrap;
 		gap: 20px;
 	}
-	.hero-banner-container {
+	.hero-banner-container,
+	.products-banner-container {
 		line-height: 1.3;
 	}
-	.hero-banner-container h1 {
+	.hero-banner-container h1,
+	.products-banner-container h1 {
 		font-size: 50px;
 	}
-	.hero-banner-container h3 {
+	.hero-banner-container h3,
+	.products-banner-container h3 {
 		font-size: 40px;
 	}
-	.hero-banner-container button {
+	.hero-banner-container button,
+	.products-banner-container .buttons {
 		margin-top: 90px;
 		z-index: 10000;
 	}

@@ -8,8 +8,8 @@ const Home = ({ products, bannerData }) => {
 		<>
 			<HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
 			<div className='home-heading'>
-				<h2>New products</h2>
-				<p>New appearel and designs every week</p>
+				<h2>New products every week</h2>
+				<p>These products were added in the last 7 days:</p>
 			</div>
 			<div className='products-container'>
 				{products?.map((pro) => (
@@ -22,7 +22,8 @@ const Home = ({ products, bannerData }) => {
 };
 
 export const getServerSideProps = async () => {
-	const query = '*[_type == "product"]';
+	const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+	const query = `*[_type == "product" && createdAt > "${oneWeekAgo}"]`;
 	const products = await client.fetch(query);
 	const bannerQuery = '*[_type == "banner"]';
 	const bannerData = await client.fetch(bannerQuery);

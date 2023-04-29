@@ -36,5 +36,10 @@ export default {
 			title: "Details",
 			type: "string",
 		},
+		{
+			name: "createdAt",
+			title: "Created at",
+			type: "datetime",
+		},
 	],
 };

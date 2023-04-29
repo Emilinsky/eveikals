@@ -224,7 +224,8 @@ span.text-red {
 	font-family: "Bai Jamjuree", sans-serif;
 }
 .hero-banner-container button,
-.products-banner-container button {
+.products-banner-container button,
+.product-filter-btn {
 	border-radius: 8px;
 	padding: 12px 30px;
 	background: linear-gradient(to left, var(--primary-color), var(--primary-color));
@@ -722,6 +723,17 @@ span.text-red {
 }
 .product-max-qty {
 	margin-top: 10px;
+}
+
+/* PRODUCT PAGE STYLES */
+.categories {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.product-filter-btn {
+	margin: 20px 5px;
+	padding: 10px 50px;
 }
 
 @media screen and (max-width: 800px) {

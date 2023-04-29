@@ -5,6 +5,8 @@ import { Product, ProductsBanner } from "../components";
 
 const Products = ({ products, bannerData, categories }) => {
 	const [selectedCategories, setSelectedCategories] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const productsPerPage = 5;
 
 	const handleCategorySelect = (category) => {
 		if (selectedCategories.find((c) => c._id === category._id)) {
@@ -19,6 +21,12 @@ const Products = ({ products, bannerData, categories }) => {
 			? products.filter((product) => selectedCategories.find((category) => category._id === product.category._ref))
 			: products;
 
+	const indexOfLastProduct = currentPage * productsPerPage;
+	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+	const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
 	return (
 		<>
 			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} />
@@ -26,15 +34,22 @@ const Products = ({ products, bannerData, categories }) => {
 				<h1 className='header'>All Products</h1>
 				<div className='categories'>
 					{categories.map((category) => (
-						<button onClick={() => handleCategorySelect(category)}>
+						<button key={category._id} onClick={() => handleCategorySelect(category)} className='product-filter-btn'>
 							{selectedCategories.find((c) => c._id === category._id) && "✓"} {category.title}
 						</button>
 					))}
 				</div>
 			</div>
 			<div className='products-container'>
-				{filteredProducts?.map((pro) => (
+				{currentProducts?.map((pro) => (
 					<Product key={pro._id} product={pro} />
+				))}
+			</div>
+			<div className='pagination'>
+				{Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, i) => i + 1).map((number) => (
+					<button key={number} onClick={() => paginate(number)}>
+						{number}
+					</button>
 				))}
 			</div>
 		</>

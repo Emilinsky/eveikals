@@ -1,9 +1,10 @@
 export default {
-	name: "banner",
-	title: "Banner",
+	name: "productsBanner",
+	title: "Products Banner",
 	type: "document",
 	fields: [
-		{
+		//...rest of the fields similar to HeroBanner
+      {
 			name: "image",
 			title: "Image",
 			type: "image",
@@ -12,8 +13,8 @@ export default {
 			},
 		},
 		{
-			name: "buttonText",
-			title: "ButtonText",
+			name: "textBtn",
+			title: "textBtn",
 			type: "string",
 		},
 		{
@@ -58,4 +59,3 @@ export default {
 		},
 	],
 };
-

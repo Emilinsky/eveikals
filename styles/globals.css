@@ -80,8 +80,8 @@ a {
 }
 
 .link:hover {
-   box-shadow: 0 0px 10px 0 var(--banner-shadows);
-   font-size: 1.25rem;
+	box-shadow: 0 0px 10px 0 var(--banner-shadows);
+	font-size: 1.25rem;
 }
 .marquee-text {
 	font-size: 2.375rem;
@@ -321,7 +321,7 @@ span.text-red {
 	cursor: pointer;
 }
 .banner-desc .left {
-	width: 500px;
+	width: 450px;
 }
 .banner-desc .right {
 	flex-shrink: 3;
@@ -336,9 +336,9 @@ span.text-red {
 }
 .footer-banner-image {
 	position: absolute;
-	top: 15%;
-	right: -10%;
-	width: 30%;
+	top: -15%;
+	right: -5%;
+	width: 35%;
 }
 .banner-desc .right {
 	line-height: 1.4;

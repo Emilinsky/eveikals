@@ -7,8 +7,10 @@ const Products = ({ products, bannerData }) => {
 	return (
 		<>
 			<HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
+			<div className='products-heading'>
+				<h1 className='header'>All Products</h1>
+			</div>
 			<div className='products-container'>
-				<h1>All Products</h1>
 				{products?.map((pro) => (
 					<Product key={pro._id} product={pro} />
 				))}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import { client } from "../lib/client";
 import { Product, ProductsBanner } from "../components";
@@ -6,7 +7,10 @@ import { Product, ProductsBanner } from "../components";
 const Products = ({ products, bannerData, categories }) => {
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const productsPerPage = 5;
+	const productsPerPage = 10;
+
+	// Combine Sanity and Printify products
+	const combinedProducts = [...products.sanity, ...products.printify];
 
 	const handleCategorySelect = (category) => {
 		if (selectedCategories.find((c) => c._id === category._id)) {
@@ -18,8 +22,10 @@ const Products = ({ products, bannerData, categories }) => {
 
 	const filteredProducts =
 		selectedCategories.length > 0
-			? products.filter((product) => selectedCategories.find((category) => category._id === product.category._ref))
-			: products;
+			? combinedProducts.filter((product) =>
+					selectedCategories.find((category) => category._id === product.category._ref)
+			  )
+			: combinedProducts;
 
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -58,7 +64,18 @@ const Products = ({ products, bannerData, categories }) => {
 
 export const getServerSideProps = async () => {
 	const query = '*[_type == "product"]';
-	const products = await client.fetch(query);
+	const sanityProducts = await client.fetch(query);
+
+	// Fetch Printify products
+	const res = await fetch("http://localhost:3000/api/products");
+	const printifyProducts = await res.json();
+
+	// Return them as separate properties
+	const products = {
+		sanity: sanityProducts,
+		printify: printifyProducts,
+	};
+
 	const bannerQuery = '*[_type == "productsBanner"]';
 	const bannerData = await client.fetch(bannerQuery);
 	const categoryQuery = '*[_type == "category"]';

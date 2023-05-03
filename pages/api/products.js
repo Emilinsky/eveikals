@@ -67,7 +67,27 @@ async function getShopProducts(shopId) {
 			return [];
 		}
 
-		return response.data.data;
+		const products = response.data.data;
+
+		// Save each product in Sanity
+		const savedProducts = [];
+		for (let product of products) {
+			const formattedProduct = {
+				// format the product data as needed for your Sanity schema
+				name: product.title,
+				image: product.images[0].src, // modify as needed based on your product schema
+				slug: {
+					current: product.id, // modify as needed
+				},
+				// add other fields as necessary
+			};
+
+			const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);
+			const savedProduct = await res.json();
+			savedProducts.push(savedProduct);
+		}
+
+		return savedProducts;
 	} catch (error) {
 		if (error.response && error.response.status === 404) {
 			console.log(`No products found for shopId: ${shopId}`);

@@ -70,10 +70,15 @@ export const getServerSideProps = async () => {
 	const res = await fetch("http://localhost:3000/api/products");
 	const printifyProducts = await res.json();
 
+	console.log("Printify Products:", printifyProducts); // Add this line to log the received products
+
+	// Check if printifyProducts is an array, if not, set it to an empty array
+	const printifyProductsArray = Array.isArray(printifyProducts) ? printifyProducts : [];
+
 	// Return them as separate properties
 	const products = {
 		sanity: sanityProducts,
-		printify: printifyProducts,
+		printify: printifyProductsArray,
 	};
 
 	const bannerQuery = '*[_type == "productsBanner"]';

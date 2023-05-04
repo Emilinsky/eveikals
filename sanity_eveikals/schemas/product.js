@@ -47,5 +47,11 @@ export default {
 			title: "Created at",
 			type: "datetime",
 		},
+		{
+			name: "printifyId",
+			title: "Printify ID",
+			type: "string",
+			hidden: true, // Optionally, you can hide this field in the Sanity Studio UI
+		},
 	],
 };

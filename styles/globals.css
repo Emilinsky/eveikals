@@ -42,6 +42,7 @@ a {
 	max-width: 1400px;
 	margin: auto;
 	width: 100%;
+	padding-top: 80px;
 }
 
 .navbar-container {
@@ -49,14 +50,22 @@ a {
 	justify-content: center;
 	margin: 0;
 	padding: 1rem 2.1875rem;
-	position: relative;
 	border-bottom: 1px solid var(--border-color);
 	background-color: var(--banner-background);
-
+	background-image: url(../public/puzzleHalfBlue.png), url(../public/puzzleHalfColorOr.png);
+	background-size: 15%, 20%;
+	background-position: right 30%, left 60%;
+	background-repeat: no-repeat;
 	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
-	/* backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px); */
+	position: fixed; /* Change this line */
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	top: 0; /* Keep this line */
+	left: 0; /* Add this line */
+	right: 0; /* Add this line */
+	z-index: 1000; /* Keep this line to keep the header above other content */
 }
+
 .navbar-inner-cont {
 	display: flex;
 	justify-content: space-between;
@@ -213,9 +222,12 @@ span.text-red {
 	width: 100%;
 	/* z-index: 10; */
 }
-.products-banner-container {
+/* .products-banner-container {
 	height: 400px;
-}
+	background: url(../public/puzzleTrans.png);
+	background-size: 120%;
+   background-position: center;
+} */
 .hero-banner-container .cream-solo,
 .products-banner-container .cream-solo {
 	font-size: 1.5rem;
@@ -265,9 +277,9 @@ span.text-red {
 }
 .products-banner-image {
 	position: absolute;
-	top: 0%;
-	right: 20%;
-	width: 425px;
+	top: 0;
+	right: 0;
+	width: 750px;
 	/* height: 450px; */
 }
 

@@ -10,6 +10,7 @@
 	--primary-color: #00bea8;
 	--secondary-color: #004cff;
 	--red-color: #fa575c;
+	--navbar-background: #f7f7f7b0;
 	--banner-shadows: #0036b34e;
 	--banner-background: #ffffff5d;
 	--banner-background-dark: #45454578;
@@ -51,7 +52,7 @@ a {
 	margin: 0;
 	padding: 1rem 2.1875rem;
 	border-bottom: 1px solid var(--border-color);
-	background-color: var(--banner-background);
+	background-color: var(--navbar-background);
 	background-image: url(../public/puzzleHalfBlue.png), url(../public/puzzleHalfColorOr.png);
 	background-size: 15%, 20%;
 	background-position: right 30%, left 60%;

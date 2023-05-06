@@ -24,6 +24,9 @@ const Navbar = () => {
 					<div className='link'>
 						<Link href='/custom'>Customize</Link>
 					</div>
+					<div className='link'>
+						<Link href='/contacts'>Contacts</Link>
+					</div>
 				</nav>
 				<div className='cart-cont'>
 					<button type='button' className='cart-icon' onClick={() => setShowCart(true)}>

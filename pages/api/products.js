@@ -5,7 +5,7 @@ const SHOP_ID = "8832572"; // replace with your shop id
 
 async function publishProduct(shopId, productId) {
 	const response = await axios.post(
-		`https://api.printify.com/v1/shops/${shopId}/products/644ed6c8e5e950398b044f07/publish.json`,
+		`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publish.json`, // Use ${productId} here
 		{
 			title: true,
 			description: true,
@@ -93,9 +93,8 @@ async function getShopProducts(shopId) {
 			};
 
 			// Check if the product already exists in Sanity
-			const existingProduct = await axios.get(
-				`http://localhost:3000/api/getProductByPrintifyId?printifyId=${product.id}`
-			);
+			const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
+
 			console.log(existingProduct.data);
 
 			if (!existingProduct.data) {

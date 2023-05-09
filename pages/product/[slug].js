@@ -9,7 +9,7 @@ const ProductDetails = ({ product, products }) => {
 	if (!product) {
 		return <div>Product not found</div>;
 	}
-	const { image, name, details, price } = product;
+	const { image, name, description, price } = product;
 
 	const [index, setIndex] = useState(0);
 	const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
@@ -49,7 +49,7 @@ const ProductDetails = ({ product, products }) => {
 						<p>(20)</p>
 					</div>
 					<h4>Details:</h4>
-					<p>{details}</p>
+					<p>{description}</p>
 					<p className='price'>${price}</p>
 					<div className='quantity'>
 						<h3>Quantity:</h3>

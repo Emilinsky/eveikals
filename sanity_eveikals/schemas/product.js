@@ -32,6 +32,11 @@ export default {
 			type: "number",
 		},
 		{
+			name: "description",
+			title: "Description",
+			type: "text", // Use "text" instead of "string" for multiline text
+		},
+		{
 			name: "details",
 			title: "Details",
 			type: "string",

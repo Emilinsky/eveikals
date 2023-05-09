@@ -4,25 +4,25 @@ import { v4 as uuidv4 } from "uuid";
 const PRINTIFY_ACCESS_TOKEN = process.env.PRINTIFY_ACCESS_TOKEN;
 const SHOP_ID = "8832572"; // replace with your shop id
 
-async function publishProduct(shopId, productId) {
-	const response = await axios.post(
-		`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publish.json`, // Use ${productId} here
-		{
-			title: true,
-			description: true,
-			images: true,
-			variants: true,
-			tags: true,
-			keyFeatures: true,
-			shipping_template: true,
-		},
-		{
-			headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
-		}
-	);
+// async function publishProduct(shopId, productId) {
+// 	const response = await axios.post(
+// 		`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publish.json`, // Use ${productId} here
+// 		{
+// 			title: true,
+// 			description: true,
+// 			images: true,
+// 			variants: true,
+// 			tags: true,
+// 			keyFeatures: true,
+// 			shipping_template: true,
+// 		},
+// 		{
+// 			headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
+// 		}
+// 	);
 
-	console.log(response.data);
-}
+// 	// console.log(response.data);
+// }
 
 // publishProduct(SHOP_ID, PRODUCT_ID);
 
@@ -33,22 +33,22 @@ async function uploadImageToSanity(imageUrl) {
 	return response.data.assetId;
 }
 
-async function setProductPublishStatusToSucceeded(shopId, productId) {
-	const response = await axios.post(
-		`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publishing_succeeded.json`,
-		{
-			external: {
-				id: productId, // use productId parameter here
-				handle: "https://printify.com/app/product-details/644ecf755fce1fd5190e1376?fromProductsPage=1", // replace with your product URL
-			},
-		},
-		{
-			headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
-		}
-	);
+// async function setProductPublishStatusToSucceeded(shopId, productId) {
+// 	const response = await axios.post(
+// 		`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publishing_succeeded.json`,
+// 		{
+// 			external: {
+// 				id: productId, // use productId parameter here
+// 				handle: "https://printify.com/app/product-details/644ecf755fce1fd5190e1376?fromProductsPage=1", // replace with your product URL
+// 			},
+// 		},
+// 		{
+// 			headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
+// 		}
+// 	);
 
-	console.log(response.data);
-}
+// 	console.log(response.data);
+// }
 
 // setProductPublishStatusToSucceeded(SHOP_ID, PRODUCT_ID);
 
@@ -92,14 +92,14 @@ async function getShopProducts(shopId) {
 				],
 				slug: { current: product.id },
 				printifyId: product.id, // Add printifyId field to your Sanity schema
-				price: product.variants[0].price, // Add price field from Printify API data
+				price: (product.variants[0].price / 100).toFixed(2), // Add price field from Printify API data
 				description: product.description, // Add description field from Printify API data
 			};
 
 			// Check if the product already exists in Sanity
 			const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
 
-			console.log(existingProduct.data);
+			// console.log(existingProduct.data);
 
 			if (!existingProduct.data) {
 				// If the product doesn't exist, create a new one in Sanity
@@ -128,10 +128,10 @@ export default async function handler(req, res) {
 		const shopId = SHOP_ID;
 		const products = await getShopProducts(shopId);
 		// Publish all products
-		for (let product of products) {
-			await publishProduct(shopId, product.id);
-			await setProductPublishStatusToSucceeded(shopId, product.id);
-		}
+		// for (let product of products) {
+		// 	await publishProduct(shopId, product.id);
+		// 	await setProductPublishStatusToSucceeded(shopId, product.id);
+		// }
 		// Return the products as JSON
 		res.status(200).json(products);
 	} catch (error) {

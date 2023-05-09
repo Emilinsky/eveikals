@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from "react-icons/ai";
+import parse from "html-react-parser";
 
 import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
@@ -49,7 +50,7 @@ const ProductDetails = ({ product, products }) => {
 						<p>(20)</p>
 					</div>
 					<h4>Details:</h4>
-					<p>{description}</p>
+					<div>{parse(description)}</div>
 					<p className='price'>${price}</p>
 					<div className='quantity'>
 						<h3>Quantity:</h3>

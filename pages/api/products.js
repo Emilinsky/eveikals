@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const PRINTIFY_ACCESS_TOKEN = process.env.PRINTIFY_ACCESS_TOKEN;
 const SHOP_ID = "8832572"; // replace with your shop id
@@ -82,6 +83,7 @@ async function getShopProducts(shopId) {
 				name: product.title,
 				image: [
 					{
+						_key: uuidv4(), // Add the _key property here
 						asset: {
 							_type: "reference",
 							_ref: imageAssetId,
@@ -90,6 +92,8 @@ async function getShopProducts(shopId) {
 				],
 				slug: { current: product.id },
 				printifyId: product.id, // Add printifyId field to your Sanity schema
+				price: product.variants[0].price, // Add price field from Printify API data
+				description: product.description, // Add description field from Printify API data
 			};
 
 			// Check if the product already exists in Sanity

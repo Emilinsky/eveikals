@@ -10,7 +10,8 @@ const Products = ({ products, bannerData, categories }) => {
 	const productsPerPage = 3;
 
 	// Combine Sanity and Printify products
-	const combinedProducts = [...products.sanity, ...products.printify];
+	// const combinedProducts = [...products.sanity, ...products.printify];
+	const combinedProducts = [...products.sanity]; // Display only Sanity products
 
 	const handleCategorySelect = (category) => {
 		if (selectedCategories.find((c) => c._id === category._id)) {
@@ -62,7 +63,7 @@ const Products = ({ products, bannerData, categories }) => {
 	);
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	const query = '*[_type == "product"]';
 	const sanityProducts = await client.fetch(query);
 
@@ -88,6 +89,7 @@ export const getServerSideProps = async () => {
 
 	return {
 		props: { products, bannerData, categories },
+		revalidate: 60 * 60 * 6, // Regenerate the page every 6 hours
 	};
 };
 

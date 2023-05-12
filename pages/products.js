@@ -63,12 +63,12 @@ const Products = ({ products, bannerData, categories }) => {
 	);
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	const query = '*[_type == "product"]';
 	const sanityProducts = await client.fetch(query);
 
 	// Fetch Printify products
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`);
+	const res = await fetch("http://localhost:3000/api/products");
 	const printifyProducts = await res.json();
 
 	console.log("Printify Products:", printifyProducts); // Add this line to log the received products
@@ -89,7 +89,7 @@ export const getStaticProps = async () => {
 
 	return {
 		props: { products, bannerData, categories },
-		revalidate: 60 * 60 * 6, // Regenerate the page every 6 hours
+		// revalidate: 60 * 60 * 6, // Regenerate the page every 6 hours
 	};
 };
 

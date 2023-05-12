@@ -68,7 +68,7 @@ export const getStaticProps = async () => {
 	const sanityProducts = await client.fetch(query);
 
 	// Fetch Printify products
-	const res = await fetch("http://localhost:3000/api/products");
+	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`);
 	const printifyProducts = await res.json();
 
 	console.log("Printify Products:", printifyProducts); // Add this line to log the received products

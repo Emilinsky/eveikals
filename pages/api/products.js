@@ -28,39 +28,50 @@ async function getShopProducts(shopId) {
 		// Save each product in Sanity
 		const savedProducts = [];
 		for (let product of products) {
-			console.time(`Uploading image for product ${product.id}`);
-			const imageAssetId = await uploadImageToSanity(product.images[0].src);
-			console.timeEnd(`Uploading image for product ${product.id}`);
 			const formattedProduct = {
 				name: product.title,
-				image: [
-					{
-						_key: uuidv4(), // Add the _key property here
-						asset: {
-							_type: "reference",
-							_ref: imageAssetId,
-						},
-					},
-				],
 				slug: { current: product.id },
-				printifyId: product.id, // Add printifyId field to your Sanity schema
-				price: (product.variants[0].price / 100).toFixed(2), // Add price field from Printify API data
-				description: product.description, // Add description field from Printify API data
+				printifyId: product.id,
+				price: (product.variants[0].price / 100).toFixed(2),
+				description: product.description,
 			};
 
 			// Check if the product already exists in Sanity
 			const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
 
-			// console.log(existingProduct.data);
+			if (!existingProduct.data || !existingProduct.data.imageUploadedToSanity) {
+				console.time(`Uploading image for product ${product.id}`);
+				const imageAssetId = await uploadImageToSanity(product.images[0].src);
+				console.timeEnd(`Uploading image for product ${product.id}`);
 
+				// Update the product data to include the new image and set the imageUploadedToSanity flag
+				formattedProduct.image = [
+					{
+						_key: uuidv4(),
+						asset: {
+							_type: "reference",
+							_ref: imageAssetId,
+						},
+					},
+				];
+				formattedProduct.printifyImageUrl = product.images[0].src;
+				formattedProduct.imageUploadedToSanity = true;
+			} else {
+				// Use the existing product data
+				formattedProduct.image = existingProduct.data.image;
+				formattedProduct.imageUploadedToSanity = existingProduct.data.imageUploadedToSanity;
+			}
+
+			// Save or update the product in Sanity
 			if (!existingProduct.data) {
 				// If the product doesn't exist, create a new one in Sanity
 				const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);
-				const savedProduct = res.data; // Replace res.json() with res.data
+				const savedProduct = res.data;
 				savedProducts.push(savedProduct);
 			} else {
-				// If the product exists, add it to the savedProducts array
-				savedProducts.push(existingProduct.data);
+				// If the product exists, update it in Sanity
+				await axios.put(`http://localhost:3000/api/updateProduct/${existingProduct.data._id}`, formattedProduct);
+				savedProducts.push(formattedProduct);
 			}
 		}
 

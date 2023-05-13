@@ -18,6 +18,16 @@ export default {
 			type: "string",
 		},
 		{
+			name: "printifyImageUrl",
+			title: "Printify Img URL",
+			type: "string",
+		},
+		{
+			name: "imageUploadedToSanity",
+			title: "Image Uploaded To Sanity",
+			type: "boolean",
+		},
+		{
 			name: "slug",
 			title: "Slug",
 			type: "slug",

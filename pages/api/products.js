@@ -28,7 +28,9 @@ async function getShopProducts(shopId) {
 		// Save each product in Sanity
 		const savedProducts = [];
 		for (let product of products) {
+			console.time(`Uploading image for product ${product.id}`);
 			const imageAssetId = await uploadImageToSanity(product.images[0].src);
+			console.timeEnd(`Uploading image for product ${product.id}`);
 			const formattedProduct = {
 				name: product.title,
 				image: [
@@ -76,7 +78,11 @@ async function getShopProducts(shopId) {
 export default async function handler(req, res) {
 	try {
 		const shopId = SHOP_ID;
+
+		console.time("Fetching and saving products");
 		const products = await getShopProducts(shopId);
+		console.timeEnd("Fetching and saving products");
+
 		res.status(200).json(products);
 	} catch (error) {
 		console.error(error);

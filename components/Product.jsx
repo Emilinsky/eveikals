@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineInfoCircle, AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 
 import { urlFor } from "../lib/client";
 
 const Product = ({ product }) => {
-	const { name, image, slug } = product;
+	const { name, image, slug, price } = product;
+	const [isClicked, setIsClicked] = useState(false);
+
+	const handleBuyClick = () => {
+		setIsClicked(true);
+	};
+
+	const handleRemoveClick = () => {
+		setIsClicked(false);
+	};
 
 	return (
 		<>
@@ -22,34 +31,36 @@ const Product = ({ product }) => {
 			{slug && (
 				<div className='wrapper'>
 					<div className='container'>
-						<img src={urlFor(image && image[0])} className='top' />
-						<div className='bottom'>
+						<div className='top'>
+							<img src={urlFor(image && image[0])} />
+						</div>
+						<div className={`bottom ${isClicked ? "clicked" : ""}`}>
 							<div className='left'>
 								<div className='details'>
 									<p className='product-name'>{name}</p>
-									<p>£250</p>
+									<p className='product-price-card'>€{price}</p>
 								</div>
-								<div className='buy'>
-                        <AiOutlineShoppingCart size={35}/>
+								<div className='buy' onClick={handleBuyClick}>
+									<AiOutlineShoppingCart size={35} />
 								</div>
 							</div>
 							<div className='right'>
 								<div className='done'>
-									<i className='material-icons'>done</i>
+									<AiOutlineCheckCircle size={35} />
 								</div>
 								<div className='details'>
 									<p className='product-name'>{name}</p>
 									<p>Added to your cart</p>
 								</div>
-								<div className='remove'>
-									<i className='material-icons'>clear</i>
+								<div className='remove' onClick={handleRemoveClick}>
+									<AiOutlineCloseCircle size={35} />
 								</div>
 							</div>
 						</div>
 					</div>
 					<div className='inside'>
 						<div className='icon'>
-							<i className='material-icons'>line</i>
+							<AiOutlineInfoCircle size={30} />
 						</div>
 						<div className='contents'>
 							<table>

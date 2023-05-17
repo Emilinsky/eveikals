@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import parse from "html-react-parser";
+
 import { AiOutlineShoppingCart, AiOutlineInfoCircle, AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 
 import { urlFor } from "../lib/client";
 
 const Product = ({ product }) => {
-	const { name, image, slug, price } = product;
+	const { name, image, slug, price, details } = product;
 	const [isClicked, setIsClicked] = useState(false);
 
 	const handleBuyClick = () => {
@@ -18,7 +20,7 @@ const Product = ({ product }) => {
 
 	return (
 		<>
-			{slug && (
+			{/* {slug && (
 				<div>
 					<Link href={`/product/${slug.current}`}>
 						<div className='product-card'>
@@ -27,12 +29,14 @@ const Product = ({ product }) => {
 						</div>
 					</Link>
 				</div>
-			)}
+			)} */}
 			{slug && (
 				<div className='wrapper'>
 					<div className='container'>
 						<div className='top'>
-							<img src={urlFor(image && image[0])} />
+							<Link href={`/product/${slug.current}`}>
+								<img src={urlFor(image && image[0])} />
+							</Link>
 						</div>
 						<div className={`bottom ${isClicked ? "clicked" : ""}`}>
 							<div className='left'>
@@ -49,7 +53,7 @@ const Product = ({ product }) => {
 									<AiOutlineCheckCircle size={35} />
 								</div>
 								<div className='details'>
-									<p className='product-name'>{name}</p>
+									<p className='product-name-added'>{name}</p>
 									<p>Added to your cart</p>
 								</div>
 								<div className='remove' onClick={handleRemoveClick}>
@@ -62,46 +66,7 @@ const Product = ({ product }) => {
 						<div className='icon'>
 							<AiOutlineInfoCircle size={30} />
 						</div>
-						<div className='contents'>
-							<table>
-								<thead>
-									<tr>
-										<th>Width</th>
-										<th>Height</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>3000mm</td>
-										<td>4000mm</td>
-									</tr>
-									<tr>
-										<th>Something</th>
-										<th>Something</th>
-									</tr>
-									<tr>
-										<td>200mm</td>
-										<td>200mm</td>
-									</tr>
-									<tr>
-										<th>Something</th>
-										<th>Something</th>
-									</tr>
-									<tr>
-										<td>200mm</td>
-										<td>200mm</td>
-									</tr>
-									<tr>
-										<th>Something</th>
-										<th>Something</th>
-									</tr>
-									<tr>
-										<td>200mm</td>
-										<td>200mm</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+						<div className='contents'>{parse(details)}</div>
 					</div>
 				</div>
 			)}

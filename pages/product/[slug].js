@@ -11,6 +11,7 @@ const ProductDetails = ({ product, products }) => {
 		return <div>Product not found</div>;
 	}
 	const { image, name, description, price } = product;
+	console.log(description);
 
 	const [index, setIndex] = useState(0);
 	const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
@@ -51,6 +52,7 @@ const ProductDetails = ({ product, products }) => {
 					</div>
 					<h4>Details:</h4>
 					<div>{parse(description)}</div>
+					{/* <div>{parse(details)}</div> */}
 					<p className='price'>€{price}</p>
 					<div className='quantity'>
 						<h3>Quantity:</h3>

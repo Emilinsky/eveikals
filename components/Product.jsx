@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import parse from "html-react-parser";
-
 import { AiOutlineShoppingCart, AiOutlineInfoCircle, AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
-
 import { urlFor } from "../lib/client";
+import { useStateContext } from "../context/StateContext"; // import useStateContext
 
 const Product = ({ product }) => {
 	const { name, image, slug, price, details } = product;
 	const [isClicked, setIsClicked] = useState(false);
 
+	const { onAdd } = useStateContext(); // get onAdd function from context
+
 	const handleBuyClick = () => {
 		setIsClicked(true);
+		onAdd(product, 1); // add product to cart with quantity 1
 	};
 
 	const handleRemoveClick = () => {
 		setIsClicked(false);
+		// you can add a function here to remove the product from the cart
 	};
 
 	return (

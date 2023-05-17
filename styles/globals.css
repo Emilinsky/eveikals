@@ -232,13 +232,11 @@ span.text-red {
 	box-shadow: 0;
 	transform: translateY(10px);
 	transition: all 0.5s, transform 0.5s;
-	/* border: solid thin transparent; */
 }
 
 .wrapper:hover {
 	transform: translateY(0px);
 	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-	/* border: solid thin var(--primary-faded-color); */
 }
 
 .wrapper .container {
@@ -264,11 +262,6 @@ span.text-red {
 
 .wrapper .container .bottom.clicked {
 	transform: translateX(-50%);
-}
-
-.wrapper .container .bottom h1 {
-	margin: 0;
-	padding: 0;
 }
 
 .wrapper .container .bottom .left {
@@ -318,9 +311,7 @@ span.text-red {
 
 .wrapper .container .bottom .right .details {
 	padding: 10px 15px;
-	/* float: right; */
 	width: calc(84% - 40px);
-	/* height: 100%; */
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -346,12 +337,13 @@ span.text-red {
 	clear: both;
 	border-right: solid thin rgba(255, 255, 255, 0.3);
 	height: 50%;
-	background: #bc3b59;
+	background: var(--red-color);
 	transition: transform 0.5s, background 0.5s;
+	cursor: pointer;
 }
 
 .wrapper .container .bottom .right .remove:hover {
-	background: #9b2847;
+	background: #d84c4c;
 }
 
 .wrapper .container .bottom:hover .remove,
@@ -388,6 +380,7 @@ span.text-red {
 	top: 85px;
 	color: white;
 	opacity: 1;
+   transition: all .5s;
 }
 
 .wrapper .inside:hover .icon {
@@ -411,7 +404,7 @@ span.text-red {
 }
 
 .wrapper .inside .contents p {
-   color: white;
+	color: white;
 	font-size: 1.125rem;
 }
 
@@ -818,7 +811,7 @@ span.text-red {
 	margin-top: 40px;
 	font-size: 18px;
 	font-weight: 500;
-	background-color: var(--secondary-text-color);
+	background-color:white;
 	color: var(--red-color);
 	cursor: pointer;
 	width: 200px;

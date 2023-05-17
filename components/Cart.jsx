@@ -79,12 +79,12 @@ const Cart = () => {
 				{cartItems.length >= 1 && (
 					<div className='heart-bottom'>
 						<div className='total'>
-							<h3>Kopa:</h3>
+							<h3>Total:</h3>
 							<h3>€{totalPrice.toFixed(2)}</h3>
 						</div>
 						<div className='btn-container'>
 							<button type='button' className='btn' onClick={handleCheckout}>
-								Pirkt
+								Buy
 							</button>
 						</div>
 					</div>

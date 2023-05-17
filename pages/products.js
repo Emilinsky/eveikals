@@ -7,7 +7,7 @@ import { Product, ProductsBanner } from "../components";
 const Products = ({ products, bannerData, categories }) => {
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const productsPerPage = 3;
+	const productsPerPage = 5;
 
 	const combinedProducts = [...products.sanity];
 

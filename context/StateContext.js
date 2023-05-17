@@ -20,11 +20,13 @@ export const StateContext = ({ children }) => {
 
 		if (checkProductInCart) {
 			const updatedCartItems = cartItems.map((cartProduct) => {
-				if (cartProduct._id === product._id)
+				if (cartProduct._id === product._id) {
 					return {
 						...cartProduct,
 						quantity: cartProduct.quantity + quantity,
 					};
+				}
+				return cartProduct; // return current product when condition is not met
 			});
 			setCartItems(updatedCartItems);
 		} else {

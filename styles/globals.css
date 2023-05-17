@@ -8,7 +8,7 @@
 	--primary-text-color: #3b3b3b;
 	--secondary-text-color: #f7f7f7;
 	--primary-color: #00bea8;
-	--primary-faded-color: #00bea89d;
+	--primary-faded-color: #0096849d;
 	--secondary-color: #004cff;
 	--red-color: #fa575c;
 	--navbar-background: #f7f7f7b0;
@@ -205,6 +205,7 @@ span.text-red {
 	font-weight: 500;
 	/* padding-bottom: 5px; */
 	color: #7c7c7c;
+   font-size: .875rem;
 }
 .product-name-added {
 	color: var(--main-background-first);
@@ -267,7 +268,7 @@ span.text-red {
 .wrapper .container .bottom .left {
 	height: 100%;
 	width: 50%;
-	background: #f4f4f4;
+	background: #f4f4f4b6;
 	position: relative;
 	float: left;
 }
@@ -290,7 +291,7 @@ span.text-red {
 	float: right;
 	width: calc(30% - 2px);
 	height: 100%;
-	background: #f1f1f1;
+	background: #f4f4f4b6;
 	transition: background 0.5s;
 	border-left: solid thin rgba(0, 0, 0, 0.1);
 	cursor: pointer;

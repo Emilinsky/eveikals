@@ -48,7 +48,7 @@ const Product = ({ product }) => {
 									<p className='product-price-card'>€{price}</p>
 								</div>
 								<div className='buy' onClick={handleBuyClick}>
-									<AiOutlineShoppingCart size={35} />
+									<AiOutlineShoppingCart size={30} />
 								</div>
 							</div>
 							<div className='right'>

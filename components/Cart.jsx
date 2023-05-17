@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Link from "next/link";
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping  } from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import toast from "react-hot-toast";
 
@@ -22,7 +22,8 @@ const Cart = () => {
 
 		if (response.statusCode === 500) return;
 		const data = await response.json();
-		toast.loading("Uz maksājumu...");
+		console.log(data);
+		toast.loading("Processing..");
 		stripe.redirectToCheckout({ sessionId: data.id });
 	};
 

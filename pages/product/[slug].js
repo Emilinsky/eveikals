@@ -11,7 +11,7 @@ const ProductDetails = ({ product, products }) => {
 		return <div>Product not found</div>;
 	}
 	const { image, name, description, price } = product;
-	console.log(description);
+	// console.log(description);
 
 	const [index, setIndex] = useState(0);
 	const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();

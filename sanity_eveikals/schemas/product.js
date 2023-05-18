@@ -13,8 +13,8 @@ export default {
 			},
 		},
 		{
-			name: "additionalImages",
-			title: "Additional Images",
+			name: "images",
+			title: "Images",
 			type: "array",
 			of: [{ type: "image" }],
 			options: {
@@ -52,18 +52,11 @@ export default {
 			type: "string",
 		},
 		{
-			name: "sizes",
-			title: "Sizes",
-			type: "array",
-			of: [{ type: "string" }],
-		},
-		{
 			name: "colors",
 			title: "Colors",
 			type: "array",
 			of: [{ type: "string" }],
 		},
-
 		{
 			name: "description",
 			title: "Description",
@@ -75,10 +68,10 @@ export default {
 			type: "text",
 		},
 		{
-			name: "category",
-			title: "Category",
-			type: "reference",
-			to: [{ type: "category" }],
+			name: "tags",
+			title: "Tags",
+			type: "array",
+			of: [{ type: "string" }],
 		},
 		{
 			name: "createdAt",
@@ -90,6 +83,142 @@ export default {
 			title: "Printify ID",
 			type: "string",
 			hidden: true, // Optionally, you can hide this field in the Sanity Studio UI
+		},
+		{
+			name: "options",
+			title: "Options",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						{
+							name: "name",
+							title: "Name",
+							type: "string",
+						},
+						{
+							name: "type",
+							title: "Type",
+							type: "string",
+						},
+						{
+							name: "values",
+							title: "Values",
+							type: "array",
+							of: [
+								{
+									type: "object",
+									fields: [
+										{
+											name: "id",
+											title: "ID",
+											type: "number",
+										},
+										{
+											name: "title",
+											title: "Title",
+											type: "string",
+										},
+										{
+											name: "colors",
+											title: "Colors",
+											type: "array",
+											of: [{ type: "string" }],
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+			],
+		},
+		{
+			name: "variants",
+			title: "Variants",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						{
+							name: "id",
+							title: "ID",
+							type: "number",
+						},
+						{
+							name: "price",
+							title: "Price",
+							type: "string",
+						},
+						{
+							name: "title",
+							title: "Title",
+							type: "string",
+						},
+						{
+							name: "sku",
+							title: "SKU",
+							type: "string",
+						},
+						{
+							name: "grams",
+							title: "Grams",
+							type: "number",
+						},
+						{
+							name: "is_enabled",
+							title: "Is Enabled",
+							type: "boolean",
+						},
+						{
+							name: "is_default",
+							title: "Is Default",
+							type: "boolean",
+						},
+						{
+							name: "options",
+							title: "Options",
+							type: "array",
+							of: [{ type: "number" }],
+						},
+						{
+							name: "images",
+							title: "Images",
+							type: "array",
+							of: [
+								{
+									type: "object",
+									fields: [
+										{
+											name: "src",
+											title: "Source",
+											type: "string",
+										},
+										{
+											name: "variant_ids",
+											title: "Variant IDs",
+											type: "array",
+											of: [{ type: "number" }],
+										},
+										{
+											name: "position",
+											title: "Position",
+											type: "string",
+										},
+										{
+											name: "is_default",
+											title: "Is Default",
+											type: "boolean",
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+			],
 		},
 	],
 };

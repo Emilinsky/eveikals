@@ -32,7 +32,31 @@ const getShopProducts = async (shopId) => {
 					price: (product.variants[0].price / 100).toFixed(2),
 					description: product.description,
 					createdAt: new Date().toISOString(),
+					tags: product.tags || [], // added this line
+               // Handle the options field
+					options: product.options.map((option) => ({
+                  _key: uuidv4(),
+						name: option.name,
+						type: option.type,
+						values: option.values.map((value) => ({
+							_key: uuidv4(),
+							id: value.id,
+							title: value.title,
+							colors: value.colors,
+						})),
+					})),
+               // Handle the variants field
+					variants: product.variants.map((variant) => ({
+						_key: uuidv4(),
+						id: variant.id,
+						price: (variant.price / 100).toFixed(2),
+						title: variant.title,
+						sku: variant.sku,
+						grams: variant.grams,
+						options: variant.options,
+					})),
 				};
+
 
 				const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
 
@@ -78,9 +102,6 @@ const getShopProducts = async (shopId) => {
 				} else {
 					formattedProduct.additionalImages = existingProduct.data.additionalImages;
 				}
-
-				// Add the size variants
-				formattedProduct.sizes = product.variants.map((variant) => variant.title);
 
 				if (!existingProduct.data) {
 					const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);

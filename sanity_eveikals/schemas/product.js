@@ -13,6 +13,16 @@ export default {
 			},
 		},
 		{
+			name: "additionalImages",
+			title: "Additional Images",
+			type: "array",
+			of: [{ type: "image" }],
+			options: {
+				hotspot: true,
+			},
+		},
+
+		{
 			name: "name",
 			title: "Name",
 			type: "string",
@@ -40,6 +50,12 @@ export default {
 			name: "price",
 			title: "Price",
 			type: "string",
+		},
+		{
+			name: "sizes",
+			title: "Sizes",
+			type: "array",
+			of: [{ type: "string" }],
 		},
 		{
 			name: "description",

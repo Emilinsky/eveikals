@@ -11,9 +11,7 @@ async function uploadImageToSanity(imageUrl) {
 	return response.data.assetId;
 }
 
-async function getShopProducts(shopId) {
-	// console.log('Fetching shop products');  // And here
-
+const getShopProducts = async (shopId) => {
 	try {
 		const response = await axios.get(`https://api.printify.com/v1/shops/${shopId}/products.json`, {
 			headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
@@ -25,23 +23,18 @@ async function getShopProducts(shopId) {
 
 		const products = response.data.data;
 
-		// Process and save each product in Sanity concurrently
 		const savedProducts = await Promise.all(
 			products.map(async (product) => {
-				// console.log(`Fetched product from Printify: ${product.title}`); // Log the fetched product title
-
 				const formattedProduct = {
 					name: product.title,
 					slug: { current: product.id },
 					printifyId: product.id,
 					price: (product.variants[0].price / 100).toFixed(2),
 					description: product.description,
-					createdAt: new Date().toISOString(), // add this line
+					createdAt: new Date().toISOString(),
 				};
 
 				const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
-
-				// console.log(`Product exists in database: ${existingProduct.data ? "Yes" : "No"}`); // Log if the product exists in the database
 
 				if (
 					!existingProduct.data ||
@@ -49,17 +42,6 @@ async function getShopProducts(shopId) {
 					(existingProduct.data.imageUploadedToSanity &&
 						existingProduct.data.printifyImageUrl !== product.images[0].src)
 				) {
-					// console.log(
-					// 	`Image uploaded to Sanity: ${
-					// 		existingProduct.data && existingProduct.data.imageUploadedToSanity ? "Yes" : "No"
-					// 	}`
-					// ); // Log if the image is uploaded to Sanity
-					// console.log(
-					// 	`Product image in Printify has changed: ${
-					// 		existingProduct.data && existingProduct.data.printifyImageUrl !== product.images[0].src ? "Yes" : "No"
-					// 	}`
-					// ); // Log if the product image in Printify has changed
-
 					const imageAssetId = await uploadImageToSanity(product.images[0].src);
 
 					formattedProduct.image = [
@@ -78,30 +60,47 @@ async function getShopProducts(shopId) {
 					formattedProduct.imageUploadedToSanity = existingProduct.data.imageUploadedToSanity;
 				}
 
+				formattedProduct.additionalImages = [];
+
+				if (!existingProduct.data || existingProduct.data.additionalImages.length !== product.images.slice(1).length) {
+					formattedProduct.additionalImages = await Promise.all(
+						product.images.slice(1).map(async (image) => {
+							const imageAssetId = await uploadImageToSanity(image.src);
+							return {
+								_key: uuidv4(),
+								asset: {
+									_type: "reference",
+									_ref: imageAssetId,
+								},
+							};
+						})
+					);
+				} else {
+					formattedProduct.additionalImages = existingProduct.data.additionalImages;
+				}
+
+				// Add the size variants
+				formattedProduct.sizes = product.variants.map((variant) => variant.title);
+
 				if (!existingProduct.data) {
-					// console.log(`Saving new product to database: ${product.title}`); // Log the product title being saved to the database
 					const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);
 					return res.data;
 				} else {
-					// console.log(`Updating existing product in database: ${product.title}`); // Log the product title being updated in the database
 					await axios.put(`http://localhost:3000/api/updateProduct/${existingProduct.data._id}`, formattedProduct);
 					return formattedProduct;
 				}
 			})
 		);
-
 		return savedProducts;
 	} catch (error) {
-		// console.error('Error fetching shop products:', error);  // And here
-
 		if (error.response && error.response.status === 404) {
-			// console.log(`No products found for shopId: ${shopId}`);
+			console.log(`No products found for shopId: ${shopId}`);
 		} else {
-			// console.error(`Failed to fetch products for shopId: ${shopId}. Error: ${error.message}`);
+			console.error(`Failed to fetch products for shopId: ${shopId}. Error: ${error.message}`);
 		}
 		return [];
 	}
-}
+};
 
 export default async function handler(req, res) {
 	// console.log('Handling /api/products request');  // New log here

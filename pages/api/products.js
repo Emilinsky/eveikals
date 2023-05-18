@@ -33,9 +33,9 @@ const getShopProducts = async (shopId) => {
 					description: product.description,
 					createdAt: new Date().toISOString(),
 					tags: product.tags || [], // added this line
-               // Handle the options field
+					// Handle the options field
 					options: product.options.map((option) => ({
-                  _key: uuidv4(),
+						_key: uuidv4(),
 						name: option.name,
 						type: option.type,
 						values: option.values.map((value) => ({
@@ -45,7 +45,7 @@ const getShopProducts = async (shopId) => {
 							colors: value.colors,
 						})),
 					})),
-               // Handle the variants field
+					// Handle the variants field
 					variants: product.variants.map((variant) => ({
 						_key: uuidv4(),
 						id: variant.id,
@@ -56,7 +56,6 @@ const getShopProducts = async (shopId) => {
 						options: variant.options,
 					})),
 				};
-
 
 				const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
 
@@ -84,24 +83,22 @@ const getShopProducts = async (shopId) => {
 					formattedProduct.imageUploadedToSanity = existingProduct.data.imageUploadedToSanity;
 				}
 
-				formattedProduct.additionalImages = [];
-
-				if (!existingProduct.data || existingProduct.data.additionalImages.length !== product.images.slice(1).length) {
-					formattedProduct.additionalImages = await Promise.all(
-						product.images.slice(1).map(async (image) => {
-							const imageAssetId = await uploadImageToSanity(image.src);
-							return {
-								_key: uuidv4(),
-								asset: {
-									_type: "reference",
-									_ref: imageAssetId,
-								},
-							};
-						})
-					);
-				} else {
-					formattedProduct.additionalImages = existingProduct.data.additionalImages;
-				}
+				formattedProduct.images = await Promise.all(
+					product.images.map(async (image) => {
+						const imageAssetId = await uploadImageToSanity(image.src);
+						return {
+							_key: uuidv4(),
+							src: image.src,
+							variant_ids: image.variant_ids,
+							position: image.position,
+							is_default: image.is_default,
+							asset: {
+								_type: "reference",
+								_ref: imageAssetId,
+							},
+						};
+					})
+				);
 
 				if (!existingProduct.data) {
 					const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);

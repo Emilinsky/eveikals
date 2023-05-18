@@ -16,10 +16,40 @@ export default {
 			name: "images",
 			title: "Images",
 			type: "array",
-			of: [{ type: "image" }],
-			options: {
-				hotspot: true,
-			},
+			of: [
+				{
+					type: "object",
+					fields: [
+						{
+							name: "src",
+							title: "Image Source",
+							type: "string",
+						},
+						{
+							name: "variant_ids",
+							title: "Variant IDs",
+							type: "array",
+							of: [{ type: "number" }],
+						},
+						{
+							name: "position",
+							title: "Position",
+							type: "string",
+						},
+						{
+							name: "is_default",
+							title: "Is Default",
+							type: "boolean",
+						},
+						{
+							name: "asset",
+							type: "reference",
+							to: [{ type: "image" }],
+							hidden: true, // This field will not be displayed in the Studio
+						},
+					],
+				},
+			],
 		},
 
 		{

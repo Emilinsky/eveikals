@@ -37,13 +37,13 @@ const Products = ({ products, bannerData, categories }) => {
 			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} />
 			<div className='products-heading'>
 				<h1 className='header'>All Products</h1>
-				<div className='categories'>
+				{/* <div className='categories'>
 					{categories.map((category) => (
 						<button key={category._id} onClick={() => handleCategorySelect(category)} className='product-filter-btn'>
 							{selectedCategories.find((c) => c._id === category._id) && "✓"} {category.title}
 						</button>
 					))}
-				</div>
+				</div> */}
 			</div>
 			<div className='products-container'>
 				{currentProducts?.map((pro) => (

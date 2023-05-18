@@ -58,6 +58,13 @@ export default {
 			of: [{ type: "string" }],
 		},
 		{
+			name: "colors",
+			title: "Colors",
+			type: "array",
+			of: [{ type: "string" }],
+		},
+
+		{
 			name: "description",
 			title: "Description",
 			type: "text", // Use "text" instead of "string" for multiline text

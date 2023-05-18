@@ -11,6 +11,27 @@ async function uploadImageToSanity(imageUrl) {
 	return response.data.assetId;
 }
 
+const setProductPublishStatus = async (shopId, productId, productUrl) => {
+	try {
+		const response = await axios.post(
+			`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publishing_succeeded.json`,
+			{
+				external: {
+					id: productId,
+					handle: productUrl,
+				},
+			},
+			{
+				headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
+			}
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error(`Failed to set publish status for productId: ${productId}. Error: ${error.message}`);
+	}
+};
+
 const getShopProducts = async (shopId) => {
 	try {
 		const response = await axios.get(`https://api.printify.com/v1/shops/${shopId}/products.json`, {
@@ -102,9 +123,15 @@ const getShopProducts = async (shopId) => {
 
 				if (!existingProduct.data) {
 					const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);
+					const productUrl = `https://printify.com/app/store/products/${formattedProduct.slug.current}`; // replace with your actual product URL pattern
+					// New code to set product publish status
+					await setProductPublishStatus(shopId, product.id, productUrl);
 					return res.data;
 				} else {
 					await axios.put(`http://localhost:3000/api/updateProduct/${existingProduct.data._id}`, formattedProduct);
+					const productUrl = `https://printify.com/app/store/products/${formattedProduct.slug.current}`; // replace with your actual product URL pattern
+					// New code to set product publish status
+					await setProductPublishStatus(shopId, product.id, productUrl);
 					return formattedProduct;
 				}
 			})

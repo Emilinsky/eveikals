@@ -18,6 +18,27 @@ async function uploadImageToSanity(imageUrl) {
 	}
 }
 
+const setProductPublishStatus = async (shopId, productId, productUrl) => {
+	try {
+		const response = await axios.post(
+			`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publishing_succeeded.json`,
+			{
+				external: {
+					id: productId,
+					handle: productUrl,
+				},
+			},
+			{
+				headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
+			}
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error(`Failed to set publish status for productId: ${productId}. Error: ${error.message}`);
+	}
+};
+
 const getShopProducts = async (shopId) => {
 	try {
 		const response = await axios.get(`https://api.printify.com/v1/shops/${shopId}/products.json`, {
@@ -90,9 +111,14 @@ const getShopProducts = async (shopId) => {
 
 				if (!existingProduct.data) {
 					const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);
+					const productUrl = `https://printify.com/app/store/products/${formattedProduct.slug.current}`; // replace with your actual product URL pattern
+					// New code to set product publish status
+					await setProductPublishStatus(shopId, product.id, productUrl);
 					return res.data;
 				} else {
-					await axios.put(`http://localhost:3000/api/updateProduct/${existingProduct.data._id}`, formattedProduct);
+					const productUrl = `https://printify.com/app/store/products/${formattedProduct.slug.current}`; // replace with your actual product URL pattern
+					// New code to set product publish status
+					await setProductPublishStatus(shopId, product.id, productUrl);
 					return formattedProduct;
 				}
 			})
@@ -109,15 +135,12 @@ const getShopProducts = async (shopId) => {
 };
 
 export default async function handler(req, res) {
-	// console.log('Handling /api/products request');  // New log here
-
 	try {
 		const shopId = SHOP_ID;
 		const products = await getShopProducts(shopId);
 		res.status(200).json(products);
 	} catch (error) {
-		console.error("Error in /api/products handler:", error); // And here
-		// console.error(error);
+		console.error("Error in /api/products handler:", error);
 		res.status(500).json({ message: "An error occurred" });
 	}
 }

@@ -5,8 +5,9 @@ const PRINTIFY_ACCESS_TOKEN = process.env.PRINTIFY_ACCESS_TOKEN;
 const SHOP_ID = "8832572"; // replace with your shop id
 
 async function uploadImageToSanity(imageUrl) {
+	console.time(`uploadImageToSanity for ${imageUrl}`);
 	try {
-		console.time(`uploadImageToSanity for ${imageUrl}`);
+		// console.time(`uploadImageToSanity for ${imageUrl}`);
 		const response = await axios.post("http://localhost:3000/api/uploadImage", {
 			url: imageUrl,
 		});
@@ -40,6 +41,8 @@ const setProductPublishStatus = async (shopId, productId, productUrl) => {
 };
 
 const getShopProducts = async (shopId) => {
+	console.time("getShopProducts");
+
 	try {
 		const response = await axios.get(`https://api.printify.com/v1/shops/${shopId}/products.json`, {
 			headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
@@ -81,16 +84,18 @@ const getShopProducts = async (shopId) => {
 						grams: variant.grams,
 						options: variant.options,
 					})),
+					images: product.images.map((image) => ({
+						src: image.src,
+						variant_ids: image.variant_ids,
+						position: image.position,
+						is_default: image.is_default,
+					})),
 				};
 
 				const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
 
-				if (
-					!existingProduct.data ||
-					!existingProduct.data.imageUploadedToSanity ||
-					(existingProduct.data.imageUploadedToSanity &&
-						existingProduct.data.printifyImageUrl !== product.images[0].src)
-				) {
+				if (!existingProduct.data) {
+					// Product not found in Sanity, proceed with image upload
 					const imageAssetId = await uploadImageToSanity(product.images[0].src);
 
 					formattedProduct.image = [
@@ -105,7 +110,9 @@ const getShopProducts = async (shopId) => {
 					formattedProduct.printifyImageUrl = product.images[0].src;
 					formattedProduct.imageUploadedToSanity = true;
 				} else {
+					// Product already exists in Sanity, skip image upload
 					formattedProduct.image = existingProduct.data.image;
+					formattedProduct.printifyImageUrl = existingProduct.data.printifyImageUrl;
 					formattedProduct.imageUploadedToSanity = existingProduct.data.imageUploadedToSanity;
 				}
 
@@ -123,6 +130,8 @@ const getShopProducts = async (shopId) => {
 				}
 			})
 		);
+		console.timeEnd("getShopProducts");
+
 		return savedProducts;
 	} catch (error) {
 		if (error.response && error.response.status === 404) {
@@ -135,6 +144,8 @@ const getShopProducts = async (shopId) => {
 };
 
 export default async function handler(req, res) {
+	console.time("handler");
+
 	try {
 		const shopId = SHOP_ID;
 		const products = await getShopProducts(shopId);
@@ -143,4 +154,5 @@ export default async function handler(req, res) {
 		console.error("Error in /api/products handler:", error);
 		res.status(500).json({ message: "An error occurred" });
 	}
+	console.timeEnd("handler");
 }

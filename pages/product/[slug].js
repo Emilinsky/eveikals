@@ -6,12 +6,28 @@ import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
+const findVariant = (selectedOptions, productOptions, variants) => {
+	return variants.find((variant) => {
+		// For each variant, first map the option IDs to their corresponding options
+		const variantOptions = variant.options.map((optionId) => {
+			// Find the option with the matching ID
+			return productOptions.find((option) => option.values.some((value) => value.id === optionId));
+		});
+
+		// Then check if all of the variant's options match the selected options
+		return variantOptions.every((option) => selectedOptions[option.name] === option.title);
+	});
+};
+
 const ProductDetails = ({ product, products }) => {
 	if (!product) {
 		return <div>Product not found</div>;
 	}
-	const { image, name, description, price } = product;
+	const { image, name, description, price, options, variants } = product;
 	// console.log(description);
+	const [selectedOptions, setSelectedOptions] = useState({});
+
+	const currentVariant = findVariant(selectedOptions, options, variants);
 
 	const [index, setIndex] = useState(0);
 	const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
@@ -52,7 +68,24 @@ const ProductDetails = ({ product, products }) => {
 					</div>
 					<h4>Details:</h4>
 					<div>{parse(description)}</div>
-					{/* <div>{parse(details)}</div> */}
+
+					{/* DETAILS OPTIONS */}
+					<div>
+						{options.map((option) => (
+							<div key={option._key}>
+								<label>{option.name}:</label>
+								<select onChange={(e) => setSelectedOptions({ ...selectedOptions, [option.name]: e.target.value })}>
+									{option.values.map((value) => (
+										<option key={value._key} value={value.title}>
+											{value.title}
+										</option>
+									))}
+								</select>
+							</div>
+						))}
+					</div>
+					{/* END OF DETAILS */}
+
 					<p className='price'>€{price}</p>
 					<div className='quantity'>
 						<h3>Quantity:</h3>

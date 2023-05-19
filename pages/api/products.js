@@ -85,6 +85,7 @@ const getShopProducts = async (shopId) => {
 						options: variant.options,
 					})),
 					images: product.images.map((image) => ({
+						_key: uuidv4(), // Add unique key for each image object
 						src: image.src,
 						variant_ids: image.variant_ids,
 						position: image.position,

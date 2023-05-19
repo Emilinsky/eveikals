@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import parse from "html-react-parser";
 
@@ -9,6 +9,21 @@ import { useStateContext } from "../../context/StateContext";
 const getOptionId = (allOptions, name, value) => {
 	const option = allOptions.find((option) => option.name === name);
 	return option ? option.values.find((val) => val.title === value).id : null;
+};
+const getOptionName = (allOptions, optionId) => {
+	for (let option of allOptions) {
+		const value = option.values.find((val) => val.id === optionId);
+		if (value) return option.name;
+	}
+	return null;
+};
+
+const getOptionValue = (allOptions, optionId) => {
+	for (let option of allOptions) {
+		const value = option.values.find((val) => val.id === optionId);
+		if (value) return value.title;
+	}
+	return null;
 };
 
 const findVariant = (selectedOptions, allOptions, allVariants) => {
@@ -36,9 +51,34 @@ const ProductDetails = ({ product, products }) => {
 
 	const [selectedImages, setSelectedImages] = useState([]);
 
+	const defaultVariant = product.variants.find((variant) => variant.is_default);
+	console.log(defaultVariant); // Add this line
+
 	// This is where you initialize your state for the selected options and variant.
-	const [selectedOptions, setSelectedOptions] = useState({});
-	const [selectedVariant, setSelectedVariant] = useState(variants[0]); // Start with the first variant
+	const [selectedVariant, setSelectedVariant] = useState(defaultVariant || product.variants[0]);
+	const [selectedOptions, setSelectedOptions] = useState(
+		defaultVariant
+			? defaultVariant.options.reduce((acc, optionId) => {
+					const optionName = getOptionName(product.options, optionId);
+					const optionValue = getOptionValue(product.options, optionId);
+					return { ...acc, [optionName]: optionValue };
+			  }, {})
+			: {}
+	);
+
+	useEffect(() => {
+		if (selectedVariant) {
+			// If a selected variant exists, filter the images based on it
+			const variantImages = images.filter((image) => image.variant_ids.includes(selectedVariant.id));
+
+			console.log("Variant Images:", variantImages);
+
+			setSelectedImages(variantImages);
+		} else {
+			// If no selected variant exists, clear the selected images
+			setSelectedImages([]);
+		}
+	}, [selectedVariant, images]);
 
 	const handleOptionChange = (optionName, optionValue) => {
 		// First update the selected options

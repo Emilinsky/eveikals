@@ -5,10 +5,17 @@ const PRINTIFY_ACCESS_TOKEN = process.env.PRINTIFY_ACCESS_TOKEN;
 const SHOP_ID = "8832572"; // replace with your shop id
 
 async function uploadImageToSanity(imageUrl) {
-	const response = await axios.post("http://localhost:3000/api/uploadImage", {
-		url: imageUrl,
-	});
-	return response.data.assetId;
+	try {
+		console.time(`uploadImageToSanity for ${imageUrl}`);
+		const response = await axios.post("http://localhost:3000/api/uploadImage", {
+			url: imageUrl,
+		});
+		console.timeEnd(`uploadImageToSanity for ${imageUrl}`);
+		return response.data.assetId;
+	} catch (error) {
+		console.error(`Error uploading image to Sanity: ${error.message}`);
+		throw error; // Rethrow the error to propagate it up the call stack
+	}
 }
 
 const getShopProducts = async (shopId) => {
@@ -32,10 +39,9 @@ const getShopProducts = async (shopId) => {
 					price: (product.variants[0].price / 100).toFixed(2),
 					description: product.description,
 					createdAt: new Date().toISOString(),
-					tags: product.tags || [], // added this line
-               // Handle the options field
+					tags: product.tags || [],
 					options: product.options.map((option) => ({
-                  _key: uuidv4(),
+						_key: uuidv4(),
 						name: option.name,
 						type: option.type,
 						values: option.values.map((value) => ({
@@ -45,7 +51,6 @@ const getShopProducts = async (shopId) => {
 							colors: value.colors,
 						})),
 					})),
-               // Handle the variants field
 					variants: product.variants.map((variant) => ({
 						_key: uuidv4(),
 						id: variant.id,
@@ -56,7 +61,6 @@ const getShopProducts = async (shopId) => {
 						options: variant.options,
 					})),
 				};
-
 
 				const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
 
@@ -82,25 +86,6 @@ const getShopProducts = async (shopId) => {
 				} else {
 					formattedProduct.image = existingProduct.data.image;
 					formattedProduct.imageUploadedToSanity = existingProduct.data.imageUploadedToSanity;
-				}
-
-				formattedProduct.additionalImages = [];
-
-				if (!existingProduct.data || existingProduct.data.additionalImages.length !== product.images.slice(1).length) {
-					formattedProduct.additionalImages = await Promise.all(
-						product.images.slice(1).map(async (image) => {
-							const imageAssetId = await uploadImageToSanity(image.src);
-							return {
-								_key: uuidv4(),
-								asset: {
-									_type: "reference",
-									_ref: imageAssetId,
-								},
-							};
-						})
-					);
-				} else {
-					formattedProduct.additionalImages = existingProduct.data.additionalImages;
 				}
 
 				if (!existingProduct.data) {
@@ -131,7 +116,7 @@ export default async function handler(req, res) {
 		const products = await getShopProducts(shopId);
 		res.status(200).json(products);
 	} catch (error) {
-		// console.error('Error in /api/products handler:', error);  // And here
+		console.error("Error in /api/products handler:", error); // And here
 		// console.error(error);
 		res.status(500).json({ message: "An error occurred" });
 	}

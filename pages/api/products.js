@@ -11,27 +11,6 @@ async function uploadImageToSanity(imageUrl) {
 	return response.data.assetId;
 }
 
-const setProductPublishStatus = async (shopId, productId, productUrl) => {
-	try {
-		const response = await axios.post(
-			`https://api.printify.com/v1/shops/${shopId}/products/${productId}/publishing_succeeded.json`,
-			{
-				external: {
-					id: productId,
-					handle: productUrl,
-				},
-			},
-			{
-				headers: { Authorization: `Bearer ${PRINTIFY_ACCESS_TOKEN}` },
-			}
-		);
-
-		return response.data;
-	} catch (error) {
-		console.error(`Failed to set publish status for productId: ${productId}. Error: ${error.message}`);
-	}
-};
-
 const getShopProducts = async (shopId) => {
 	try {
 		const response = await axios.get(`https://api.printify.com/v1/shops/${shopId}/products.json`, {
@@ -54,9 +33,9 @@ const getShopProducts = async (shopId) => {
 					description: product.description,
 					createdAt: new Date().toISOString(),
 					tags: product.tags || [], // added this line
-					// Handle the options field
+               // Handle the options field
 					options: product.options.map((option) => ({
-						_key: uuidv4(),
+                  _key: uuidv4(),
 						name: option.name,
 						type: option.type,
 						values: option.values.map((value) => ({
@@ -66,7 +45,7 @@ const getShopProducts = async (shopId) => {
 							colors: value.colors,
 						})),
 					})),
-					// Handle the variants field
+               // Handle the variants field
 					variants: product.variants.map((variant) => ({
 						_key: uuidv4(),
 						id: variant.id,
@@ -77,6 +56,7 @@ const getShopProducts = async (shopId) => {
 						options: variant.options,
 					})),
 				};
+
 
 				const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
 
@@ -104,34 +84,30 @@ const getShopProducts = async (shopId) => {
 					formattedProduct.imageUploadedToSanity = existingProduct.data.imageUploadedToSanity;
 				}
 
-				formattedProduct.images = await Promise.all(
-					product.images.map(async (image) => {
-						const imageAssetId = await uploadImageToSanity(image.src);
-						return {
-							_key: uuidv4(),
-							src: image.src,
-							variant_ids: image.variant_ids,
-							position: image.position,
-							is_default: image.is_default,
-							asset: {
-								_type: "reference",
-								_ref: imageAssetId,
-							},
-						};
-					})
-				);
+				formattedProduct.additionalImages = [];
+
+				if (!existingProduct.data || existingProduct.data.additionalImages.length !== product.images.slice(1).length) {
+					formattedProduct.additionalImages = await Promise.all(
+						product.images.slice(1).map(async (image) => {
+							const imageAssetId = await uploadImageToSanity(image.src);
+							return {
+								_key: uuidv4(),
+								asset: {
+									_type: "reference",
+									_ref: imageAssetId,
+								},
+							};
+						})
+					);
+				} else {
+					formattedProduct.additionalImages = existingProduct.data.additionalImages;
+				}
 
 				if (!existingProduct.data) {
 					const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);
-					const productUrl = `https://printify.com/app/store/products/${formattedProduct.slug.current}`; // replace with your actual product URL pattern
-					// New code to set product publish status
-					await setProductPublishStatus(shopId, product.id, productUrl);
 					return res.data;
 				} else {
 					await axios.put(`http://localhost:3000/api/updateProduct/${existingProduct.data._id}`, formattedProduct);
-					const productUrl = `https://printify.com/app/store/products/${formattedProduct.slug.current}`; // replace with your actual product URL pattern
-					// New code to set product publish status
-					await setProductPublishStatus(shopId, product.id, productUrl);
 					return formattedProduct;
 				}
 			})

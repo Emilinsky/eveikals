@@ -6,16 +6,25 @@ import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
-const findVariant = (selectedOptions, productOptions, variants) => {
-	return variants.find((variant) => {
-		// For each variant, first map the option IDs to their corresponding options
+const getOptionId = (allOptions, name, value) => {
+	const option = allOptions.find((option) => option.name === name);
+	return option ? option.values.find((val) => val.title === value).id : null;
+};
+
+const findVariant = (selectedOptions, allOptions, allVariants) => {
+	return allVariants.find((variant) => {
 		const variantOptions = variant.options.map((optionId) => {
-			// Find the option with the matching ID
-			return productOptions.find((option) => option.values.some((value) => value.id === optionId));
+			const option = allOptions.find((option) => option.values.some((value) => value.id === optionId));
+			return option ? option.name : null;
 		});
 
-		// Then check if all of the variant's options match the selected options
-		return variantOptions.every((option) => selectedOptions[option.name] === option.title);
+		// Check if all options match
+		const allOptionsMatch = Object.entries(selectedOptions).every(([name, value]) => {
+			const optionIndex = variantOptions.indexOf(name);
+			return optionIndex !== -1 && variant.options[optionIndex] === getOptionId(allOptions, name, value);
+		});
+
+		return allOptionsMatch;
 	});
 };
 
@@ -23,9 +32,40 @@ const ProductDetails = ({ product, products }) => {
 	if (!product) {
 		return <div>Product not found</div>;
 	}
-	const { image, name, description, price, options, variants } = product;
-	// console.log(description);
+	const { image, name, description, price, options, variants, images } = product;
+
+	const [selectedImages, setSelectedImages] = useState([]);
+
+	// This is where you initialize your state for the selected options and variant.
 	const [selectedOptions, setSelectedOptions] = useState({});
+	const [selectedVariant, setSelectedVariant] = useState(variants[0]); // Start with the first variant
+
+	const handleOptionChange = (optionName, optionValue) => {
+		// First update the selected options
+		setSelectedOptions((prevSelectedOptions) => ({
+			...prevSelectedOptions,
+			[optionName]: optionValue,
+		}));
+
+		// Then find the new selected variant
+		const newSelectedVariant = findVariant({ ...selectedOptions, [optionName]: optionValue }, options, variants);
+
+		console.log("New Selected Variant:", newSelectedVariant);
+
+		if (newSelectedVariant) {
+			// If a new selected variant was found, filter the images based on it
+			const variantImages = images.filter((image) => image.variant_ids.includes(newSelectedVariant.id));
+
+			console.log("Variant Images:", variantImages);
+
+			setSelectedImages(variantImages);
+		} else {
+			// If no new selected variant was found, clear the selected images
+			setSelectedImages([]);
+		}
+	};
+
+	// console.log(description);
 
 	const currentVariant = findVariant(selectedOptions, options, variants);
 
@@ -42,6 +82,9 @@ const ProductDetails = ({ product, products }) => {
 				<div>
 					<div className='image-container'>
 						<img src={urlFor(image && image[index])} className='product-detail-image' />
+						{selectedImages.map((image) => (
+							<img key={image.src} src={image.src} alt='' className='product-detail-image' />
+						))}
 					</div>
 					<div className='small-images-container'>
 						{image?.map((item, i) => (
@@ -74,7 +117,7 @@ const ProductDetails = ({ product, products }) => {
 						{options.map((option) => (
 							<div key={option._key}>
 								<label>{option.name}:</label>
-								<select onChange={(e) => setSelectedOptions({ ...selectedOptions, [option.name]: e.target.value })}>
+								<select onChange={(e) => handleOptionChange(option.name, e.target.value)}>
 									{option.values.map((value) => (
 										<option key={value._key} value={value.title}>
 											{value.title}

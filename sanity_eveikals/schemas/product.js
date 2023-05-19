@@ -213,39 +213,6 @@ export default {
 							type: "array",
 							of: [{ type: "number" }],
 						},
-						{
-							name: "images",
-							title: "Images",
-							type: "array",
-							of: [
-								{
-									type: "object",
-									fields: [
-										{
-											name: "src",
-											title: "Source",
-											type: "string",
-										},
-										{
-											name: "variant_ids",
-											title: "Variant IDs",
-											type: "array",
-											of: [{ type: "number" }],
-										},
-										{
-											name: "position",
-											title: "Position",
-											type: "string",
-										},
-										{
-											name: "is_default",
-											title: "Is Default",
-											type: "boolean",
-										},
-									],
-								},
-							],
-						},
 					],
 				},
 			],

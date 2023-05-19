@@ -121,22 +121,22 @@ const ProductDetails = ({ product, products }) => {
 			<div className='product-detail-container'>
 				<div>
 					<div className='image-container'>
-						<img src={urlFor(image && image[index])} className='product-detail-image' />
-						{selectedImages.map((image) => (
-							<img key={image.src} src={image.src} alt='' className='product-detail-image' />
-						))}
+						{/* Show main image from selectedImages */}
+						<img src={selectedImages[index]?.src} className='product-detail-image' />
 					</div>
 					<div className='small-images-container'>
-						{image?.map((item, i) => (
+						{/* Show only the images associated with the selected variant */}
+						{selectedImages.map((item, i) => (
 							<img
-								key={i}
-								src={urlFor(item)}
+								key={item.src}
+								src={item.src}
 								className={i === index ? "small-image selected-image" : "small-image"}
 								onMouseEnter={() => setIndex(i)}
 							/>
 						))}
 					</div>
 				</div>
+
 				<div className='product-detail-desc'>
 					<h1>{name}</h1>
 					<div className='reviews'>

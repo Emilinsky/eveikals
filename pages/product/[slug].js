@@ -7,22 +7,41 @@ import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
 const getOptionId = (allOptions, name, value) => {
+	console.log("getOptionId - allOptions:", allOptions);
+	console.log("getOptionId - name:", name);
+	console.log("getOptionId - value:", value);
+
 	const option = allOptions.find((option) => option.name === name);
+	console.log("getOptionId - option:", option);
+
 	return option ? option.values.find((val) => val.title === value).id : null;
 };
+
 const getOptionName = (allOptions, optionId) => {
+	console.log("getOptionName - allOptions:", allOptions);
+	console.log("getOptionName - optionId:", optionId);
+
 	for (let option of allOptions) {
-		const value = option.values.find((val) => val.id === optionId);
+		const value = option.values ? option.values.find((val) => val.id === optionId) : null;
+		console.log("getOptionName - value:", value);
+
 		if (value) return option.name;
 	}
+
 	return null;
 };
 
 const getOptionValue = (allOptions, optionId) => {
+	console.log("getOptionValue - allOptions:", allOptions);
+	console.log("getOptionValue - optionId:", optionId);
+
 	for (let option of allOptions) {
-		const value = option.values.find((val) => val.id === optionId);
+		const value = option.values ? option.values.find((val) => val.id === optionId) : null;
+		console.log("getOptionValue - value:", value);
+
 		if (value) return value.title;
 	}
+
 	return null;
 };
 
@@ -44,65 +63,36 @@ const findVariant = (selectedOptions, allOptions, allVariants) => {
 };
 
 const ProductDetails = ({ product, products }) => {
+	console.log("Rendering ProductDetails...");
 	if (!product) {
 		return <div>Product not found</div>;
 	}
 	const { image, name, description, price, options, variants, images } = product;
 
-	const [selectedImages, setSelectedImages] = useState([]);
-
 	const defaultVariant = product.variants.find((variant) => variant.is_default);
-	console.log(defaultVariant); // Add this line
 
-	// This is where you initialize your state for the selected options and variant.
 	const [selectedVariant, setSelectedVariant] = useState(defaultVariant || product.variants[0]);
-	const [selectedOptions, setSelectedOptions] = useState(
-		defaultVariant
-			? defaultVariant.options.reduce((acc, optionId) => {
-					const optionName = getOptionName(product.options, optionId);
-					const optionValue = getOptionValue(product.options, optionId);
-					return { ...acc, [optionName]: optionValue };
-			  }, {})
-			: {}
-	);
 
 	useEffect(() => {
-		if (selectedVariant) {
-			// If a selected variant exists, filter the images based on it
-			const variantImages = images.filter((image) => image.variant_ids.includes(selectedVariant.id));
+		const defaultVariant = product.variants.find((variant) => variant.is_default);
+		setSelectedVariant(defaultVariant || product.variants[0]);
+	}, [product]);
 
-			console.log("Variant Images:", variantImages);
+	const selectedOptions = selectedVariant
+		? selectedVariant.options.reduce((acc, optionId) => {
+				const optionName = getOptionName(product.options, optionId);
+				const optionValue = getOptionValue(product.options, optionId);
+				return { ...acc, [optionName]: optionValue };
+		  }, {})
+		: {};
 
-			setSelectedImages(variantImages);
-		} else {
-			// If no selected variant exists, clear the selected images
-			setSelectedImages([]);
-		}
-	}, [selectedVariant, images]);
+	const selectedImages = selectedVariant
+		? images.filter((image) => image.variant_ids.includes(selectedVariant.id))
+		: [];
 
 	const handleOptionChange = (optionName, optionValue) => {
-		// First update the selected options
-		setSelectedOptions((prevSelectedOptions) => ({
-			...prevSelectedOptions,
-			[optionName]: optionValue,
-		}));
-
-		// Then find the new selected variant
 		const newSelectedVariant = findVariant({ ...selectedOptions, [optionName]: optionValue }, options, variants);
-
-		console.log("New Selected Variant:", newSelectedVariant);
-
-		if (newSelectedVariant) {
-			// If a new selected variant was found, filter the images based on it
-			const variantImages = images.filter((image) => image.variant_ids.includes(newSelectedVariant.id));
-
-			console.log("Variant Images:", variantImages);
-
-			setSelectedImages(variantImages);
-		} else {
-			// If no new selected variant was found, clear the selected images
-			setSelectedImages([]);
-		}
+		setSelectedVariant(newSelectedVariant);
 	};
 
 	// console.log(description);

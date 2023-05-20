@@ -147,7 +147,10 @@ const ProductDetails = ({ product, products }) => {
 						{options.map((option) => (
 							<div key={option._key}>
 								<label>{option.name}:</label>
-								<select onChange={(e) => handleOptionChange(option.name, e.target.value)}>
+								<select
+									value={selectedOptions[option.name] || ""} // This line is modified
+									onChange={(e) => handleOptionChange(option.name, e.target.value)}
+								>
 									{option.values.map((value) => (
 										<option key={value._key} value={value.title}>
 											{value.title}

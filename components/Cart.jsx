@@ -22,8 +22,12 @@ const Cart = () => {
 
 		if (response.statusCode === 500) return;
 		const data = await response.json();
-		console.log(data);
+		console.log("Data received from server: ", data);
 		toast.loading("Processing..");
+		if (!data.id) {
+			console.error("No session ID received from server");
+			return;
+		}
 		stripe.redirectToCheckout({ sessionId: data.id });
 	};
 

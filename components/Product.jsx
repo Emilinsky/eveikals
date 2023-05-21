@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { AiOutlineShoppingCart, AiOutlineInfoCircle, AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
@@ -9,30 +9,40 @@ const Product = ({ product }) => {
 	const { name, image, slug, price, details } = product;
 	const [isClicked, setIsClicked] = useState(false);
 
-	const { onAdd } = useStateContext(); // get onAdd function from context
+	// Define the selectedVariant state
+	const [selectedVariant, setSelectedVariant] = useState(null);
+
+	// Get onAdd, onRemove and cartItems function from context
+	const { onAdd, onRemove, cartItems } = useStateContext();
+
+	useEffect(() => {
+		// Set the selectedVariant as defaultVariant or first variant
+		const defaultVariant = product.variants.find((variant) => variant.is_default);
+		setSelectedVariant(defaultVariant || product.variants[0]);
+	}, [product]);
 
 	const handleBuyClick = () => {
 		setIsClicked(true);
-		onAdd(product, 1); // add product to cart with quantity 1
+		onAdd(product, 1, selectedVariant); // Add selectedVariant here
 	};
 
 	const handleRemoveClick = () => {
 		setIsClicked(false);
-		// you can add a function here to remove the product from the cart
+
+		// Check if product exists in the cart
+		const productInCart = cartItems.find((item) => item._id === product._id);
+
+		if (productInCart) {
+			// Call onRemove only if the product exists in the cart
+			onRemove(product);
+		} else {
+			// Optionally, you can show a message to the user
+			console.log("Product not found in the cart");
+		}
 	};
 
 	return (
 		<>
-			{/* {slug && (
-				<div>
-					<Link href={`/product/${slug.current}`}>
-						<div className='product-card'>
-							<img src={urlFor(image && image[0])} width={225} height={225} className='product-image' />
-							<p className='product-name'>{name}</p>
-						</div>
-					</Link>
-				</div>
-			)} */}
 			{slug && (
 				<div className='wrapper'>
 					<div className='container'>

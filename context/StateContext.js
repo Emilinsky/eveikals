@@ -45,11 +45,18 @@ export const StateContext = ({ children }) => {
 
 	const onRemove = (product) => {
 		foundProduct = cartItems.find((item) => item._id === product._id);
-		const newCartItems = cartItems.filter((item) => item._id !== product._id);
 
-		setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
-		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
-		setCartItems(newCartItems);
+		// Only remove the product if it was found in the cart
+		if (foundProduct) {
+			const newCartItems = cartItems.filter((item) => item._id !== product._id);
+
+			setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
+			setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
+			setCartItems(newCartItems);
+		} else {
+			// Product not found in the cart
+			console.log("Product not found in the cart");
+		}
 	};
 
 	const toggleCartItemQuantity = (id, val) => {

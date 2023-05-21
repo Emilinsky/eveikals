@@ -17,14 +17,16 @@ export default async function handler(req, res) {
 						.replace("image-", "https://cdn.sanity.io/images/vfxfwnaw/production/")
 						.replace("-webp", ".webp");
 
+					const price = item.variant ? item.variant.price : item.price;
+
 					return {
 						price_data: {
 							currency: "eur",
 							product_data: {
-								name: item.name,
+								name: item.variant ? item.variant.name : item.name,
 								images: [newImage],
 							},
-							unit_amount: Math.round(item.price * 100),
+							unit_amount: Math.round(price * 100),
 						},
 						adjustable_quantity: {
 							enabled: false,
@@ -32,6 +34,7 @@ export default async function handler(req, res) {
 						quantity: item.quantity,
 					};
 				}),
+
 				success_url: `${req.headers.origin}/success`,
 				cancel_url: `${req.headers.origin}/success`,
 			};

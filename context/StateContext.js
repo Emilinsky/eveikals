@@ -13,14 +13,21 @@ export const StateContext = ({ children }) => {
 	let foundProduct;
 	let index;
 
-	const onAdd = (product, quantity) => {
-		const checkProductInCart = cartItems.find((item) => item._id === product._id);
-		setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+	const onAdd = (product, quantity, variant) => {
+		const variantImage = product.images.find((image) => image.variant_ids.includes(variant.id));
+		console.log("Variant Image: ", variantImage);
+		const productToAdd = { ...product, variant, variantImage };
+		// This will add a variantImage property to the product that gets added to the cart.
+
+		const checkProductInCart = cartItems.find((item) => item._id === productToAdd._id);
+
+		const price = variant ? variant.price : product.price;
+		setTotalPrice((prevTotalPrice) => prevTotalPrice + price * quantity);
 		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
 		if (checkProductInCart) {
 			const updatedCartItems = cartItems.map((cartProduct) => {
-				if (cartProduct._id === product._id) {
+				if (cartProduct._id === productToAdd._id) {
 					return {
 						...cartProduct,
 						quantity: cartProduct.quantity + quantity,
@@ -30,8 +37,8 @@ export const StateContext = ({ children }) => {
 			});
 			setCartItems(updatedCartItems);
 		} else {
-			product.quantity = quantity;
-			setCartItems([...cartItems, { ...product }]);
+			productToAdd.quantity = quantity;
+			setCartItems([...cartItems, { ...productToAdd }]);
 		}
 		toast.success(`${qty} ${product.name} added to cart.`);
 	};

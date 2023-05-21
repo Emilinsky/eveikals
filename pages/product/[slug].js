@@ -7,23 +7,23 @@ import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
 const getOptionId = (allOptions, name, value) => {
-	console.log("getOptionId - allOptions:", allOptions);
-	console.log("getOptionId - name:", name);
-	console.log("getOptionId - value:", value);
+	// console.log("getOptionId - allOptions:", allOptions);
+	// console.log("getOptionId - name:", name);
+	// console.log("getOptionId - value:", value);
 
 	const option = allOptions.find((option) => option.name === name);
-	console.log("getOptionId - option:", option);
+	// console.log("getOptionId - option:", option);
 
 	return option ? option.values.find((val) => val.title === value).id : null;
 };
 
 const getOptionName = (allOptions, optionId) => {
-	console.log("getOptionName - allOptions:", allOptions);
-	console.log("getOptionName - optionId:", optionId);
+	// console.log("getOptionName - allOptions:", allOptions);
+	// console.log("getOptionName - optionId:", optionId);
 
 	for (let option of allOptions) {
 		const value = option.values ? option.values.find((val) => val.id === optionId) : null;
-		console.log("getOptionName - value:", value);
+		// console.log("getOptionName - value:", value);
 
 		if (value) return option.name;
 	}
@@ -32,12 +32,12 @@ const getOptionName = (allOptions, optionId) => {
 };
 
 const getOptionValue = (allOptions, optionId) => {
-	console.log("getOptionValue - allOptions:", allOptions);
-	console.log("getOptionValue - optionId:", optionId);
+	// console.log("getOptionValue - allOptions:", allOptions);
+	// console.log("getOptionValue - optionId:", optionId);
 
 	for (let option of allOptions) {
 		const value = option.values ? option.values.find((val) => val.id === optionId) : null;
-		console.log("getOptionValue - value:", value);
+		// console.log("getOptionValue - value:", value);
 
 		if (value) return value.title;
 	}
@@ -63,7 +63,7 @@ const findVariant = (selectedOptions, allOptions, allVariants) => {
 };
 
 const ProductDetails = ({ product, products }) => {
-	console.log("Rendering ProductDetails...");
+	// console.log("Rendering ProductDetails...");
 	if (!product) {
 		return <div>Product not found</div>;
 	}
@@ -103,9 +103,10 @@ const ProductDetails = ({ product, products }) => {
 	const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
 	const handleBuyNow = () => {
-		onAdd(product, qty);
+		onAdd(selectedVariant || product, qty);
 		setShowCart(true);
 	};
+
 	return (
 		<div>
 			<div className='product-detail-container'>
@@ -162,7 +163,8 @@ const ProductDetails = ({ product, products }) => {
 					</div>
 					{/* END OF DETAILS */}
 
-					<p className='price'>€{price}</p>
+					<p className='price'>€{selectedVariant ? selectedVariant.price : price}</p>
+
 					<div className='quantity'>
 						<h3>Quantity:</h3>
 						<p className='quantity-desc'>
@@ -176,8 +178,8 @@ const ProductDetails = ({ product, products }) => {
 						</p>
 					</div>
 					<div className='buttons'>
-						<button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>
-							Add to cart{" "}
+						<button type='button' className='add-to-cart' onClick={() => onAdd(product, qty, selectedVariant)}>
+							Add to cart
 						</button>
 						<button type='button' className='buy-now' onClick={handleBuyNow}>
 							Buy now

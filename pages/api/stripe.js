@@ -12,33 +12,45 @@ export default async function handler(req, res) {
 				billing_address_collection: "auto",
 				shipping_options: [{ shipping_rate: "shr_1LsmMjGSMAjLVvVPsEw5DPB2" }],
 				line_items: req.body.map((item) => {
+					console.log("Item variant:", item.variant);
+					console.log("Item name:", item.name);
+
 					const img = item.image[0].asset._ref;
 					const newImage = img
 						.replace("image-", "https://cdn.sanity.io/images/vfxfwnaw/production/")
 						.replace("-webp", ".webp");
 
+					const price = item.variant ? item.variant.price : item.price;
+					console.log("Product data price: ", price);
+
+					const productDataName = item.name;
+					console.log("Product data name:", productDataName);
+
 					return {
 						price_data: {
 							currency: "eur",
 							product_data: {
-								name: item.name,
+								name: productDataName,
+								description: item.variant ? item.variant.title : "", // Include variant title if it exists
+
 								images: [newImage],
 							},
-							unit_amount: item.price * 100,
+							unit_amount: Math.round(price * 100),
 						},
 						adjustable_quantity: {
-							enabled: true,
-							minimum: 1,
+							enabled: false,
 						},
 						quantity: item.quantity,
 					};
 				}),
+
 				success_url: `${req.headers.origin}/success`,
 				cancel_url: `${req.headers.origin}/success`,
 			};
 
 			// Create Checkout Sessions from body params.
 			const session = await stripe.checkout.sessions.create(params);
+			console.log("Session ID: ", session.id);
 
 			res.status(200).json(session);
 		} catch (err) {

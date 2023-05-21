@@ -4,21 +4,14 @@ import axios from "axios";
 import { client } from "../lib/client";
 import { Product, ProductsBanner } from "../components";
 
-const Products = ({ products, bannerData, categories }) => {
+const Products = ({ products, bannerData }) => {
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const productsPerPage = 10;
+	const productsPerPage = 5;
 
-	// Combine Sanity and Printify products
-	const combinedProducts = [...products.sanity, ...products.printify];
+	const combinedProducts = [...products.sanity];
 
-	const handleCategorySelect = (category) => {
-		if (selectedCategories.find((c) => c._id === category._id)) {
-			setSelectedCategories(selectedCategories.filter((c) => c._id !== category._id));
-		} else {
-			setSelectedCategories([...selectedCategories, category]);
-		}
-	};
+
 
 	const filteredProducts =
 		selectedCategories.length > 0
@@ -38,13 +31,7 @@ const Products = ({ products, bannerData, categories }) => {
 			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} />
 			<div className='products-heading'>
 				<h1 className='header'>All Products</h1>
-				<div className='categories'>
-					{categories.map((category) => (
-						<button key={category._id} onClick={() => handleCategorySelect(category)} className='product-filter-btn'>
-							{selectedCategories.find((c) => c._id === category._id) && "✓"} {category.title}
-						</button>
-					))}
-				</div>
+			
 			</div>
 			<div className='products-container'>
 				{currentProducts?.map((pro) => (
@@ -63,6 +50,7 @@ const Products = ({ products, bannerData, categories }) => {
 };
 
 export const getServerSideProps = async () => {
+	// Fetch Sanity products
 	const query = '*[_type == "product"]';
 	const sanityProducts = await client.fetch(query);
 
@@ -88,6 +76,7 @@ export const getServerSideProps = async () => {
 
 	return {
 		props: { products, bannerData, categories },
+		// revalidate: 60 * 60 * 6, // Regenerate the page every 6 hours
 	};
 };
 

@@ -13,34 +13,50 @@ export const StateContext = ({ children }) => {
 	let foundProduct;
 	let index;
 
-	const onAdd = (product, quantity) => {
-		const checkProductInCart = cartItems.find((item) => item._id === product._id);
-		setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+	const onAdd = (product, quantity, variant) => {
+		const variantImage = product.images.find((image) => image.variant_ids.includes(variant.id));
+		console.log("Variant Image: ", variantImage);
+		const productToAdd = { ...product, variant, variantImage };
+		// This will add a variantImage property to the product that gets added to the cart.
+
+		const checkProductInCart = cartItems.find((item) => item._id === productToAdd._id);
+
+		const price = variant ? variant.price : product.price;
+		setTotalPrice((prevTotalPrice) => prevTotalPrice + price * quantity);
 		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
 		if (checkProductInCart) {
 			const updatedCartItems = cartItems.map((cartProduct) => {
-				if (cartProduct._id === product._id)
+				if (cartProduct._id === productToAdd._id) {
 					return {
 						...cartProduct,
 						quantity: cartProduct.quantity + quantity,
 					};
+				}
+				return cartProduct; // return current product when condition is not met
 			});
 			setCartItems(updatedCartItems);
 		} else {
-			product.quantity = quantity;
-			setCartItems([...cartItems, { ...product }]);
+			productToAdd.quantity = quantity;
+			setCartItems([...cartItems, { ...productToAdd }]);
 		}
 		toast.success(`${qty} ${product.name} added to cart.`);
 	};
 
 	const onRemove = (product) => {
 		foundProduct = cartItems.find((item) => item._id === product._id);
-		const newCartItems = cartItems.filter((item) => item._id !== product._id);
 
-		setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
-		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
-		setCartItems(newCartItems);
+		// Only remove the product if it was found in the cart
+		if (foundProduct) {
+			const newCartItems = cartItems.filter((item) => item._id !== product._id);
+
+			setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
+			setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
+			setCartItems(newCartItems);
+		} else {
+			// Product not found in the cart
+			console.log("Product not found in the cart");
+		}
 	};
 
 	const toggleCartItemQuantity = (id, val) => {

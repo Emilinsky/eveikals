@@ -22,7 +22,12 @@ const Cart = () => {
 
 		if (response.statusCode === 500) return;
 		const data = await response.json();
-		toast.loading("Uz maksājumu...");
+		console.log("Data received from server: ", data);
+		toast.loading("Processing..");
+		if (!data.id) {
+			console.error("No session ID received from server");
+			return;
+		}
 		stripe.redirectToCheckout({ sessionId: data.id });
 	};
 
@@ -50,11 +55,22 @@ const Cart = () => {
 					{cartItems.length >= 1 &&
 						cartItems.map((item, i) => (
 							<div className='product' key={item._id}>
-								<img src={urlFor(item?.image[0])} className='cart-product-image' />
+								{/* <img
+									src={urlFor(item.variantImage ? item.variantImage.src : item.image[0])}
+									className='cart-product-image'
+								/> */}
+								<img
+									src={item.variantImage ? item.variantImage.src : urlFor(item.image[0]).url()}
+									className='cart-product-image'
+								/>
+
 								<div className='item-desc'>
 									<div className='flex top'>
-										<h5>{item.name}</h5>
-										<h4>${item.price}</h4>
+										<h5>
+											{item.name}
+											{item.variant ? ` - ${item.variant.title}` : ""}
+										</h5>
+										<h4>€{item.variant ? item.variant.price : item.price}</h4>
 									</div>
 									<div className='flex bottom'>
 										<div>
@@ -79,12 +95,12 @@ const Cart = () => {
 				{cartItems.length >= 1 && (
 					<div className='heart-bottom'>
 						<div className='total'>
-							<h3>Kopa:</h3>
-							<h3>${totalPrice.toFixed(2)}</h3>
+							<h3>Total:</h3>
+							<h3>€{totalPrice.toFixed(2)}</h3>
 						</div>
 						<div className='btn-container'>
 							<button type='button' className='btn' onClick={handleCheckout}>
-								Pirkt
+								Buy
 							</button>
 						</div>
 					</div>

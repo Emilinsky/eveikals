@@ -15,7 +15,7 @@ export const StateContext = ({ children }) => {
 
 	const onAdd = (product, quantity, variant) => {
 		const variantImage = product.images.find((image) => image.variant_ids.includes(variant.id));
-		console.log("Variant Image: ", variantImage);
+		// console.log("Variant Image: ", variantImage);
 		const productToAdd = { ...product, variant, variantImage };
 		// This will add a variantImage property to the product that gets added to the cart.
 
@@ -55,7 +55,7 @@ export const StateContext = ({ children }) => {
 			setCartItems(newCartItems);
 		} else {
 			// Product not found in the cart
-			console.log("Product not found in the cart");
+			// console.log("Product not found in the cart");
 		}
 	};
 

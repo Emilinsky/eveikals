@@ -26,6 +26,7 @@ body,
 	font-family: "Bai Jamjuree", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
 		Droid Sans, Helvetica Neue, sans-serif;
 	box-sizing: border-box;
+	overflow-x: hidden; /* required for navbar toggle */
 }
 ::-webkit-scrollbar {
 	width: 0px;
@@ -47,15 +48,16 @@ a {
 	width: 100%;
 	padding-top: 80px;
 }
-
+/* NAVIGATION BAR START */
 .navbar-container {
 	display: flex;
+	align-items: center;
 	justify-content: center;
 	margin: 0;
 	padding: 1rem 2.1875rem;
 	border-bottom: 1px solid var(--border-color);
 	background-color: var(--navbar-background);
-	background-image: url(../public/puzzleHalfBlue.png), url(../public/puzzleHalfColorOr.png);
+	/* background-image: url(../public/puzzleHalfBlue.png), url(../public/puzzleHalfColorOr.png); */
 	background-size: 15%, 20%;
 	background-position: right 30%, left 60%;
 	background-repeat: no-repeat;
@@ -67,12 +69,106 @@ a {
 	left: 0; /* Add this line */
 	right: 0; /* Add this line */
 	z-index: 1000; /* Keep this line to keep the header above other content */
+
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+.mobile-nav-toggle {
+	display:none;
+}
+.mobile-nav-toggle[aria-expanded="true"]{
+
+}
+.primary-navigation {
+	display:flex;
+	position: fixed;
+	top: 10px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	/* height: 100vh; */
+
+	background: hsla(0, 0%, 0%, 0.75);
+	z-index: 1001;
+}
+
+.primary-navigation a{
+	text-decoration: none;
+}
+
+.primary-navigation[data-visible="true"] {
+	transform: translateX(0%);
+}
+
+/* @supports (backdrop-filter:blur(1rem)){
+	.primary-navigation {
+		background: hsla(0, 0%, 5%, 0.75);
+		backdrop-filter: blur(1rem); This bit of code makes the background color pop out
+		if we dont use that filter option we dont need this bit of css code
+	}
+} */
+
+@media (min-width:769px) {
+	.primary-navigation {
+		background: transparent;
+		padding-block: 0.5rem;
+		padding-inline: clamp(3rem,10vw, 10rem);
+	}
+
+}
+
+
+@media (max-width: 768px){
+	.primary-navigation {
+		position: fixed;
+		inset: 0 0 0 0;
+
+		flex-direction: column;
+		padding: min(30vh, 4rem) 1.5em;
+
+		transform: translateX(-100%);
+		transition: transform 350ms ease-in;
+	}
+
+	.mobile-nav-toggle {
+		display: block;
+		position:fixed;
+		z-index:9999;
+		background-image: url("../public/Hamburger_icon.png");
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+		width: 2rem;
+		border: 0;
+		aspect-ratio: 1;
+		top: 1.5rem;
+		left: 1.5rem;
+	}
+	.logo{
+		width: 100%;
+	}
+	.mobile-nav-toggle[aria-expanded="true"]{
+		background-image: url("../public/close-button.png");
+	}
+
 }
 
 .navbar-inner-cont {
 	display: flex;
 	justify-content: space-between;
-	width: 60%;
+	width: 100%;
 }
 .nav-container {
 	display: flex;
@@ -84,6 +180,8 @@ a {
 	font-size: 1.125rem;
 	color: var(--primary-color);
 }
+
+/* NAVIGATION BAR END? */
 .link {
 	padding: 8px 16px;
 	transition: all 0.3s ease-in-out;
@@ -137,6 +235,9 @@ span.text-red {
 	-webkit-text-fill-color: transparent;
 	font-weight: 500;
 	font-size: 2.125rem;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .logo a {
 	font-family: "Poiret One", sans-serif;
@@ -147,6 +248,8 @@ span.text-red {
 	border-radius: 5px;
 	border: 1px solid #ffffff20;
 	box-shadow: 0 1px 5px 0 rgba(31, 38, 135, 0.25);
+	right: 1rem;
+	position: fixed;
 }
 .cart-icon {
 	font-size: 2rem;
@@ -161,8 +264,8 @@ span.text-red {
 	transform: scale(1.1, 1.1);
 }
 .cart-item-qty {
-	position: absolute;
-	right: -8px;
+	position: fixed;
+	right: 20px;
 	font-size: 12px;
 	color: var(--secondary-text-color);
 	background-color: var(--red-color);
@@ -935,7 +1038,6 @@ span.text-red {
 .product-max-qty {
 	margin-top: 10px;
 }
-
 /* PRODUCT PAGE STYLES */
 .categories {
 	display: flex;
@@ -1093,6 +1195,84 @@ span.text-red {
 		width: 300px;
 		margin: auto;
 	}
+
+	.mobile-form {
+		display: none;
+	}
+	@media only screen and (max-width: 375px) {
+		.nine-squares {
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			position: relative;
+		  }
+		  
+		  .square {
+			width: 10px;
+			height: 10px;
+			background-color: var(--primary-color);
+			position: absolute;
+		  }
+		  
+		  .square:nth-child(1) {
+			top: 0;
+			left: 0;
+		  }
+		  
+		  .square:nth-child(2) {
+			top: 0;
+			left: 15px;
+		  }
+		  
+		  .square:nth-child(3) {
+			top: 0;
+			right: 0;
+		  }
+		  
+		  .square:nth-child(4) {
+			top: 15px;
+			left: 0;
+		  }
+		  
+		  .square:nth-child(5) {
+			top: 15px;
+			left: 15px;
+		  }
+		  
+		  .square:nth-child(6) {
+			top: 15px;
+			right: 0;
+		  }
+		  
+		  .square:nth-child(7) {
+			bottom: 0;
+			left: 0;
+		  }
+		  
+		  .square:nth-child(8) {
+			bottom: 0;
+			left: 15px;
+		  }
+		  
+		  .square:nth-child(9) {
+			bottom: 0;
+			right: 0;
+		  }
+  .mobile-form {
+    display: block;
+  }
+	body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
 }
 
 @media (width > 650px) {

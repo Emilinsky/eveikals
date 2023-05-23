@@ -38,52 +38,55 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar-container">
-      <div className="navbar-inner-cont">
-        <p className="logo">
-          <Link href="/">Shopfeast</Link>
-        </p>
-        <button
-          className="mobile-nav-toggle"
-          aria-controls="primary-navigation"
-          aria-expanded="false"
-          ref={navToggleRef}
-        >
-          <span className="sr-only">Menu</span>
-        </button>
-        <nav className="nav-container">
-          <ul
-            id="primary-navigation"
-            data-visible="false"
-            className="primary-navigation flex"
-            ref={primaryNavRef}
+    <div>
+		<button
+            className="mobile-nav-toggle"
+            aria-controls="primary-navigation"
+            aria-expanded="false"
+            ref={navToggleRef}
           >
-            <li className="link">
-              <a href="/">Home</a>
-            </li>
-            <li className="link">
-              <a href="/products">Products</a>
-            </li>
-            <li className="link">
-              <a href="/custom">Customize</a>
-            </li>
-            <li className="link">
-              <a href="/contacts">Contacts</a>
-            </li>
-          </ul>
-        </nav>
-        <div className="cart-cont">
-          <button
-            type="button"
-            className="cart-icon"
-            onClick={() => setShowCart(true)}
-          >
-            <AiOutlineShopping />
-            <span className="cart-item-qty">{totalQuantities}</span>
+            <span className="sr-only">Menu</span>
           </button>
+      <div className="navbar-container">
+        <div className="navbar-inner-cont">
+          <p className="logo">
+            <Link href="/">Shopfeast</Link>
+          </p>
+          
+          <div className="cart-cont">
+            <button
+              type="button"
+              className="cart-icon"
+              onClick={() => setShowCart(true)}
+            >
+              <AiOutlineShopping />
+              <span className="cart-item-qty">{totalQuantities}</span>
+            </button>
+          </div>
         </div>
-        {showCart && <Cart />}
       </div>
+      <nav className="nav-container">
+        <ul
+          id="primary-navigation"
+          data-visible="false"
+          className="primary-navigation flex"
+          ref={primaryNavRef}
+        >
+          <li className="link">
+            <a href="/">Home</a>
+          </li>
+          <li className="link">
+            <a href="/products">Products</a>
+          </li>
+          <li className="link">
+            <a href="/custom">Customize</a>
+          </li>
+          <li className="link">
+            <a href="/contacts">Contacts</a>
+          </li>
+        </ul>
+      </nav>
+      {showCart && <Cart />}
     </div>
   );
 };

@@ -9,6 +9,7 @@
 	--secondary-text-color: #f7f7f7;
 	--primary-color: #00bea8;
 	--primary-faded-color: #0096849d;
+	--primary-faded-color-nav: #009684d8;
 	--secondary-color: #004cff;
 	--red-color: #fa575c;
 	--navbar-background: #f7f7f7b0;
@@ -53,7 +54,7 @@ a {
 	align-items: center;
 	justify-content: center; */
 	margin: 0;
-	padding: 1rem 2.1875rem;
+	padding: 0.8125rem 2.1875rem;
 	border-bottom: 1px solid var(--border-color);
 	background-color: var(--navbar-background);
 	/* background-image: url(../public/puzzleHalfBlue.png), url(../public/puzzleHalfColorOr.png); */
@@ -103,7 +104,7 @@ a {
 	margin: 0;
 	/* height: 100vh; */
 
-	background: hsla(0, 0%, 0%, 0.75);
+	background: var(--primary-faded-color-nav);
 	z-index: 11;
 }
 
@@ -134,16 +135,27 @@ a {
 @media (max-width: 768px) {
 	.primary-navigation {
 		position: fixed;
-		top: 0 ;
-      right: 0;
-      left: 0;
-      /* bottom: 0; */
+		top: 0;
+		right: 0;
+		left: 0;
+		/* bottom: 0; */
 		height: 100vh;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 		padding: min(30vh, 4rem) 1.5em;
 		transform: translateX(-100%);
 		transition: transform 350ms ease-in;
+		font-size: 2rem;
 	}
+   .link {
+      margin-bottom: 20px;
+      padding: 18px 26px;
+      transition: all 0.3s ease-in-out;
+      border-radius: 5px;
+    }
 
 	.mobile-nav-toggle {
 		display: block;
@@ -187,12 +199,12 @@ a {
 
 /* NAVIGATION BAR END? */
 .link {
-	padding: 8px 16px;
+	/* padding: 8px 16px; */
 	transition: all 0.3s ease-in-out;
 	border-radius: 5px;
 }
 .link a {
-	color: var(--primary-color);
+	color: var(--secondary-text-color);
 }
 
 .link:hover {
@@ -251,7 +263,7 @@ span.text-red {
 }
 .cart-cont {
 	background-color: #ffffff1e;
-	padding: 4px 10px 0;
+	padding: 8px 10px 0;
 	border-radius: 5px;
 	border: 1px solid #ffffff20;
 	box-shadow: 0 1px 5px 0 rgba(31, 38, 135, 0.25);
@@ -1288,6 +1300,15 @@ span.text-red {
 		--column-count: 2;
 		max-width: 650px;
 	}
+}
+
+@media (width > 768px) {
+   .link {
+      padding: 8px 16px;
+    }
+    .link a {
+      color: var(--primary-color);
+   }
 }
 @media (width > 1000px) {
 	.products-container {

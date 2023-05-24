@@ -38,30 +38,19 @@ const Navbar = () => {
 	}, []);
 
 	return (
-		<div>
-			<div className='navbar-container'>
-				<div className='navbar-inner-cont'>
-					<button
-						className='mobile-nav-toggle'
-						aria-controls='primary-navigation'
-						aria-expanded='false'
-						ref={navToggleRef}
-					>
-						<span className='sr-only'>Menu</span>
-					</button>
-					<p className='logo'>
-						<Link href='/'>Shopfeast</Link>
-					</p>
-
-					<div className='cart-cont'>
-						<button type='button' className='cart-icon' onClick={() => setShowCart(true)}>
-							<AiOutlineShopping />
-							<span className='cart-item-qty'>{totalQuantities}</span>
-						</button>
-					</div>
-				</div>
-			</div>
-			<nav className='nav-container'>
+		<nav className='navbar-container'>
+			<div className='navbar-inner-cont'>
+				<button
+					className='mobile-nav-toggle'
+					aria-controls='primary-navigation'
+					aria-expanded='false'
+					ref={navToggleRef}
+				>
+					<span className='sr-only'>Menu</span>
+				</button>
+				<h1 className='logo'>
+					<Link href='/'>Shopfeast</Link>
+				</h1>
 				<ul id='primary-navigation' data-visible='false' className='primary-navigation flex' ref={primaryNavRef}>
 					<li className='link'>
 						<a href='/'>Home</a>
@@ -76,9 +65,15 @@ const Navbar = () => {
 						<a href='/contacts'>Contacts</a>
 					</li>
 				</ul>
-			</nav>
+				<div className='cart-cont'>
+					<button type='button' className='cart-icon' onClick={() => setShowCart(true)}>
+						<AiOutlineShopping />
+						<span className='cart-item-qty'>{totalQuantities}</span>
+					</button>
+				</div>
+			</div>
 			{showCart && <Cart />}
-		</div>
+		</nav>
 	);
 };
 

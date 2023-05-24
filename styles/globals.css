@@ -28,6 +28,7 @@ body,
 		Droid Sans, Helvetica Neue, sans-serif;
 	box-sizing: border-box;
 	/* overflow-x: hidden; required for navbar toggle */
+	/* overflow: hidden; */
 }
 ::-webkit-scrollbar {
 	width: 0px;
@@ -94,47 +95,50 @@ a {
 .mobile-nav-toggle {
 	display: none;
 }
-.mobile-nav-toggle[aria-expanded="true"] {
+/* .mobile-nav-toggle[aria-expanded="true"] {
 	overflow: hidden;
-}
-.primary-navigation {
+} */
+.primary-navigation-large {
 	display: flex;
-	/* position: fixed;
-	top: 10px; */
+	/* top: 10px; */
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	/* height: 100vh; */
-
 	background: var(--primary-faded-color-nav);
 	z-index: 11;
 }
-
-/* .primary-navigation a{
-	text-decoration: none;
-} */
+.primary-navigation {
+	display: flex;
+	/* top: 10px; */
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background: var(--primary-faded-color-nav);
+	z-index: 11;
+}
 
 .primary-navigation[data-visible="true"] {
 	transform: translateX(0%);
 }
 
-/* @supports (backdrop-filter:blur(1rem)){
-	.primary-navigation {
-		background: hsla(0, 0%, 5%, 0.75);
-		backdrop-filter: blur(1rem); This bit of code makes the background color pop out
-		if we dont use that filter option we dont need this bit of css code
-	}
-} */
-
 @media (min-width: 769px) {
-	.primary-navigation {
+	.primary-navigation-large {
 		background: transparent;
 		padding-block: 0.5rem;
 		padding-inline: clamp(3rem, 10vw, 10rem);
 	}
+	.primary-navigation {
+		display: none;
+	}
+	.link:hover {
+		box-shadow: 0 0px 10px 0 var(--banner-shadows);
+	}
 }
 
 @media (max-width: 768px) {
+	.primary-navigation-large {
+		display: none;
+	}
 	.primary-navigation {
 		position: fixed;
 		top: 0;
@@ -145,12 +149,14 @@ a {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
 		padding: min(30vh, 4rem) 1.5em;
 		transform: translateX(-100%);
-		transition: transform 350ms ease-in;
+		transition: transform 0.5s ease-in-out;
 		font-size: 2rem;
+		overflow: hidden;
+		/* z-index: 1; */
 	}
 	.link {
 		margin-bottom: 20px;
@@ -161,26 +167,28 @@ a {
 
 	.mobile-nav-toggle {
 		display: block;
-		/* position: fixed; */
 		z-index: 101;
-		background-image: url("../public/Hamburger_icon.png");
 		background-color: transparent;
-		background-repeat: no-repeat;
-		background-size: contain;
-		background-position: center;
-		width: 2rem;
 		border: 0;
-		aspect-ratio: 1;
-		/* top: 1.5rem; */
-		/* left: 1.5rem; */
+		color: var(--primary-color);
+		cursor: pointer;
+		/* padding-top: 10px; */
+		transform: rotateZ(180deg);
+		transition: all 0.3s ease-in-out;
+	}
+	.scrolled .mobile-nav-toggle {
+		color: var(--secondary-text-color);
 	}
 	.logo {
 		width: 100%;
 	}
 	.mobile-nav-toggle[aria-expanded="true"] {
-		background-image: url("../public/close-button.png");
-		/* z-index: 121; */
+		z-index: 121;
 	}
+}
+.active {
+	color: var(--secondary-text-color);
+	transform: rotateZ(0deg);
 }
 
 .navbar-inner-cont {
@@ -209,9 +217,6 @@ a {
 	color: var(--secondary-text-color);
 }
 
-.link:hover {
-	box-shadow: 0 0px 10px 0 var(--banner-shadows);
-}
 .scrolled .link:hover {
 	box-shadow: 0 0px 5px 0 var(--main-background-second);
 }
@@ -554,14 +559,14 @@ span.text-red {
 
 .hero-banner-container,
 .products-banner-container {
-	padding: 100px 40px;
+	padding: 50px 20px;
 	margin-top: 6.25rem;
 	background-color: var(--banner-background);
 	border: 1px solid var(--border-color);
 	box-shadow: 0 2px 20px 0 var(--banner-shadows);
 	border-radius: 15px;
 	position: relative;
-	height: 500px;
+	height: 400px;
 	line-height: 0.9;
 	width: 100%;
 }
@@ -1088,7 +1093,7 @@ span.text-red {
 @media screen and (max-width: 800px) {
 	.hero-banner-container,
 	.products-banner-container {
-		height: 560px;
+		height: 460px;
 	}
 	.hero-banner-image {
 		width: 77%;

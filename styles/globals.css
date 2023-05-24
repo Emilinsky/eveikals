@@ -50,25 +50,27 @@ a {
 }
 /* NAVIGATION BAR START */
 .navbar-container {
-	/* display: flex;
-	align-items: center;
-	justify-content: center; */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 	margin: 0;
-	padding: 0.8125rem 2.1875rem;
+	padding: 1.25rem 2.1875rem;
 	border-bottom: 1px solid var(--border-color);
 	background-color: var(--navbar-background);
-	/* background-image: url(../public/puzzleHalfBlue.png), url(../public/puzzleHalfColorOr.png); */
 	background-size: 15%, 20%;
 	background-position: right 30%, left 60%;
 	background-repeat: no-repeat;
 	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
-	position: fixed; /* Change this line */
 	backdrop-filter: blur(14px);
 	-webkit-backdrop-filter: blur(14px);
-	top: 0; /* Keep this line */
-	left: 0; /* Add this line */
-	right: 0; /* Add this line */
-	z-index: 10; /* Keep this line to keep the header above other content */
+	z-index: 10;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar-container.scrolled {
+	padding: 0.6875rem 2.1875rem;
+	background-color: var(--primary-faded-color-nav);
 }
 @media (width > 1200px) {
 	.navbar-container .navbar-inner-cont {
@@ -150,16 +152,16 @@ a {
 		transition: transform 350ms ease-in;
 		font-size: 2rem;
 	}
-   .link {
-      margin-bottom: 20px;
-      padding: 18px 26px;
-      transition: all 0.3s ease-in-out;
-      border-radius: 5px;
-    }
+	.link {
+		margin-bottom: 20px;
+		padding: 18px 26px;
+		transition: all 0.3s ease-in-out;
+		border-radius: 5px;
+	}
 
 	.mobile-nav-toggle {
 		display: block;
-		position: fixed;
+		/* position: fixed; */
 		z-index: 101;
 		background-image: url("../public/Hamburger_icon.png");
 		background-color: transparent;
@@ -169,8 +171,8 @@ a {
 		width: 2rem;
 		border: 0;
 		aspect-ratio: 1;
-		top: 1.5rem;
-		left: 1.5rem;
+		/* top: 1.5rem; */
+		/* left: 1.5rem; */
 	}
 	.logo {
 		width: 100%;
@@ -210,6 +212,9 @@ a {
 .link:hover {
 	box-shadow: 0 0px 10px 0 var(--banner-shadows);
 }
+.scrolled .link:hover {
+	box-shadow: 0 0px 5px 0 var(--main-background-second);
+}
 
 .marquee-text {
 	font-size: 2.375rem;
@@ -248,7 +253,7 @@ span.text-red {
 	margin-left: 6px;
 }
 .logo {
-	background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
+	background: linear-gradient(to left, var(--primary-text-color), var(--red-color));
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -257,6 +262,13 @@ span.text-red {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.scrolled .logo {
+	background: var(--main-background-first);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: all 0.4s ease-in-out;
 }
 .logo a {
 	font-family: "Poiret One", sans-serif;
@@ -280,6 +292,10 @@ span.text-red {
 	border: none;
 	background-color: transparent;
 }
+.scrolled .cart-icon {
+	color: var(--secondary-text-color);
+}
+
 /* .cart-icon:hover {
 	transform: scale(1.1, 1.1);
 } */
@@ -1303,12 +1319,15 @@ span.text-red {
 }
 
 @media (width > 768px) {
-   .link {
-      padding: 8px 16px;
-    }
-    .link a {
-      color: var(--primary-color);
-   }
+	.link {
+		padding: 8px 16px;
+	}
+	.link a {
+		color: var(--primary-color);
+	}
+	.scrolled a {
+		color: var(--secondary-text-color);
+	}
 }
 @media (width > 1000px) {
 	.products-container {

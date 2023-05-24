@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { AiOutlineShopping } from "react-icons/ai";
 
@@ -7,6 +7,17 @@ import { useStateContext } from "../context/StateContext";
 
 const Navbar = () => {
 	const { showCart, setShowCart, totalQuantities } = useStateContext();
+
+	const [scrolled, setScrolled] = useState(false);
+
+	const handleScroll = () => {
+		const offset = window.scrollY;
+		if (offset > 200) {
+			setScrolled(true);
+		} else {
+			setScrolled(false);
+		}
+	};
 
 	const primaryNavRef = useRef(null);
 	const navToggleRef = useRef(null);
@@ -31,14 +42,22 @@ const Navbar = () => {
 
 		navToggle.addEventListener("click", handleClick);
 
+		window.addEventListener("scroll", handleScroll); // Add this line
+
 		return () => {
 			// Cleanup the event listener when the component unmounts
 			navToggle.removeEventListener("click", handleClick);
+			window.removeEventListener("scroll", handleScroll); // Add this line
 		};
 	}, []);
 
+	let navbarClasses = ["navbar-container"];
+	if (scrolled) {
+		navbarClasses.push("scrolled");
+	}
+
 	return (
-		<nav className='navbar-container'>
+		<nav className={navbarClasses.join(" ")}>
 			<div className='navbar-inner-cont'>
 				<button
 					className='mobile-nav-toggle'

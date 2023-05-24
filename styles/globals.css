@@ -192,7 +192,7 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 15px;
+	gap: 16px;
 }
 .nav-container a {
 	font-size: 1.125rem;

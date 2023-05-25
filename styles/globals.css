@@ -144,7 +144,6 @@ a {
 		top: 0;
 		right: 0;
 		left: 0;
-		/* bottom: 0; */
 		height: 100vh;
 		flex-direction: column;
 		justify-content: center;
@@ -156,7 +155,7 @@ a {
 		transition: transform 0.5s ease-in-out;
 		font-size: 2rem;
 		overflow: hidden;
-		/* z-index: 1; */
+		box-sizing: content-box;
 	}
 	.link {
 		margin-bottom: 20px;

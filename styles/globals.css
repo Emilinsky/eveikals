@@ -559,14 +559,14 @@ span.text-red {
 
 .hero-banner-container,
 .products-banner-container {
-	padding: 50px 20px;
+	padding: 100px 20px;
 	margin-top: 6.25rem;
 	background-color: var(--banner-background);
 	border: 1px solid var(--border-color);
 	box-shadow: 0 2px 20px 0 var(--banner-shadows);
 	border-radius: 15px;
 	position: relative;
-	height: 400px;
+	height: 500px;
 	line-height: 0.9;
 	width: 100%;
 }

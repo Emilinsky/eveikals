@@ -14,10 +14,16 @@ export const StateContext = ({ children }) => {
 	let index;
 
 	const onAdd = (product, quantity, variant) => {
-		const variantImage = product.images.find((image) => image.variant_ids.includes(variant.id));
+		let variantImage;
+		if (product.images) {
+			variantImage = product.images.find((image) => image.variant_ids.includes(variant.id));
+		} else {
+			// use the default product image when product.images is not available
+			variantImage = product.image;
+		}
+
 		// console.log("Variant Image: ", variantImage);
 		const productToAdd = { ...product, variant, variantImage };
-		// This will add a variantImage property to the product that gets added to the cart.
 
 		const checkProductInCart = cartItems.find((item) => item._id === productToAdd._id);
 

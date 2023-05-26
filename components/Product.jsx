@@ -30,11 +30,11 @@ const Product = ({ product }) => {
 		setIsClicked(false);
 
 		// Check if product exists in the cart
-		const productInCart = cartItems.find((item) => item._id === product._id);
+		const productInCart = cartItems.find((item) => item.variant.id === selectedVariant.id);
 
 		if (productInCart) {
 			// Call onRemove only if the product exists in the cart
-			onRemove(product);
+			onRemove(productInCart);
 		} else {
 			// Optionally, you can show a message to the user
 			console.log("Product not found in the cart");

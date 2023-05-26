@@ -23,29 +23,30 @@ const Navbar = () => {
 	const primaryNavRef = useRef(null);
 	const navToggleRef = useRef(null);
 
-	useEffect(() => {
+	const toggleMenu = () => {
 		const primaryNav = primaryNavRef.current;
 		const navToggle = navToggleRef.current;
+		const visibility = primaryNav.getAttribute("data-visible");
+		const body = document.querySelector("body");
 
-		const handleClick = () => {
-			const visibility = primaryNav.getAttribute("data-visible");
-			const body = document.querySelector("body");
+		if (visibility === "false") {
+			primaryNav.setAttribute("data-visible", "true");
+			navToggle.setAttribute("aria-expanded", "true");
+			body.style.overflow = "hidden";
+			setMenuOpen(true);
+		} else if (visibility === "true") {
+			primaryNav.setAttribute("data-visible", "false");
+			navToggle.setAttribute("aria-expanded", "false");
+			body.style.overflow = "";
+			setMenuOpen(false);
+		}
+	};
 
-			if (visibility === "false") {
-				primaryNav.setAttribute("data-visible", "true");
-				navToggle.setAttribute("aria-expanded", "true");
-				body.style.overflow = "hidden";
-				setMenuOpen(true); // Set menuOpen state to true
-			} else if (visibility === "true") {
-				primaryNav.setAttribute("data-visible", "false");
-				navToggle.setAttribute("aria-expanded", "false");
-				body.style.overflow = "";
-				setMenuOpen(false); // Set menuOpen state to false
-			}
-		};
+	useEffect(() => {
+		const navToggle = navToggleRef.current;
+		const handleClick = () => toggleMenu();
 
 		navToggle.addEventListener("click", handleClick);
-
 		window.addEventListener("scroll", handleScroll);
 
 		return () => {
@@ -104,16 +105,24 @@ const Navbar = () => {
 
 			<ul id='primary-navigation' data-visible='false' className='primary-navigation flex' ref={primaryNavRef}>
 				<li className='link'>
-					<Link href='/'>Home</Link>
+					<Link href='/' onClick={toggleMenu}>
+						Home
+					</Link>
 				</li>
 				<li className='link'>
-					<Link href='/products'>Products</Link>
+					<Link href='/products' onClick={toggleMenu}>
+						Products
+					</Link>
 				</li>
 				<li className='link'>
-					<Link href='/custom'>Customize</Link>
+					<Link href='/custom' onClick={toggleMenu}>
+						Customize
+					</Link>
 				</li>
 				<li className='link'>
-					<Link href='/contacts'>Contacts</Link>
+					<Link href='/contacts' onClick={toggleMenu}>
+						Contacts
+					</Link>
 				</li>
 			</ul>
 			{showCart && <Cart />}

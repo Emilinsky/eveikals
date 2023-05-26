@@ -82,16 +82,16 @@ const Navbar = () => {
 					ref={primaryNavRef}
 				>
 					<li className='link'>
-						<a href='/'>Home</a>
+						<Link href='/'>Home</Link>
 					</li>
 					<li className='link'>
-						<a href='/products'>Products</a>
+						<Link href='/products'>Products</Link>
 					</li>
 					<li className='link'>
-						<a href='/custom'>Customize</a>
+						<Link href='/custom'>Customize</Link>
 					</li>
 					<li className='link'>
-						<a href='/contacts'>Contacts</a>
+						<Link href='/contacts'>Contacts</Link>
 					</li>
 				</ul>
 				<div className='cart-cont'>
@@ -104,16 +104,16 @@ const Navbar = () => {
 
 			<ul id='primary-navigation' data-visible='false' className='primary-navigation flex' ref={primaryNavRef}>
 				<li className='link'>
-					<a href='/'>Home</a>
+					<Link href='/'>Home</Link>
 				</li>
 				<li className='link'>
-					<a href='/products'>Products</a>
+					<Link href='/products'>Products</Link>
 				</li>
 				<li className='link'>
-					<a href='/custom'>Customize</a>
+					<Link href='/custom'>Customize</Link>
 				</li>
 				<li className='link'>
-					<a href='/contacts'>Contacts</a>
+					<Link href='/contacts'>Contacts</Link>
 				</li>
 			</ul>
 			{showCart && <Cart />}

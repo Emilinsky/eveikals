@@ -25,7 +25,11 @@ export const StateContext = ({ children }) => {
 		// console.log("Variant Image: ", variantImage);
 		const productToAdd = { ...product, variant, variantImage };
 
-		const checkProductInCart = cartItems.find((item) => item._id === productToAdd._id);
+		// Find product in the cart with the same variant.id
+		const checkProductInCart = cartItems.find((item) => item.variant.id === variant.id);
+
+		console.log("Selected Variant:", variant);
+		console.log("Check Product In Cart:", checkProductInCart);
 
 		const price = variant ? variant.price : product.price;
 		setTotalPrice((prevTotalPrice) => prevTotalPrice + price * quantity);
@@ -33,7 +37,7 @@ export const StateContext = ({ children }) => {
 
 		if (checkProductInCart) {
 			const updatedCartItems = cartItems.map((cartProduct) => {
-				if (cartProduct._id === productToAdd._id) {
+				if (cartProduct.variant.id === variant.id) {
 					return {
 						...cartProduct,
 						quantity: cartProduct.quantity + quantity,
@@ -50,37 +54,49 @@ export const StateContext = ({ children }) => {
 	};
 
 	const onRemove = (product) => {
-		foundProduct = cartItems.find((item) => item._id === product._id);
+		foundProduct = cartItems.find((item) => item.variant.id === product.variant.id);
 
-		// Only remove the product if it was found in the cart
 		if (foundProduct) {
-			const newCartItems = cartItems.filter((item) => item._id !== product._id);
-
+			const newCartItems = cartItems.filter((item) => !(item.variant.id === product.variant.id));
 			setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
 			setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
 			setCartItems(newCartItems);
-		} else {
-			// Product not found in the cart
-			// console.log("Product not found in the cart");
 		}
 	};
 
-	const toggleCartItemQuantity = (id, val) => {
-		foundProduct = cartItems.find((item) => item._id === id);
-		index = cartItems.findIndex((product) => product._id === id);
-		const newCartItems = cartItems.filter((item) => item._id !== id);
+	const toggleCartItemQuantity = (variantId, val) => {
+		foundProduct = cartItems.find((item) => item.variant.id === variantId);
 
-		if (val === "inc") {
-			setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
-			// react rule-breaking!!!!!!!!!! no manual mutation
-			// foundProduct.quantity += 1;
-			// cartItems[index] = foundProduct;
-			setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
-			setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
-		} else if (val === "dec") {
-			if (foundProduct.quantity > 1) {
-				setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 }]);
-				setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
+		if (foundProduct) {
+			const updatedCartItems = cartItems.map((item) => {
+				if (item.variant.id === variantId) {
+					if (val === "inc") {
+						return { ...item, quantity: item.quantity + 1 };
+					} else if (val === "dec" && item.quantity > 1) {
+						return { ...item, quantity: item.quantity - 1 };
+					}
+				}
+				return item;
+			});
+			setCartItems(updatedCartItems);
+
+			const price = foundProduct.variant ? foundProduct.variant.price : foundProduct.price;
+
+			if (val === "inc") {
+				setTotalPrice((prevTotalPrice) => {
+					if (prevTotalPrice && price) {
+						const newTotalPrice = parseFloat((parseFloat(prevTotalPrice) + parseFloat(price)).toFixed(2));
+						console.log("Increasing total price:", newTotalPrice);
+						return newTotalPrice;
+					}
+				});
+				setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+			} else if (val === "dec" && foundProduct.quantity > 1) {
+				setTotalPrice((prevTotalPrice) => {
+					const newTotalPrice = parseFloat((prevTotalPrice - price).toFixed(2));
+					console.log("Decreasing total price:", newTotalPrice);
+					return newTotalPrice;
+				});
 				setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
 			}
 		}
@@ -105,6 +121,7 @@ export const StateContext = ({ children }) => {
 				totalPrice,
 				totalQuantities,
 				qty,
+				setQty,
 				incQty,
 				decQty,
 				onAdd,

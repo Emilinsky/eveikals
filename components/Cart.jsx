@@ -54,7 +54,7 @@ const Cart = () => {
 				<div className='product-container'>
 					{cartItems.length >= 1 &&
 						cartItems.map((item, i) => (
-							<div className='product' key={item._id}>
+							<div className='product' key={item.variant.id}>
 								{/* <img
 									src={urlFor(item.variantImage ? item.variantImage.src : item.image[0])}
 									className='cart-product-image'
@@ -75,11 +75,11 @@ const Cart = () => {
 									<div className='flex bottom'>
 										<div>
 											<p className='quantity-desc'>
-												<span className='minus' onClick={() => toggleCartItemQuantity(item._id, "dec")}>
+												<span className='minus' onClick={() => toggleCartItemQuantity(item.variant.id, "dec")}>
 													<AiOutlineMinus />
 												</span>
 												<span className='num'>{item.quantity}</span>
-												<span className='plus' onClick={() => toggleCartItemQuantity(item._id, "inc")}>
+												<span className='plus' onClick={() => toggleCartItemQuantity(item.variant.id, "inc")}>
 													<AiOutlinePlus />
 												</span>
 											</p>

@@ -63,6 +63,8 @@ const findVariant = (selectedOptions, allOptions, allVariants) => {
 };
 
 const ProductDetails = ({ product, products }) => {
+	const [index, setIndex] = useState(0);
+	const { decQty, incQty, qty, setQty, onAdd, setShowCart } = useStateContext();
 	// console.log("Rendering ProductDetails...");
 	if (!product) {
 		return <div>Product not found</div>;
@@ -76,7 +78,8 @@ const ProductDetails = ({ product, products }) => {
 	useEffect(() => {
 		const defaultVariant = product.variants.find((variant) => variant.is_default);
 		setSelectedVariant(defaultVariant || product.variants[0]);
-	}, [product]);
+		setQty(1); // Reset quantity state on new product load
+	}, [product, setQty, setSelectedVariant]);
 
 	const selectedOptions = selectedVariant
 		? selectedVariant.options.reduce((acc, optionId) => {
@@ -98,9 +101,6 @@ const ProductDetails = ({ product, products }) => {
 	// console.log(description);
 
 	const currentVariant = findVariant(selectedOptions, options, variants);
-
-	const [index, setIndex] = useState(0);
-	const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
 	const handleBuyNow = () => {
 		onAdd(product, qty, selectedVariant);

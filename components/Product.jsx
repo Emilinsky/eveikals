@@ -5,6 +5,8 @@ import { AiOutlineShoppingCart, AiOutlineInfoCircle, AiOutlineCheckCircle, AiOut
 import { urlFor } from "../lib/client";
 import { useStateContext } from "../context/StateContext"; // import useStateContext
 
+import styles from "../styles/Product.module.css";
+
 const Product = ({ product }) => {
 	const { name, image, slug, price, details } = product;
 	const [isClicked, setIsClicked] = useState(false);
@@ -44,42 +46,42 @@ const Product = ({ product }) => {
 	return (
 		<>
 			{slug && (
-				<div className='wrapper'>
-					<div className='container'>
-						<div className='top'>
+				<div className={styles.wrapper}>
+					<div className={styles.container}>
+						<div className={styles.top}>
 							<Link href={`/product/${slug.current}`}>
 								<img src={urlFor(image && image[0])} />
 							</Link>
 						</div>
-						<div className={`bottom ${isClicked ? "clicked" : ""}`}>
-							<div className='left'>
-								<div className='details'>
-									<p className='product-name'>{name}</p>
-									<p className='product-price-card'>€{price}</p>
+						<div className={`${styles.bottom} ${isClicked ? styles.clicked : ""}`}>
+							<div className={styles.left}>
+								<div className={styles.details}>
+									<p className={styles["product-name"]}>{name}</p>
+									<p className={styles["product-price-card"]}>€{price}</p>
 								</div>
-								<div className='buy' onClick={handleBuyClick}>
+								<div className={styles.buy} onClick={handleBuyClick}>
 									<AiOutlineShoppingCart size={30} />
 								</div>
 							</div>
-							<div className='right'>
-								<div className='done'>
+							<div className={styles.right}>
+								<div className={styles.done}>
 									<AiOutlineCheckCircle size={35} />
 								</div>
-								<div className='details'>
-									<p className='product-name-added'>{name}</p>
+								<div className={styles.details}>
+									<p className={styles["product-name-added"]}>{name}</p>
 									<p>Added to your cart</p>
 								</div>
-								<div className='remove' onClick={handleRemoveClick}>
+								<div className={styles.remove} onClick={handleRemoveClick}>
 									<AiOutlineCloseCircle size={35} />
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className='inside'>
-						<div className='icon'>
+					<div className={styles.inside}>
+						<div className={styles.icon}>
 							<AiOutlineInfoCircle size={30} />
 						</div>
-						<div className='contents'>{parse(details)}</div>
+						<div className={styles.contents}>{parse(details)}</div>
 					</div>
 				</div>
 			)}

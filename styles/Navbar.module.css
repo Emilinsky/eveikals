@@ -1,0 +1,198 @@
+.navbar-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 1.25rem 2.1875rem;
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--navbar-background);
+	background-size: 15%, 20%;
+	background-position: right 30%, left 60%;
+	background-repeat: no-repeat;
+	box-shadow: 0 2px 20px 0 rgba(31, 38, 135, 0.159);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	z-index: 10;
+	transition: all 0.3s ease-in-out;
+}
+.navbar-container.scrolled {
+	padding: 0.6875rem 2.1875rem;
+	background-color: var(--primary-faded-color-nav);
+}
+.navbar-inner-cont {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+@media (width > 1200px) {
+	.navbar-container .navbar-inner-cont {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+}
+.mobile-nav-toggle {
+	display: none;
+}
+.primary-navigation-large {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background: var(--primary-faded-color-nav);
+	z-index: 11;
+}
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+.logo {
+	background: linear-gradient(to left, var(--primary-text-color), var(--red-color));
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: 500;
+	font-size: 2.125rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.scrolled .logo {
+	background: var(--main-background-first);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: all 0.4s ease-in-out;
+}
+.logo a {
+	font-family: "Poiret One", sans-serif;
+}
+.link {
+	transition: all 0.3s ease-in-out;
+	border-radius: 5px;
+}
+.link a {
+	color: var(--secondary-text-color);
+}
+
+.scrolled .link:hover {
+	box-shadow: 0 0px 5px 0 var(--main-background-second);
+}
+.active {
+	color: var(--secondary-text-color);
+	transform: rotateZ(0deg);
+}
+.cart-cont {
+	background-color: #ffffff1e;
+	padding: 8px 10px 0;
+	border-radius: 5px;
+	border: 1px solid #ffffff20;
+	box-shadow: 0 1px 5px 0 rgba(31, 38, 135, 0.25);
+}
+.cart-icon {
+	font-size: 2rem;
+	color: var(--primary-color);
+	cursor: pointer;
+	position: relative;
+	transition: transform 0.4s ease;
+	border: none;
+	background-color: transparent;
+}
+.scrolled .cart-icon {
+	color: var(--secondary-text-color);
+}
+.cart-item-qty {
+	position: absolute;
+	right: -8px;
+	font-size: 12px;
+	color: var(--secondary-text-color);
+	background-color: var(--red-color);
+	width: 18px;
+	height: 18px;
+	line-height: 1.4;
+	border-radius: 50%;
+	text-align: center;
+	font-weight: 600;
+}
+
+@media (min-width: 769px) {
+	.primary-navigation-large {
+		background: transparent;
+		padding-block: 0.5rem;
+		padding-inline: clamp(3rem, 10vw, 10rem);
+	}
+	.primary-navigation {
+		display: none;
+	}
+	.link:hover {
+		box-shadow: 0 0px 10px 0 var(--banner-shadows);
+	}
+}
+
+@media (max-width: 768px) {
+	.primary-navigation-large {
+		display: none;
+	}
+	.primary-navigation {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: calc(100vh - 90px);
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		padding: 5rem 3rem;
+		transform: translateX(-100%);
+		transition: transform 0.5s ease-in-out;
+		font-size: 2rem;
+		overflow: hidden;
+		box-sizing: content-box;
+	}
+	.mobile-nav-toggle {
+		display: block;
+		z-index: 101;
+		background-color: transparent;
+		border: 0;
+		color: var(--primary-color);
+		cursor: pointer;
+		transform: rotateZ(180deg);
+		transition: all 0.3s ease-in-out;
+	}
+	.scrolled .mobile-nav-toggle {
+		color: var(--secondary-text-color);
+	}
+	.mobile-nav-toggle[aria-expanded="true"] {
+		z-index: 121;
+	}
+	.logo {
+		width: 100%;
+	}
+	.link {
+		margin-bottom: 20px;
+		padding: 18px 26px;
+		transition: all 0.3s ease-in-out;
+		border-radius: 5px;
+	}
+}
+
+@media (width > 768px) {
+	.link {
+		padding: 8px 16px;
+	}
+	.link a {
+		color: var(--primary-color);
+	}
+	.scrolled a {
+		color: var(--secondary-text-color);
+	}
+}

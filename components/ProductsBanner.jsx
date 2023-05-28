@@ -39,9 +39,6 @@ const ProductsBanner = ({ ProductsBanner }) => {
 						<input type='text' placeholder='Name' />
 						<input type='email' placeholder='Email' />
 						<input type='password' placeholder='Password' /> */}
-						<Link href={`/product/${ProductsBanner.productNew}`}>
-							<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>
-						</Link>
 					</div>
 				</div>
 
@@ -65,9 +62,6 @@ const ProductsBanner = ({ ProductsBanner }) => {
 						<input type='email' placeholder='Email' />
 						<input type='password' placeholder='Password' />
 						<a href='#'>Forgot your password?</a> */}
-						<Link href={`/product/${ProductsBanner.productTop}`}>
-							<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>
-						</Link>
 					</div>
 				</div>
 				<div className={styles.overlay_container}>
@@ -76,6 +70,9 @@ const ProductsBanner = ({ ProductsBanner }) => {
 						<div className={`${styles.overlay_panel} ${styles.overlay_left}`}>
 							<h1>{ProductsBanner.descHeading}</h1>
 							<p>{ProductsBanner.descNew}</p>
+							<Link href={`/product/${ProductsBanner.productNew}`}>
+								<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>
+							</Link>
 							<button className={styles.ghost} onClick={handleSignInClick}>
 								{ProductsBanner.backToTopProBtn}
 							</button>
@@ -85,6 +82,9 @@ const ProductsBanner = ({ ProductsBanner }) => {
 						<div className={`${styles.overlay_panel} ${styles.overlay_right}`}>
 							<h1>{ProductsBanner.descHeading}</h1>
 							<p>{ProductsBanner.descTop}</p>
+							<Link href={`/product/${ProductsBanner.productTop}`}>
+								<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>
+							</Link>
 							<button className={styles.ghost} onClick={handleSignUpClick}>
 								{ProductsBanner.backToNewProBtn}
 							</button>

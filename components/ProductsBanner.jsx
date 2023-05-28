@@ -1,23 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { urlFor } from "../lib/client";
+import { AiOutlineInstagram, AiOutlineFacebook, AiOutlineMail } from "react-icons/ai";
+
+import styles from "../styles/ProductsBanner.module.css";
 
 const ProductsBanner = ({ ProductsBanner }) => {
-	return (
-		<div className='products-banner-container'>
-			<div>
-				<p className='cream-solo'> {ProductsBanner.smallText}</p>
-				<h1>{ProductsBanner.largeText1}</h1>
-				<h3>{ProductsBanner.midText}</h3>
-				<img src={urlFor(ProductsBanner.image)} alt='shirts' className='products-banner-image' />
+	const [isRightPanelActive, setIsRightPanelActive] = useState(false);
 
-				<div className=''>
-					<Link href={`/product/${ProductsBanner.product}`}>
-						<button type='button'>{ProductsBanner.textBtn}</button>
-					</Link>
-					<div className='desc'>
-						<h5>Description</h5>
-						<p> {ProductsBanner.desc}</p>
+	const handleSignUpClick = () => {
+		setIsRightPanelActive(true);
+	};
+
+	const handleSignInClick = () => {
+		setIsRightPanelActive(false);
+	};
+
+	return (
+		<div className={styles.products_container}>
+			<div className={`${styles.container} ${isRightPanelActive ? styles.right_panel_active : ""}`}>
+				{/* NEWST PRODUCT ADDITION */}
+				<div className={`${styles.form_container} ${styles.sign_up_container}`}>
+					<div className={styles.div_container}>
+						<h1 className={styles.product_heading}>{ProductsBanner.headingRight}</h1>
+						<img src={urlFor(ProductsBanner.imageNew)} alt='shirts' className={styles.products_banner_img} />
+						{/* <div className={styles.social_container}>
+							<Link href='/' className={styles.social}>
+								<AiOutlineMail size={25} />
+							</Link>
+							<Link href='/' className={styles.social}>
+								<AiOutlineFacebook size={25} />
+							</Link>
+							<Link href='/' className={styles.social}>
+								<AiOutlineInstagram size={25} />
+							</Link>
+						</div>
+						<span>or use your email for registration</span>
+						<input type='text' placeholder='Name' />
+						<input type='email' placeholder='Email' />
+						<input type='password' placeholder='Password' /> */}
+						<Link href={`/product/${ProductsBanner.productNew}`}>
+							<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>
+						</Link>
+					</div>
+				</div>
+
+				{/* PRODUCT OF THE WEEK */}
+				<div className={`${styles.form_container} ${styles.sign_in_container}`}>
+					<div className={styles.div_container}>
+						<h1 className={styles.product_heading}>{ProductsBanner.headingLeft}</h1>
+						<img src={urlFor(ProductsBanner.imageTop)} alt='shirts' className={styles.products_banner_img} />
+						{/* <div className={styles.social_container}>
+							<Link href='/' className={styles.social}>
+								<AiOutlineMail size={25} />
+							</Link>
+							<Link href='/' className={styles.social}>
+								<AiOutlineFacebook size={25} />
+							</Link>
+							<Link href='/' className={styles.social}>
+								<AiOutlineInstagram size={25} />
+							</Link>
+						</div> */}
+						{/* <span>or use your account</span>
+						<input type='email' placeholder='Email' />
+						<input type='password' placeholder='Password' />
+						<a href='#'>Forgot your password?</a> */}
+						<Link href={`/product/${ProductsBanner.productTop}`}>
+							<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>
+						</Link>
+					</div>
+				</div>
+				<div className={styles.overlay_container}>
+					<div className={styles.overlay}>
+						{/* NEW product desc */}
+						<div className={`${styles.overlay_panel} ${styles.overlay_left}`}>
+							<h1>{ProductsBanner.descHeading}</h1>
+							<p>{ProductsBanner.descNew}</p>
+							<button className={styles.ghost} onClick={handleSignInClick}>
+								{ProductsBanner.backToTopProBtn}
+							</button>
+						</div>
+
+						{/* TOP product desc */}
+						<div className={`${styles.overlay_panel} ${styles.overlay_right}`}>
+							<h1>{ProductsBanner.descHeading}</h1>
+							<p>{ProductsBanner.descTop}</p>
+							<button className={styles.ghost} onClick={handleSignUpClick}>
+								{ProductsBanner.backToNewProBtn}
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>

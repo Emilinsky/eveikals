@@ -3,19 +3,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600&display=swap");
 
 :root {
+   --white-color:#ffffff
 	--main-background-first: #f5fdd7;
 	--main-background-second: #acb7d7;
 	--primary-text-color: #3b3b3b;
 	--secondary-text-color: #f7f7f7;
-	--primary-color: #4c6793;
-	--primary-faded-color: #4c6793dd;
-	--primary-faded-color-nav: #4c6793e2;
+	--primary-color: #366ac0;
+	--primary-faded-color: #366bc0e5;
+	--primary-faded-color-nav: #366bc0cf;
 	--secondary-color: #004cff;
 	--red-color: #fa575c;
 	--navbar-background: #f7f7f7b0;
 	--banner-shadows: #0036b34e;
 	--banner-background: #ffffff5d;
 	--banner-background-dark: #45454578;
+	--product-banner-bg1: #366ac0;
+	--product-banner-bg2: #128999;
 	--border-color: #8bbccc6a;
 }
 

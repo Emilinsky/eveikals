@@ -4,47 +4,75 @@ export default {
 	type: "document",
 	fields: [
 		//...rest of the fields similar to HeroBanner
-      {
-			name: "image",
-			title: "Image",
+		{
+			name: "imageTop",
+			title: "Image of TOP product",
 			type: "image",
 			options: {
 				hotspot: true,
 			},
 		},
 		{
-			name: "textBtn",
-			title: "textBtn",
+			name: "imageNew",
+			title: "Image of NEW product",
+			type: "image",
+			options: {
+				hotspot: true,
+			},
+		},
+		{
+			name: "moreInfo",
+			title: "Redirect to more info btn",
 			type: "string",
 		},
 		{
-			name: "product",
-			title: "Product",
+			name: "btnBuy",
+			title: "btnBuy",
 			type: "string",
 		},
 		{
-			name: "desc",
-			title: "Desc",
+			name: "backToTopProBtn",
+			title: "Back to TOP product btn",
 			type: "string",
 		},
 		{
-			name: "smallText",
-			title: "SmallText",
+			name: "backToNewProBtn",
+			title: "Back to NEW product btn",
 			type: "string",
 		},
 		{
-			name: "midText",
-			title: "MidText",
+			name: "productTop",
+			title: "Product ID TOP",
 			type: "string",
 		},
 		{
-			name: "largeText1",
-			title: "LargeText1",
+			name: "productNew",
+			title: "Product ID NEW",
 			type: "string",
 		},
 		{
-			name: "largeText2",
-			title: "LargeText2",
+			name: "descTop",
+			title: "Description for TOP product",
+			type: "string",
+		},
+		{
+			name: "descNew",
+			title: "Description for NEW product",
+			type: "string",
+		},
+		{
+			name: "descHeading",
+			title: "Descritpion heading",
+			type: "string",
+		},
+		{
+			name: "headingLeft",
+			title: "Left Header",
+			type: "string",
+		},
+		{
+			name: "headingRight",
+			title: "Right Header",
 			type: "string",
 		},
 		{

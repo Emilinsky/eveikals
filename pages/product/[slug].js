@@ -65,6 +65,7 @@ const findVariant = (selectedOptions, allOptions, allVariants) => {
 const ProductDetails = ({ product, products }) => {
 	const [index, setIndex] = useState(0);
 	const { decQty, incQty, qty, setQty, onAdd, setShowCart } = useStateContext();
+
 	// console.log("Rendering ProductDetails...");
 	if (!product) {
 		return <div>Product not found</div>;
@@ -72,6 +73,15 @@ const ProductDetails = ({ product, products }) => {
 	const { image, name, description, price, options, variants, images } = product;
 
 	const defaultVariant = product.variants.find((variant) => variant.is_default);
+
+	let colors = [];
+	const colorOption = options.find(
+		(option) => option.name.toLowerCase() === "color" || option.type.toLowerCase() === "color"
+	);
+	if (colorOption) {
+		colors = colorOption.values.map((value) => value.colors).flat();
+	}
+	console.log(colors);
 
 	const [selectedVariant, setSelectedVariant] = useState(defaultVariant || product.variants[0]);
 
@@ -148,16 +158,19 @@ const ProductDetails = ({ product, products }) => {
 						{options.map((option) => (
 							<div key={option._key}>
 								<label>{option.name}:</label>
-								<select
-									value={selectedOptions[option.name] || ""} // This line is modified
-									onChange={(e) => handleOptionChange(option.name, e.target.value)}
-								>
+								<div>
 									{option.values.map((value) => (
-										<option key={value._key} value={value.title}>
+										<label key={value._key}>
+											<input
+												type='radio'
+												value={value.title}
+												checked={selectedOptions[option.name] === value.title}
+												onChange={(e) => handleOptionChange(option.name, e.target.value)}
+											/>
 											{value.title}
-										</option>
+										</label>
 									))}
-								</select>
+								</div>
 							</div>
 						))}
 					</div>

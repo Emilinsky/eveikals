@@ -2,6 +2,7 @@ import React from "react";
 
 import { client } from "../lib/client";
 import { Product, FooterBanner, HeroBanner } from "../components";
+import styles from "../styles/Product.module.css";
 
 const Home = ({ products, bannerData }) => {
 	// console.log(products);
@@ -12,7 +13,7 @@ const Home = ({ products, bannerData }) => {
 				<h2>New products every week</h2>
 				<p>These products were added in the last 7 days:</p>
 			</div>
-			<div className='products-container'>
+			<div className={styles.products_container}>
 				{products?.map((pro) => (
 					<Product key={pro._id} product={pro} />
 				))}

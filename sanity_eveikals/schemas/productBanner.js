@@ -76,6 +76,12 @@ export default {
 			type: "string",
 		},
 		{
+			name: "salesCount",
+			title: "Number of sales this week",
+			type: "string",
+		},
+
+		{
 			name: "discount",
 			title: "Discount",
 			type: "string",

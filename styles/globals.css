@@ -7,10 +7,10 @@
 	--main-background-first: #f5fdd7;
 	--main-background-second: #acb7d7;
 	--primary-text-color: #3b3b3b;
-	--secondary-text-color: #f7f7f7;
-	--primary-color: #366ac0;
-	--primary-faded-color: #366bc0e5;
-	--primary-faded-color-nav: #366bc0cf;
+	--secondary-text-color: #fffff7;
+	--primary-color: #366bc0ec;
+	--primary-faded-color: #366bc0bc;
+	--primary-faded-color-nav: #366bc0d6;
 	--secondary-color: #004cff;
 	--red-color: #fa575c;
 	--navbar-background: #f7f7f7b0;
@@ -267,7 +267,7 @@ span.text-red {
 	align-items: center;
 }
 .scrolled .logo {
-	background: var(--main-background-first);
+	background: var(--secondary-text-color);
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -315,16 +315,7 @@ span.text-red {
 	text-align: center;
 	font-weight: 600;
 }
-.products-container {
-	--column-count: 1;
-	display: grid;
-	gap: 45px 0;
-	grid-template-columns: repeat(var(--column-count), 1fr);
-	margin: 20px auto 0;
-	width: 100%;
-	justify-items: center;
-	align-items: center;
-}
+
 .product-card {
 	cursor: pointer;
 	flex-shrink: 1;
@@ -345,24 +336,14 @@ span.text-red {
 	overflow: hidden;
 }
 
-.product-name {
-	font-weight: 500;
-	/* padding-bottom: 5px; */
-	color: #7c7c7c;
-	font-size: 0.875rem;
-}
-.product-name-added {
-	color: var(--main-background-first);
-}
-.product-price-card {
-	text-align: end;
-	color: var(--primary-text-color);
-}
-.product-price {
+
+
+
+/* .product-price {
 	font-weight: 800;
 	margin-top: 6px;
 	color: var(--primary-text-color);
-}
+} */
 
 .hero-banner-container,
 .products-banner-container {
@@ -744,12 +725,12 @@ span.text-red {
 	margin-top: 30px;
 	color: var(--red-color);
 }
-.price .old-price,
+/* .price .old-price,
 .product-price .old-price,
 .price .old-price {
 	color: var(--primary-text-color);
 	text-decoration: line-through;
-}
+} */
 .product-detail-desc .quantity {
 	display: flex;
 	gap: 20px;
@@ -1123,13 +1104,6 @@ span.text-red {
 	}
 }
 
-@media (width > 650px) {
-	.products-container {
-		--column-count: 2;
-		max-width: 650px;
-	}
-}
-
 @media (width > 768px) {
 	.link {
 		padding: 8px 16px;
@@ -1141,15 +1115,4 @@ span.text-red {
 		color: var(--secondary-text-color);
 	}
 }
-@media (width > 1000px) {
-	.products-container {
-		--column-count: 3;
-		max-width: 1000px;
-	}
-}
-@media (width > 1300px) {
-	.products-container {
-		--column-count: 4;
-		max-width: 1300px;
-	}
-}
+

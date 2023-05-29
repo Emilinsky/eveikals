@@ -47,6 +47,7 @@ const ProductsBanner = ({ ProductsBanner }) => {
 					<div className={styles.div_container}>
 						<h1 className={styles.product_heading}>{ProductsBanner.headingLeft}</h1>
 						<img src={urlFor(ProductsBanner.imageTop)} alt='shirts' className={styles.products_banner_img} />
+						<p className={styles.sales_num}>{`Sales last week: ${ProductsBanner.salesCount}`}</p>
 						{/* <div className={styles.social_container}>
 							<Link href='/' className={styles.social}>
 								<AiOutlineMail size={25} />

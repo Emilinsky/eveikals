@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { client } from "../lib/client";
 import { Product, ProductsBanner } from "../components";
+import styles from "../styles/Product.module.css";
 
 const Products = ({ products, bannerData }) => {
 	const [selectedCategories, setSelectedCategories] = useState([]);
@@ -10,8 +11,6 @@ const Products = ({ products, bannerData }) => {
 	const productsPerPage = 15;
 
 	const combinedProducts = [...products.sanity];
-
-
 
 	const filteredProducts =
 		selectedCategories.length > 0
@@ -31,9 +30,8 @@ const Products = ({ products, bannerData }) => {
 			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} />
 			<div className='products-heading'>
 				<h1 className='header'>All Products</h1>
-			
 			</div>
-			<div className='products-container'>
+			<div className={styles.products_container}>
 				{currentProducts?.map((pro) => (
 					<Product key={pro._id} product={pro} />
 				))}

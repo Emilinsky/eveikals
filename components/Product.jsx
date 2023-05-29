@@ -56,8 +56,8 @@ const Product = ({ product }) => {
 						<div className={`${styles.bottom} ${isClicked ? styles.clicked : ""}`}>
 							<div className={styles.left}>
 								<div className={styles.details}>
-									<p className={styles["product-name"]}>{name}</p>
-									<p className={styles["product-price-card"]}>€{price}</p>
+									<p className={styles.product_name}>{name}</p>
+									<p className={styles.product_price_card}>€{price}</p>
 								</div>
 								<div className={styles.buy} onClick={handleBuyClick}>
 									<AiOutlineShoppingCart size={30} />
@@ -68,8 +68,8 @@ const Product = ({ product }) => {
 									<AiOutlineCheckCircle size={35} />
 								</div>
 								<div className={styles.details}>
-									<p className={styles["product-name-added"]}>{name}</p>
-									<p>Added to your cart</p>
+									<p className={styles.product_name_added}>{name}</p>
+									<p className={styles.product_name_added}>Added to your cart</p>
 								</div>
 								<div className={styles.remove} onClick={handleRemoveClick}>
 									<AiOutlineCloseCircle size={35} />

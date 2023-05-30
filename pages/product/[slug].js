@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
 import parse from "html-react-parser";
 
 import { client, urlFor } from "../../lib/client";
@@ -74,6 +74,7 @@ const ProductDetails = ({ product, products }) => {
 
 	const defaultVariant = product.variants.find((variant) => variant.is_default);
 
+	// fetch colors
 	let colors = [];
 	const colorOption = options.find(
 		(option) => option.name.toLowerCase() === "color" || option.type.toLowerCase() === "color"
@@ -81,7 +82,15 @@ const ProductDetails = ({ product, products }) => {
 	if (colorOption) {
 		colors = colorOption.values.map((value) => value.colors).flat();
 	}
-	console.log(colors);
+	// fetch sizes
+	let sizes = [];
+	const sizeOption = options.find(
+		(option) => option.name.toLowerCase() === "size" || option.type.toLowerCase() === "size"
+	);
+	if (sizeOption) {
+		sizes = sizeOption.values.map((value) => value.title).flat();
+	}
+	console.log(colors, sizes);
 
 	const [selectedVariant, setSelectedVariant] = useState(defaultVariant || product.variants[0]);
 
@@ -154,26 +163,39 @@ const ProductDetails = ({ product, products }) => {
 					<div>{parse(description)}</div>
 
 					{/* DETAILS OPTIONS */}
-					<div>
-						{options.map((option) => (
-							<div key={option._key}>
-								<label>{option.name}:</label>
-								<div>
-									{option.values.map((value) => (
-										<label key={value._key}>
+					{options.map((option) => (
+						<div key={option._key} className={`div-cont ${option.name.toLowerCase() === "size" ? "size-option" : ""}`}>
+							<label>{option.name}:</label>
+							<div className='input-cont'>
+								{option.values.map((value, index) => {
+									const isChecked = selectedOptions[option.name] === value.title;
+									return (
+										<div key={value._key} className='labels product-color'>
 											<input
 												type='radio'
 												value={value.title}
-												checked={selectedOptions[option.name] === value.title}
+												id={value.title}
+												checked={isChecked}
 												onChange={(e) => handleOptionChange(option.name, e.target.value)}
+												style={{ display: "none" }} // Hide the actual radio button
 											/>
-											{value.title}
-										</label>
-									))}
-								</div>
+											<label
+												htmlFor={value.title}
+												style={{
+													backgroundColor: option.name.toLowerCase() === "color" ? value.colors[0] : null,
+												}}
+											>
+												{/* Only display the color name if it's checked */}
+												{isChecked && option.name.toLowerCase() === "color" && <AiOutlineCheck size={18} />}
+												{option.name.toLowerCase() !== "color" && value.title}
+											</label>
+										</div>
+									);
+								})}
 							</div>
-						))}
-					</div>
+						</div>
+					))}
+
 					{/* END OF DETAILS */}
 
 					<p className='price'>€{selectedVariant ? selectedVariant.price : price}</p>

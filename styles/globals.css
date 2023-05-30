@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600&display=swap");
 
 :root {
-   --white-color:#ffffff
+	--white-color: #ffffff;
 	--main-background-first: #f5fdd7;
 	--main-background-second: #acb7d7;
 	--primary-text-color: #3b3b3b;
@@ -335,9 +335,6 @@ span.text-red {
 	transition: transform 0.5s ease;
 	overflow: hidden;
 }
-
-
-
 
 /* .product-price {
 	font-weight: 800;
@@ -711,22 +708,23 @@ span.text-red {
 
 /* color-picker */
 
-.input-cont{
-   display: flex;
-justify-content: flex-start;
-align-items: center;
+.input-cont {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
-.labels{
-   display: inline-block;
-   width: 40px;
+.labels {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-   cursor: pointer;
-   margin-right: 5px;
+	cursor: pointer;
+	margin-right: 5px;
 }
- .size-option .labels{
-   width: 60px;
-   
+.size-option .labels {
+	width: 15%;
 }
 
 .product-color {
@@ -754,29 +752,32 @@ align-items: center;
 	opacity: 1;
 }
 
-.product-color  label {
+.product-color label {
 	width: 35px;
-	color: #fff;
+	color: var(--white-color);
 	height: 35px;
-	line-height: 40px;
+	line-height: 38px;
 	border-radius: 50%;
-	display: inline-block;
+	border: 1px solid var(--border-color);
+	/* display: inline-block; */
 	position: relative;
-   margin: 0 5px;
-	/* border: 0px solid #535151; */
 	cursor: pointer;
 	text-align: center;
-	opacity: .5;
+	opacity: 0.5;
 	box-sizing: border-box;
 	transition: opacity 0.3s ease-in-out;
 }
+.size-input input:checked + label {
+	/* border-color: #6ca1ad; */
+	opacity: 1;
+}
 .size-option label:nth-child(2) {
-   border: 2px solid var(--primary-color);
-   width: 55px;
-   border-radius: 4px;
-   line-height: 32px;
-   color: var(--primary-color);
-   background-color: transparent;
+	border: 2px solid var(--primary-color);
+	width: 100%;
+	border-radius: 4px;
+	line-height: 32px;
+	color: var(--primary-color);
+	background-color: transparent;
 }
 
 /* .product-color  label:after {
@@ -1205,4 +1206,3 @@ align-items: center;
 		color: var(--secondary-text-color);
 	}
 }
-

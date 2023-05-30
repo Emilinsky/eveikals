@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
+import { FaCheck } from "react-icons/fa";
 import parse from "html-react-parser";
 
 import { client, urlFor } from "../../lib/client";
@@ -169,6 +170,7 @@ const ProductDetails = ({ product, products }) => {
 							<div className='input-cont'>
 								{option.values.map((value, index) => {
 									const isChecked = selectedOptions[option.name] === value.title;
+									console.log(option.name);
 									return (
 										<div key={value._key} className='labels product-color'>
 											<input
@@ -186,7 +188,7 @@ const ProductDetails = ({ product, products }) => {
 												}}
 											>
 												{/* Only display the color name if it's checked */}
-												{isChecked && option.name.toLowerCase() === "color" && <AiOutlineCheck size={18} />}
+												{isChecked && option.name.toLowerCase() === "color" && <FaCheck size={15} />}
 												{option.name.toLowerCase() !== "color" && value.title}
 											</label>
 										</div>

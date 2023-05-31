@@ -84,6 +84,8 @@
 
 .product_detail_desc h2 {
 	margin-top: 5px;
+   padding-bottom: 8px;
+	border-bottom: 1px solid var(--border-color);
 }
 .product_detail_desc p {
 	margin-top: 10px;

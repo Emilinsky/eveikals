@@ -7,3 +7,4 @@ export { default as Navbar } from "./Navbar";
 export { default as Product } from "./Product";
 export { default as ProductsBanner } from "./ProductsBanner";
 export { default as SimilarProducts } from "./SimilarProducts";
+export { default as ProductOptions } from "./ProductOptions";

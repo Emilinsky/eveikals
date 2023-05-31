@@ -6,7 +6,7 @@ import { Tooltip } from "react-tooltip";
 import styles from "../../styles/slug.module.css";
 
 import { client, urlFor } from "../../lib/client";
-import { Product } from "../../components";
+import { Product, SimilarProducts } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
 const getOptionId = (allOptions, name, value) => {
@@ -151,144 +151,140 @@ const ProductDetails = ({ product, products }) => {
 	};
 
 	return (
-		<div className={styles.product_pg_cont}>
-			<div className={styles.heading_cont}>
-				<h1 className={styles.heading}>
-					{name}
-					{/* {value.title} */}
-				</h1>
-				<div className={styles.reviews}>
-					<div className={styles.flex}>
-						<AiFillStar />
-						<AiFillStar />
-						<AiFillStar />
-						<AiFillStar />
-						<AiOutlineStar />
-					</div>
-					<p className={styles.review_p}>(27)</p>
-				</div>
-			</div>
-			<div className={styles.product_detail_container}>
-				<div className={styles.all_img_cont}>
-					<div className={styles.image_container}>
-						{/* Show main image from selectedImages */}
-						<img src={selectedImages[index]?.src} className={styles.product_detail_image} />
-					</div>
-					<div className={styles.small_images_container}>
-						{/* Show only the images associated with the selected variant */}
-						{selectedImages.map((item, i) => (
-							<img
-								key={item.src}
-								src={item.src}
-								className={i === index ? `${styles.small_image} ${styles.selected_image}` : styles.small_image}
-								onMouseEnter={() => setIndex(i)}
-							/>
-						))}
-					</div>
-				</div>
-
-				<div className={styles.product_detail_desc}>
-					<h2 className={styles.details_heading}>Details:</h2>
-					<div>{parse(description)}</div>
-
-					{/* DETAILS OPTIONS */}
-					{options.map((option) => (
-						<div key={option._key} className={`div-cont ${option.name.toLowerCase() === "size" ? "size-option" : ""}`}>
-							<label>{option.name}:</label>
-							<div className='input-cont'>
-								{option.values.map((value, index) => {
-									const isChecked = selectedOptions[option.name] === value.title;
-									const isColorOption = option.name.toLowerCase() === "color";
-
-									// Calculate the brightness only for color options
-									let checkmarkColor = "#ffffff"; // Default color is white
-									if (isColorOption && isChecked) {
-										const backgroundColor = value.colors[0];
-										const brightness = getPerceivedBrightness(backgroundColor);
-										checkmarkColor = brightness > 215 ? "#366bc0ec" : "#ffffff"; // Switch color based on brightness
-									}
-
-									return (
-										<div key={value._key} className='labels product-color'>
-											<input
-												type='radio'
-												value={value.title}
-												id={value.title}
-												checked={isChecked}
-												onChange={(e) => handleOptionChange(option.name, e.target.value)}
-												style={{ display: "none" }} // Hide the actual radio button
-											/>
-											<label
-												data-tooltip-id={isColorOption ? "my-tooltip" : undefined}
-												data-tooltip-content={isColorOption ? value.title : undefined}
-												htmlFor={value.title}
-												style={{
-													backgroundColor: isColorOption ? value.colors[0] : null,
-													color: isChecked && isColorOption ? checkmarkColor : null,
-												}}
-											>
-												{/* Only display the color name if it's checked */}
-												{isChecked && isColorOption && <FaCheck size={15} />}
-												{!isColorOption && value.title}
-											</label>
-
-											<Tooltip
-												id='my-tooltip'
-												place='top'
-												variant='info'
-												style={{
-													paddingLeft: 25,
-													paddingRight: 25,
-													paddingTop: 13,
-													paddingBottom: 13,
-													backgroundColor: "#366bc0ec",
-													borderRadius: 6,
-												}}
-											/>
-										</div>
-									);
-								})}
-							</div>
+		<>
+			<div className={styles.product_pg_cont}>
+				<div className={styles.heading_cont}>
+					<h1 className={styles.heading}>
+						{name}
+						{/* {value.title} */}
+					</h1>
+					<div className={styles.reviews}>
+						<div className={styles.flex}>
+							<AiFillStar />
+							<AiFillStar />
+							<AiFillStar />
+							<AiFillStar />
+							<AiOutlineStar />
 						</div>
-					))}
-
-					{/* END OF DETAILS */}
-
-					<p className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</p>
-
-					<div className={styles.quantity}>
-						<h3>Quantity:</h3>
-						<p className={styles.quantity_desc}>
-							<span className={styles.minus} onClick={decQty}>
-								<AiOutlineMinus />
-							</span>
-							<span className={styles.num}>{qty}</span>
-							<span className={styles.plus} onClick={incQty}>
-								<AiOutlinePlus />
-							</span>
-						</p>
-					</div>
-					<div className={styles.buttons}>
-						<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
-							Add to cart
-						</button>
-						<button type='button' className={styles.buy_now} onClick={handleBuyNow}>
-							Buy now
-						</button>
+						<p className={styles.review_p}>(27)</p>
 					</div>
 				</div>
-			</div>
-			<div className='similar-products-wrapper'>
-				<h2>Similar products:</h2>
-				<div className='marquee'>
-					<div className='similar-products-container track'>
-						{products.map((item) => (
-							<Product key={item._id} product={item} />
+				<div className={styles.product_detail_container}>
+					<div className={styles.all_img_cont}>
+						<div className={styles.image_container}>
+							{/* Show main image from selectedImages */}
+							<img src={selectedImages[index]?.src} className={styles.product_detail_image} />
+						</div>
+						<div className={styles.small_images_container}>
+							{/* Show only the images associated with the selected variant */}
+							{selectedImages.map((item, i) => (
+								<img
+									key={item.src}
+									src={item.src}
+									className={i === index ? `${styles.small_image} ${styles.selected_image}` : styles.small_image}
+									onMouseEnter={() => setIndex(i)}
+								/>
+							))}
+						</div>
+					</div>
+
+					<div className={styles.product_detail_desc}>
+						<h2 className={styles.details_heading}>Details:</h2>
+						<div>{parse(description)}</div>
+
+						{/* DETAILS OPTIONS */}
+						{options.map((option) => (
+							<div
+								key={option._key}
+								className={`div-cont ${option.name.toLowerCase() === "size" ? "size-option" : ""}`}
+							>
+								<label>{option.name}:</label>
+								<div className='input-cont'>
+									{option.values.map((value, index) => {
+										const isChecked = selectedOptions[option.name] === value.title;
+										const isColorOption = option.name.toLowerCase() === "color";
+
+										// Calculate the brightness only for color options
+										let checkmarkColor = "#ffffff"; // Default color is white
+										if (isColorOption && isChecked) {
+											const backgroundColor = value.colors[0];
+											const brightness = getPerceivedBrightness(backgroundColor);
+											checkmarkColor = brightness > 215 ? "#366bc0ec" : "#ffffff"; // Switch color based on brightness
+										}
+
+										return (
+											<div key={value._key} className='labels product-color'>
+												<input
+													type='radio'
+													value={value.title}
+													id={value.title}
+													checked={isChecked}
+													onChange={(e) => handleOptionChange(option.name, e.target.value)}
+													style={{ display: "none" }} // Hide the actual radio button
+												/>
+												<label
+													data-tooltip-id={isColorOption ? "my-tooltip" : undefined}
+													data-tooltip-content={isColorOption ? value.title : undefined}
+													htmlFor={value.title}
+													style={{
+														backgroundColor: isColorOption ? value.colors[0] : null,
+														color: isChecked && isColorOption ? checkmarkColor : null,
+													}}
+												>
+													{/* Only display the color name if it's checked */}
+													{isChecked && isColorOption && <FaCheck size={15} />}
+													{!isColorOption && value.title}
+												</label>
+
+												<Tooltip
+													id='my-tooltip'
+													place='top'
+													variant='info'
+													style={{
+														paddingLeft: 25,
+														paddingRight: 25,
+														paddingTop: 13,
+														paddingBottom: 13,
+														backgroundColor: "#366bc0ec",
+														borderRadius: 6,
+													}}
+												/>
+											</div>
+										);
+									})}
+								</div>
+							</div>
 						))}
+
+						{/* END OF DETAILS */}
+
+						<p className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</p>
+
+						<div className={styles.quantity}>
+							<h3>Quantity:</h3>
+							<p className={styles.quantity_desc}>
+								<span className={styles.minus} onClick={decQty}>
+									<AiOutlineMinus />
+								</span>
+								<span className={styles.num}>{qty}</span>
+								<span className={styles.plus} onClick={incQty}>
+									<AiOutlinePlus />
+								</span>
+							</p>
+						</div>
+						<div className={styles.buttons}>
+							<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
+								Add to cart
+							</button>
+							<button type='button' className={styles.buy_now} onClick={handleBuyNow}>
+								Buy now
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			<SimilarProducts products={products} />
+		</>
 	);
 };
 

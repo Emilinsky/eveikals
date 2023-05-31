@@ -1,6 +1,8 @@
 import React from "react";
 
-function SimilarProducts() {
+import { Product } from "../components";
+
+function SimilarProducts({ products }) {
 	return (
 		<div className='similar-products-wrapper'>
 			<h2>Similar products:</h2>

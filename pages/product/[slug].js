@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 import parse from "html-react-parser";
+import { Tooltip } from "react-tooltip";
 
 import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
@@ -112,7 +113,7 @@ const ProductDetails = ({ product, products }) => {
 	if (sizeOption) {
 		sizes = sizeOption.values.map((value) => value.title).flat();
 	}
-	console.log(colors, sizes);
+	// console.log(colors, sizes);
 
 	const [selectedVariant, setSelectedVariant] = useState(defaultVariant || product.variants[0]);
 
@@ -212,6 +213,8 @@ const ProductDetails = ({ product, products }) => {
 												style={{ display: "none" }} // Hide the actual radio button
 											/>
 											<label
+												data-tooltip-id={isColorOption ? "my-tooltip" : undefined}
+												data-tooltip-content={isColorOption ? value.title : undefined}
 												htmlFor={value.title}
 												style={{
 													backgroundColor: isColorOption ? value.colors[0] : null,
@@ -222,6 +225,20 @@ const ProductDetails = ({ product, products }) => {
 												{isChecked && isColorOption && <FaCheck size={15} />}
 												{!isColorOption && value.title}
 											</label>
+
+											<Tooltip
+												id='my-tooltip'
+												place='top'
+												variant='info'
+												style={{
+													paddingLeft: 25,
+													paddingRight: 25,
+													paddingTop: 13,
+													paddingBottom: 13,
+													backgroundColor: "#366bc0ec",
+													borderRadius: 6,
+												}}
+											/>
 										</div>
 									);
 								})}

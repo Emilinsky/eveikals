@@ -3,6 +3,7 @@ import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineChec
 import { FaCheck } from "react-icons/fa";
 import parse from "html-react-parser";
 import { Tooltip } from "react-tooltip";
+import styles from "../../styles/slug.module.css";
 
 import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
@@ -150,39 +151,44 @@ const ProductDetails = ({ product, products }) => {
 	};
 
 	return (
-		<div>
-			<div className='product-detail-container'>
-				<div>
-					<div className='image-container'>
-						{/* Show main image from selectedImages */}
-						<img src={selectedImages[index]?.src} className='product-detail-image' />
+		<div className={styles.product_pg_cont}>
+			<div className={styles.heading_cont}>
+				<h1 className={styles.heading}>
+					{name}
+					{/* {value.title} */}
+				</h1>
+				<div className={styles.reviews}>
+					<div className={styles.flex}>
+						<AiFillStar />
+						<AiFillStar />
+						<AiFillStar />
+						<AiFillStar />
+						<AiOutlineStar />
 					</div>
-					<div className='small-images-container'>
+					<p className={styles.review_p}>(27)</p>
+				</div>
+			</div>
+			<div className={styles.product_detail_container}>
+				<div className={styles.all_img_cont}>
+					<div className={styles.image_container}>
+						{/* Show main image from selectedImages */}
+						<img src={selectedImages[index]?.src} className={styles.product_detail_image} />
+					</div>
+					<div className={styles.small_images_container}>
 						{/* Show only the images associated with the selected variant */}
 						{selectedImages.map((item, i) => (
 							<img
 								key={item.src}
 								src={item.src}
-								className={i === index ? "small-image selected-image" : "small-image"}
+								className={i === index ? `${styles.small_image} ${styles.selected_image}` : styles.small_image}
 								onMouseEnter={() => setIndex(i)}
 							/>
 						))}
 					</div>
 				</div>
 
-				<div className='product-detail-desc'>
-					<h1>{name}</h1>
-					<div className='reviews'>
-						<div>
-							<AiFillStar />
-							<AiFillStar />
-							<AiFillStar />
-							<AiFillStar />
-							<AiOutlineStar />
-						</div>
-						<p>(20)</p>
-					</div>
-					<h4>Details:</h4>
+				<div className={styles.product_detail_desc}>
+					<h2 className={styles.details_heading}>Details:</h2>
 					<div>{parse(description)}</div>
 
 					{/* DETAILS OPTIONS */}
@@ -248,25 +254,25 @@ const ProductDetails = ({ product, products }) => {
 
 					{/* END OF DETAILS */}
 
-					<p className='price'>€{selectedVariant ? selectedVariant.price : price}</p>
+					<p className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</p>
 
-					<div className='quantity'>
+					<div className={styles.quantity}>
 						<h3>Quantity:</h3>
-						<p className='quantity-desc'>
-							<span className='minus' onClick={decQty}>
+						<p className={styles.quantity_desc}>
+							<span className={styles.minus} onClick={decQty}>
 								<AiOutlineMinus />
 							</span>
-							<span className='num'>{qty}</span>
-							<span className='plus' onClick={incQty}>
+							<span className={styles.num}>{qty}</span>
+							<span className={styles.plus} onClick={incQty}>
 								<AiOutlinePlus />
 							</span>
 						</p>
 					</div>
-					<div className='buttons'>
-						<button type='button' className='add-to-cart' onClick={() => onAdd(product, qty, selectedVariant)}>
+					<div className={styles.buttons}>
+						<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
 							Add to cart
 						</button>
-						<button type='button' className='buy-now' onClick={handleBuyNow}>
+						<button type='button' className={styles.buy_now} onClick={handleBuyNow}>
 							Buy now
 						</button>
 					</div>

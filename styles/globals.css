@@ -739,16 +739,7 @@ span.text-red {
 	margin: 0px 1px;
 }
 
-.product-color input {
-	position: absolute;
-	left: 0;
-	top: -300%;
-	opacity: 0;
-	visibility: hidden;
-}
-
 .product-color input:checked + label {
-	/* border-color: #6CA1AD; */
 	opacity: 1;
 }
 

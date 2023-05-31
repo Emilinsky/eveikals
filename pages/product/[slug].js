@@ -63,6 +63,27 @@ const findVariant = (selectedOptions, allOptions, allVariants) => {
 	});
 };
 
+function getPerceivedBrightness(color) {
+	if (!color) {
+		return 0;
+	}
+
+	// Assuming color is in hex format
+	const rgb = color.slice(1); // remove #
+
+	if (rgb.length !== 6) {
+		return 0;
+	}
+
+	const r = parseInt(rgb.slice(0, 2), 16);
+	const g = parseInt(rgb.slice(2, 4), 16);
+	const b = parseInt(rgb.slice(4, 6), 16);
+
+	const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
+	return brightness;
+}
+
 const ProductDetails = ({ product, products }) => {
 	const [index, setIndex] = useState(0);
 	const { decQty, incQty, qty, setQty, onAdd, setShowCart } = useStateContext();
@@ -170,7 +191,16 @@ const ProductDetails = ({ product, products }) => {
 							<div className='input-cont'>
 								{option.values.map((value, index) => {
 									const isChecked = selectedOptions[option.name] === value.title;
-									console.log(option.name);
+									const isColorOption = option.name.toLowerCase() === "color";
+
+									// Calculate the brightness only for color options
+									let checkmarkColor = "#ffffff"; // Default color is white
+									if (isColorOption && isChecked) {
+										const backgroundColor = value.colors[0];
+										const brightness = getPerceivedBrightness(backgroundColor);
+										checkmarkColor = brightness > 215 ? "#366bc0ec" : "#ffffff"; // Switch color based on brightness
+									}
+
 									return (
 										<div key={value._key} className='labels product-color'>
 											<input
@@ -184,12 +214,13 @@ const ProductDetails = ({ product, products }) => {
 											<label
 												htmlFor={value.title}
 												style={{
-													backgroundColor: option.name.toLowerCase() === "color" ? value.colors[0] : null,
+													backgroundColor: isColorOption ? value.colors[0] : null,
+													color: isChecked && isColorOption ? checkmarkColor : null,
 												}}
 											>
 												{/* Only display the color name if it's checked */}
-												{isChecked && option.name.toLowerCase() === "color" && <FaCheck size={15} />}
-												{option.name.toLowerCase() !== "color" && value.title}
+												{isChecked && isColorOption && <FaCheck size={15} />}
+												{!isColorOption && value.title}
 											</label>
 										</div>
 									);

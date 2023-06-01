@@ -169,7 +169,7 @@ const ProductDetails = ({ product, products }) => {
 
 					<div className={styles.product_detail_desc}>
 						<h2 className={styles.details_heading}>Details:</h2>
-						<div>{parse(description)}</div>
+						<div className={styles.printify_desc}>{parse(description)}</div>
 
 						{/* DETAILS OPTIONS */}
 						<ProductOptions

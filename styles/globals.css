@@ -13,7 +13,7 @@
 	--primary-color: #366bc0ec;
 	--primary-faded-color: #366bc0bc;
 	--primary-faded-color-nav: #366bc0d6;
-	--secondary-color: #004cff;
+	--secondary-color: #306effc2;
 	--navbar-background: #f7f7f7b0;
 	--banner-shadows: #0036b34e;
 	--banner-background: #ffffff5d;
@@ -45,7 +45,7 @@ a {
 }
 
 .main-container {
-	max-width: 1400px;
+	max-width: 1500px;
 	margin: auto;
 	width: 100%;
 	padding-top: 80px;
@@ -667,8 +667,11 @@ span.text-red {
 
 .options-cont {
 	border-radius: 10px;
-	border: 1px solid var(--primary-color);
-
+	background: rgba(92, 128, 255, 0.33);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(11.2px);
+	-webkit-backdrop-filter: blur(11.2px);
 	padding: 10px;
 	margin: 20px 0 0;
 }
@@ -678,7 +681,10 @@ span.text-red {
 }
 
 .option-title {
-	padding: 10px;
+	width: 100px;
+	color: var(--secondary-text-color);
+	font-size: 1.375rem;
+	padding: 10px 20px;
 }
 
 .input-cont {
@@ -716,7 +722,7 @@ span.text-red {
 
 .product-color input:checked + label {
 	opacity: 1;
-	box-shadow: 0 0 0 4px var(--white-color), 0 0 0 6px var(--banner-background-dark);
+	box-shadow: 0 0 0 3px var(--white-color), 0 0 0 4px var(--banner-background-dark);
 }
 
 .product-color label {
@@ -725,12 +731,11 @@ span.text-red {
 	height: 35px;
 	line-height: 38px;
 	border-radius: 50%;
-	/* border: 1px solid var(--border-color); */
 	position: relative;
 	cursor: pointer;
 	text-align: center;
-	opacity: 0.5;
-	box-shadow: 0 0 0 4px var(--white-color), 0 0 0 6px #4545452f;
+	opacity: 0.6;
+	box-shadow: 0 0 0 1px #4545452f, 0 0 0 2px var(--white-color);
 	box-sizing: border-box;
 	transition: all 0.3s ease-in-out;
 }
@@ -738,12 +743,12 @@ span.text-red {
 	opacity: 1;
 }
 .size-option label:nth-child(2) {
-	border: 2px solid var(--primary-color);
+	border: 2px solid var(--secondary-text-color);
 	width: 100%;
 	border-radius: 4px;
 	line-height: 32px;
 	box-shadow: none !important;
-	color: var(--primary-color);
+	color: var(--secondary-text-color);
 	background-color: transparent;
 }
 .input-cont:nth-child(2) .product-color:nth-child(1) {

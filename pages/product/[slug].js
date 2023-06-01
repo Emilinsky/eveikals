@@ -179,8 +179,6 @@ const ProductDetails = ({ product, products }) => {
 						/>
 						{/* END OF DETAILS */}
 
-						<p className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</p>
-
 						<div className={styles.quantity}>
 							<h3>Quantity:</h3>
 							<p className={styles.quantity_desc}>
@@ -193,6 +191,7 @@ const ProductDetails = ({ product, products }) => {
 								</span>
 							</p>
 						</div>
+						<p className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</p>
 						<div className={styles.buttons}>
 							<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
 								Add to cart

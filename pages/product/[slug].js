@@ -132,24 +132,24 @@ const ProductDetails = ({ product, products }) => {
 	return (
 		<>
 			<div className={styles.product_pg_cont}>
-				<div className={styles.heading_cont}>
-					<h1 className={styles.heading}>
-						{name}
-						{/* {value.title} */}
-					</h1>
-					<div className={styles.reviews}>
-						<div className={styles.flex}>
-							<AiFillStar />
-							<AiFillStar />
-							<AiFillStar />
-							<AiFillStar />
-							<AiOutlineStar />
-						</div>
-						<p className={styles.review_p}>(27)</p>
-					</div>
-				</div>
 				<div className={styles.product_detail_container}>
 					<div className={styles.all_img_cont}>
+						<div className={styles.heading_cont}>
+							<h1 className={styles.heading}>
+								{name}
+								{/* {value.title} */}
+							</h1>
+							<div className={styles.reviews}>
+								<div className={styles.flex}>
+									<AiFillStar />
+									<AiFillStar />
+									<AiFillStar />
+									<AiFillStar />
+									<AiOutlineStar />
+								</div>
+								<p className={styles.review_p}>(27)</p>
+							</div>
+						</div>
 						<div className={styles.image_container}>
 							{/* Show main image from selectedImages */}
 							<img src={selectedImages[index]?.src} className={styles.product_detail_image} />

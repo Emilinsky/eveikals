@@ -150,20 +150,22 @@ const ProductDetails = ({ product, products }) => {
 								<p className={styles.review_p}>(27)</p>
 							</div>
 						</div>
-						<div className={styles.image_container}>
-							{/* Show main image from selectedImages */}
-							<img src={selectedImages[index]?.src} className={styles.product_detail_image} />
-						</div>
-						<div className={styles.small_images_container}>
-							{/* Show only the images associated with the selected variant */}
-							{selectedImages.map((item, i) => (
-								<img
-									key={item.src}
-									src={item.src}
-									className={i === index ? `${styles.small_image} ${styles.selected_image}` : styles.small_image}
-									onMouseEnter={() => setIndex(i)}
-								/>
-							))}
+						<div className={styles.big_small_img_cont}>
+							<div className={styles.image_container}>
+								{/* Show main image from selectedImages */}
+								<img src={selectedImages[index]?.src} className={styles.product_detail_image} />
+							</div>
+							<div className={styles.small_images_container}>
+								{/* Show only the images associated with the selected variant */}
+								{selectedImages.map((item, i) => (
+									<img
+										key={item.src}
+										src={item.src}
+										className={i === index ? `${styles.small_image} ${styles.selected_image}` : styles.small_image}
+										onMouseEnter={() => setIndex(i)}
+									/>
+								))}
+							</div>
 						</div>
 					</div>
 
@@ -181,16 +183,17 @@ const ProductDetails = ({ product, products }) => {
 
 						<div className={styles.quantity}>
 							<h3>Quantity:</h3>
-							<p className={styles.quantity_desc}>
-								<span className={styles.minus} onClick={decQty}>
+							<div className={styles.quantity_desc}>
+								<button type='button' className={styles.minus} onClick={decQty} aria-label='Decrease quantity'>
 									<AiOutlineMinus />
-								</span>
-								<span className={styles.num}>{qty}</span>
-								<span className={styles.plus} onClick={incQty}>
+								</button>
+								<p className={styles.num}>{qty}</p>
+								<button type='button' className={styles.plus} onClick={incQty} aria-label='Increase quantity'>
 									<AiOutlinePlus />
-								</span>
-							</p>
+								</button>
+							</div>
 						</div>
+
 						<p className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</p>
 						<div className={styles.buttons}>
 							<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>

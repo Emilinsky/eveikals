@@ -76,6 +76,7 @@ const ProductDetails = ({ product, products }) => {
 	const { image, name, description, price, options, variants, images } = product;
 
 	const defaultVariant = product.variants.find((variant) => variant.is_default);
+	// new comment
 
 	// fetch colors
 	let colors = [];

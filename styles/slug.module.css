@@ -98,19 +98,19 @@
 	max-width: 60%;
 	/* border: 1px solid blue; */
 	background-image: linear-gradient(
-		to left top,
-		#ebedf4,
-		#e9ecf6,
-		#e7ebf8,
-		#e5eafa,
-		#e3e9fc,
-		#e3e9fd,
-		#e4e9fe,
-		#e4e9ff,
-		#e6ebff,
-		#e9ecff,
-		#ebeeff,
-		#edf0ff
+		to bottom,
+		#d8e6ff,
+		#dce7ff,
+		#e0e9ff,
+		#e4eaff,
+		#e8ecff,
+		#eaedff,
+		#eceeff,
+		#eeefff,
+		#eef0ff,
+		#eff1ff,
+		#eff2ff,
+		#f0f3ff
 	);
 	background-size: 400% 400%;
 	animation: gradient 10s infinite;
@@ -136,7 +136,7 @@
 	font-size: 1.125rem;
 	border-radius: 10px;
 	/* border: 1px solid var(--primary-color); */
-	background: rgba(39, 59, 134, 0.13);
+	background: rgba(39, 59, 134, 0.07);
 	border-radius: 16px;
 	box-shadow: inset 0 0 25px 0 #ffffff4d, inset 0 0 1px 0 var(--secondary-text-color);
 	backdrop-filter: blur(11.2px);
@@ -171,7 +171,7 @@
 } */
 .product_detail_desc .quantity {
 	display: flex;
-	background: rgba(39, 59, 134, 0.13);
+	background: rgba(39, 59, 134, 0.07);
 	border-radius: 10px;
 	/* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
 	backdrop-filter: blur(11.2px);
@@ -181,7 +181,7 @@
 	padding: 15px;
 	align-items: center;
 	color: var(--primary-text-color);
-	box-shadow: inset 0 0 15px 0 #ffffff5e, inset 0 0 1px 0 var(--secondary-text-color);
+	box-shadow: inset 0 0 15px 0 #ffffff19, inset 0 0 1px 0 var(--secondary-text-color);
 }
 .quantity h3 {
 	width: 110px;
@@ -200,7 +200,7 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 160px;
-	background-color: var(--secondary-text-color);
+	background-color: transparent;
 	padding: 0;
 	color: var(--primary-text-color);
 	border-radius: 40px;

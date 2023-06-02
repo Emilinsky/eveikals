@@ -667,7 +667,7 @@ span.text-red {
 /* color-picker */
 
 .options-cont {
-	background: rgba(39, 59, 134, 0.13);
+	background: rgba(39, 59, 134, 0.07);
 	border-radius: 10px;
 	box-shadow: inset 0 0 23px 0 #ffffff3e, inset 0 0 1px 0 var(--secondary-text-color);
 	backdrop-filter: blur(11.2px);

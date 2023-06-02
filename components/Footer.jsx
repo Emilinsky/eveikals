@@ -9,7 +9,7 @@ const Footer = () => {
 				<AiFillInstagram />
 				<AiOutlineFacebook />
 			</p>
-			<p>2023 Shopfeast. &#169;All rights reserved</p>
+			<p>2023 Shopfeast &#169;All rights reserved</p>
 		</div>
 	);
 };

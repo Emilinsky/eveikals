@@ -17,9 +17,9 @@ function Footer() {
 
 					<address>
 						Edmund, from Shopfeast
-						<a className={styles.footer__btn} href='mailto:edmund@shopfeast.com'>
+						<Link className={styles.footer__btn} href='mailto:edmund@shopfeast.com'>
 							Email Us
-						</a>
+						</Link>
 					</address>
 				</div>
 
@@ -29,15 +29,15 @@ function Footer() {
 
 						<ul className={styles.nav__ul}>
 							<li>
-								<a href='#'>Online</a>
+								<Link href='#'>Online</Link>
 							</li>
 
 							<li>
-								<a href='#'>Print</a>
+								<Link href='#'>Print</Link>
 							</li>
 
 							<li>
-								<a href='#'>Alternative Ads</a>
+								<Link href='#'>Alternative Ads</Link>
 							</li>
 						</ul>
 					</li>
@@ -47,15 +47,15 @@ function Footer() {
 
 						<ul className={styles.nav__ul}>
 							<li>
-								<a href='#'>Hardware Design</a>
+								<Link href='#'>Hardware Design</Link>
 							</li>
 
 							<li>
-								<a href='#'>Software Design</a>
+								<Link href='#'>Software Design</Link>
 							</li>
 
 							<li>
-								<a href='#'>Digital Signage</a>
+								<Link href='#'>Digital Signage</Link>
 							</li>
 						</ul>
 					</li>
@@ -65,15 +65,15 @@ function Footer() {
 
 						<ul className={styles.nav__ul}>
 							<li>
-								<a href='#'>Privacy Policy</a>
+								<Link href='#'>Privacy Policy</Link>
 							</li>
 
 							<li>
-								<a href='#'>Terms of Use</a>
+								<Link href='#'>Terms of Use</Link>
 							</li>
 
 							<li>
-								<a href='#'>Sitemap</a>
+								<Link href='#'>Sitemap</Link>
 							</li>
 						</ul>
 					</li>

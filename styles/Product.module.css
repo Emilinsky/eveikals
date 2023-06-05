@@ -1,9 +1,9 @@
 .products_container {
 	--column-count: 1;
 	display: grid;
-	gap: 45px 0;
+	gap: 35px 0;
 	grid-template-columns: repeat(var(--column-count), 1fr);
-	margin: 20px auto 0;
+	margin: 10px auto 0;
 	width: 100%;
 	justify-items: center;
 	align-items: center;

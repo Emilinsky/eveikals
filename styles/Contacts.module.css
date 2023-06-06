@@ -13,14 +13,14 @@
 .contact__descript{
 	display: flex;
 	flex-direction:column;
-	align-items:end;
+	align-items:flex-end;
 }
 
 
 .contact__descript .title{
 	display: flex;
 	flex-direction:column;
-	align-items:end;
+	align-items:flex-end;
 }
 
 .contact__descript p{

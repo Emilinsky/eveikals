@@ -9,27 +9,31 @@ const Products = ({ products, bannerData, tags }) => {
 	const [selectedTags, setSelectedTags] = useState([]);
 	const [isOpen, setIsOpen] = useState(true);
 	const [searchTerm, setSearchTerm] = useState("");
+	const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
 			setDebouncedPriceFilter(priceFilter);
+			setDebouncedSearchTerm(searchTerm);
 		}, 500);
 
 		return () => {
 			clearTimeout(timerId);
 		};
-	}, [priceFilter, selectedTags]);
+	}, [priceFilter, selectedTags, searchTerm]);
 
-	// Then use debouncedPriceFilter for the filtering:
+	// Then use debouncedPriceFilter and debouncedSearchTerm for the filtering:
 	const filteredProducts = products.sanity.filter((product) => {
-		const searchTermWords = searchTerm.toLowerCase().split(" ");
+		const nameLower = product.name.toLowerCase();
+		const searchTermLower = debouncedSearchTerm.toLowerCase();
+		const searchTermLowerMinusLast = searchTermLower.slice(0, -1);
 
 		return (
 			parseFloat(product.price) >= debouncedPriceFilter[0] &&
 			parseFloat(product.price) <= debouncedPriceFilter[1] &&
 			(selectedTags.length === 0 || product.tags.some((tag) => selectedTags.includes(tag))) &&
-			searchTermWords.every((word) => product.name.toLowerCase().includes(word))
-		); // checks if every word in the search term is included in the product's name, case insensitive
+			(nameLower.includes(searchTermLower) || nameLower.includes(searchTermLowerMinusLast))
+		);
 	});
 
 	const handleTagChange = (tag) => {
@@ -48,10 +52,15 @@ const Products = ({ products, bannerData, tags }) => {
 		setSelectedTags([]);
 	};
 
+	const resetSearch = () => {
+		setSearchTerm("");
+	};
+
 	const resetAll = () => {
 		setSelectedTags([]);
 		setPriceFilter([1, 50]);
 		setDebouncedPriceFilter([1, 50]);
+		setSearchTerm("");
 	};
 
 	return (
@@ -63,6 +72,7 @@ const Products = ({ products, bannerData, tags }) => {
 
 			<Slider onPriceChange={setPriceFilter} value={priceFilter} />
 			<button onClick={resetTags}>Reset Tags</button>
+			<button onClick={resetSearch}>Reset Search</button>
 			<button onClick={resetAll}>Reset All</button>
 			<input type='text' placeholder='Search...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 

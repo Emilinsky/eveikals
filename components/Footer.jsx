@@ -7,16 +7,17 @@ import styles from "../styles/Footer.module.css";
 function Footer() {
 	return (
 		<>
+			<div className={styles.svg_bg}></div>
 			<footer className={styles.footer}>
 				<div className={styles.footer__addr}>
 					<h1 className={styles.footer__logo}>
 						<Link href='#'>Shopfeast</Link>
 					</h1>
 
-					<h2>Contact</h2>
+					{/* <h2>Contact</h2> */}
 
 					<address>
-						Edmund, from Shopfeast
+						{/* shopfeast@info.com */}
 						<Link className={styles.footer__btn} href='mailto:edmund@shopfeast.com'>
 							Email Us
 						</Link>
@@ -29,43 +30,41 @@ function Footer() {
 
 						<ul className={styles.nav__ul}>
 							<li>
-								<Link href='#'>Online</Link>
+								<Link href='#'>TikTok</Link>
 							</li>
 
 							<li>
-								<Link href='#'>Print</Link>
+								<Link href='#'>Instagram</Link>
 							</li>
 
 							<li>
-								<Link href='#'>Alternative Ads</Link>
+								<Link href='#'>Facebook</Link>
 							</li>
 						</ul>
 					</li>
 
 					<li className={(styles.nav__item, styles.nav__item_extra)}>
-						<h2 className={styles.nav__title}>Technology</h2>
-
+						<h2 className={styles.nav__title}>Shipping</h2>
 						<ul className={styles.nav__ul}>
 							<li>
-								<Link href='#'>Hardware Design</Link>
+								<Link href='#'>Orders</Link>
 							</li>
 
 							<li>
-								<Link href='#'>Software Design</Link>
+								<Link href='#'>Refunds</Link>
 							</li>
 
 							<li>
-								<Link href='#'>Digital Signage</Link>
+								<Link href='#'>Tracking</Link>
 							</li>
 						</ul>
 					</li>
 
 					<li className={styles.nav__item}>
-						<h2 className={styles.nav__title}>Legal</h2>
-
+						<h2 className={styles.nav__title}>About Us</h2>
 						<ul className={styles.nav__ul}>
 							<li>
-								<Link href='#'>Privacy Policy</Link>
+								<Link href='#'>Products</Link>
 							</li>
 
 							<li>
@@ -73,16 +72,16 @@ function Footer() {
 							</li>
 
 							<li>
-								<Link href='#'>Sitemap</Link>
+								<Link href='#'>Privacy Policy</Link>
 							</li>
 						</ul>
 					</li>
 				</ul>
-
-				<div className={styles.legal}>
-					<p>&copy; 2023. Shopfeast. All rights reserved.</p>
-				</div>
+				<div></div>
 			</footer>
+			<div className={styles.legal}>
+				<p>&copy; 2023. Shopfeast. All rights reserved.</p>
+			</div>
 		</>
 	);
 }

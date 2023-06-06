@@ -1,52 +1,61 @@
 .footer {
 	display: flex;
 	flex-flow: row wrap;
-	padding: 10px 30px 10px 30px;
-	background-color: #fff;
-	border-top: 1px solid #e5e5e5;
+	padding: 80px 10px 50px 70px;
+	background-color: #366bc0;
+	/* border-top: 1px solid #e5e5e5; */
+}
+.svg_bg {
+	width: 100%;
+	height: 150px;
 	margin-top: 150px;
+	background-image: url(../public/wave-haikei.svg);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 
-.footer h2{
-    color: var(--primary-text-color);
+.footer h2 {
+	color: var(--secondary-text-color);
 }
 
 .footer > * {
-	flex: 1 100%;
+	flex: 0.2;
 }
 
-.footer__addr {
+/* .footer__addr {
 	margin-right: 1.25em;
 	margin-bottom: 2em;
-}
+} */
 
 .footer__logo a {
 	font-family: "Poiret One", sans-serif;
-	background: linear-gradient(to left, var(--primary-text-color), var(--secondary-color));
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	font-weight: 500;
-	font-size: 2.125rem;
+	/* background: var(--secondary-text-color); */
+	color: var(--secondary-text-color);
+	font-size: 3.5rem;
 }
 
 .footer__addr h2 {
-	margin-top: 1.3em;
+	margin-top: 0.5rem;
 	font-size: 15px;
 	font-weight: 400;
 }
 
 .nav__title {
 	font-weight: 400;
-	font-size: 18px;
-    color: var(--primary-text-color);
-    
+	font-size: 1.25rem;
+	width: 150px;
+	padding-bottom: 4px;
+	margin-bottom: 10px;
+	color: var(--secondary-text-color);
+	border-bottom: 1px solid var(--banner-background);
 	/* text-align: center; should add/remove if using only 1 column for technology */
 }
 
 .footer address {
 	font-style: normal;
-	color: #999;
+	color: var(--secondary-text-color);
+	margin-top: 0.5rem;
 }
 
 .footer .footer__btn {
@@ -55,18 +64,18 @@
 	justify-content: center;
 	height: 36px;
 	max-width: max-content;
-	background-color: rgb(33, 33, 33, 0.07);
-	border-radius: 100px;
-	color: var(--primary-text-color);
+	background-color: var(--secondary-text-color);
+	border-radius: 10px;
+	color: var(--primary-color);
 	line-height: 0;
-	margin: 0.6em 0;
+	margin: 20px 0 10px;
 	font-size: 1rem;
-	padding: 0 1.3em;
-	transition: all .25s ease-in-out;
+	padding: 0 3.75rem;
+	transition: all 0.25s ease-in-out;
 }
 
 .footer .footer__btn:hover {
-	background-color: var(--secondary-color);
+	background-color: var(--primary-text-color);
 	color: var(--secondary-text-color);
 }
 
@@ -86,7 +95,8 @@
 
 .footer__nav {
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: row nowrap;
+	/* justify-content: center; */
 }
 
 .footer__nav > * {
@@ -94,12 +104,11 @@
 	margin-right: 1.25em;
 }
 
-.nav__ul {
-    color: var(--primary-text-color);
+.nav__ul a {
+	color: var(--secondary-text-color);
 }
 .nav__ul a:hover {
-	/* box-shadow: 0 0 5px 0 var(--secondary-color); */
-	color: var(--primary-color);
+	color: var(--secondary-text-color);
 	padding: 4px;
 }
 
@@ -109,9 +118,13 @@
   } */
 
 .legal {
-	display: flex;
-	flex-wrap: wrap;
-	color: #999;
+	display: absolute;
+	/* justify-content: center; */
+	/* flex-wrap: wrap; */
+	color: var(--navbar-background);
+	background-color: #366bc0;
+	padding: 20px;
+	text-align: center;
 }
 
 @media screen and (min-width: 24.375em) {
@@ -126,11 +139,14 @@
 	}
 
 	.nav__item_extra {
-		flex-grow: 2;
+		flex-grow: 1.1;
 	}
 
 	.footer__addr {
-		flex: 1 0px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex: 1.5;
 	}
 
 	.footer__nav {
@@ -138,20 +154,53 @@
 	}
 }
 
-@media (max-width: 865px){
-    .footer {
-        flex-direction: column;
-    }
+@media (max-width: 865px) {
+	.footer {
+		flex-direction: column;
+	}
 
-    .footer__nav {
-        margin-bottom: 20px;
-    }
+	.footer__nav {
+		margin-bottom: 20px;
+		flex-flow: row wrap;
+	}
 
-    .nav__title {
-        margin-top: 20px;
-    }
+	.nav__title {
+		margin-top: 20px;
+	}
 
-    .footer__addr{
-        margin-bottom: -10px;
-    }
+	.footer__addr {
+		margin-bottom: -10px;
+	}
+}
+
+@media (width < 1000px) {
+	.footer {
+		padding: 80px 10px 50px 10px;
+	}
+	.footer__addr {
+		margin-right: 20px;
+	}
+}
+@media (width < 860px) {
+	.footer__nav {
+		margin: 40px 0 20px 80px;
+	}
+}
+@media (width < 645px) {
+	.footer {
+		padding: 80px 10px 50px 70px;
+	}
+	.footer__nav {
+		margin: 0;
+	}
+
+	.svg_bg {
+		width: 100%;
+		height: 150px;
+		margin-top: 150px;
+		background-image: url(../public/wave-haikeiXS.svg);
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
 }

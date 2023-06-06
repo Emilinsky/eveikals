@@ -5,12 +5,16 @@ const STEP = 1;
 const MIN = 1;
 const MAX = 50;
 
-const TwoThumbs = ({ rtl, onPriceChange }) => {
-	const [values, setValues] = useState([1, 50]);
+const TwoThumbs = ({ rtl, onPriceChange, value }) => {
+	const [values, setValues] = useState(value);
 
 	useEffect(() => {
 		onPriceChange(values);
 	}, [values]);
+
+	useEffect(() => {
+		setValues(value);
+	}, [value]);
 
 	return (
 		<div

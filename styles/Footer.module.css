@@ -2,14 +2,14 @@
 	display: flex;
 	flex-flow: row wrap;
 	padding: 80px 10px 50px 70px;
-	background-color: #366bc0;
+	background-color: #366bc0ec;
 	/* border-top: 1px solid #e5e5e5; */
 }
 .svg_bg {
 	width: 100%;
-	height: 150px;
-	margin-top: 150px;
-	background-image: url(../public/wave-haikei.svg);
+	height: 175px;
+	margin-top: 100px;
+	background-image: url(../public/wave-haikeiV2.svg);
 	background-position: bottom;
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -122,7 +122,7 @@
 	/* justify-content: center; */
 	/* flex-wrap: wrap; */
 	color: var(--navbar-background);
-	background-color: #366bc0;
+	background-color: #366bc0ec;
 	padding: 20px;
 	text-align: center;
 }

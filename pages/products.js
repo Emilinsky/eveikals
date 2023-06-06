@@ -36,6 +36,9 @@ const Products = ({ products, bannerData, tags }) => {
 		);
 	});
 
+	const totalProducts = products.sanity.length;
+	const displayedProducts = filteredProducts.length;
+
 	const handleTagChange = (tag) => {
 		setSelectedTags((prevTags) => {
 			if (prevTags.includes(tag)) {
@@ -75,6 +78,9 @@ const Products = ({ products, bannerData, tags }) => {
 			<button onClick={resetSearch}>Reset Search</button>
 			<button onClick={resetAll}>Reset All</button>
 			<input type='text' placeholder='Search...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+			<p>
+				Showing {displayedProducts} of {totalProducts} results
+			</p>
 
 			<div>
 				<div onClick={() => setIsOpen(!isOpen)}>

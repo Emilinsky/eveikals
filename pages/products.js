@@ -7,6 +7,8 @@ const Products = ({ products, bannerData, tags }) => {
 	const [priceFilter, setPriceFilter] = useState([1, 50]); // adjust range as per your product pricing
 	const [debouncedPriceFilter, setDebouncedPriceFilter] = useState(priceFilter);
 	const [selectedTags, setSelectedTags] = useState([]);
+	const [isOpen, setIsOpen] = useState(true);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
@@ -19,12 +21,16 @@ const Products = ({ products, bannerData, tags }) => {
 	}, [priceFilter, selectedTags]);
 
 	// Then use debouncedPriceFilter for the filtering:
-	const filteredProducts = products.sanity.filter(
-		(product) =>
+	const filteredProducts = products.sanity.filter((product) => {
+		const searchTermWords = searchTerm.toLowerCase().split(" ");
+
+		return (
 			parseFloat(product.price) >= debouncedPriceFilter[0] &&
 			parseFloat(product.price) <= debouncedPriceFilter[1] &&
-			(selectedTags.length === 0 || product.tags.some((tag) => selectedTags.includes(tag))) // filters the products if it has any tag that matches the selected tags or if no tags are selected
-	);
+			(selectedTags.length === 0 || product.tags.some((tag) => selectedTags.includes(tag))) &&
+			searchTermWords.every((word) => product.name.toLowerCase().includes(word))
+		); // checks if every word in the search term is included in the product's name, case insensitive
+	});
 
 	const handleTagChange = (tag) => {
 		setSelectedTags((prevTags) => {
@@ -58,19 +64,28 @@ const Products = ({ products, bannerData, tags }) => {
 			<Slider onPriceChange={setPriceFilter} value={priceFilter} />
 			<button onClick={resetTags}>Reset Tags</button>
 			<button onClick={resetAll}>Reset All</button>
+			<input type='text' placeholder='Search...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+
 			<div>
-				{tags.map((tag) => (
-					<div key={tag}>
-						<input
-							type='checkbox'
-							id={tag}
-							value={tag}
-							checked={selectedTags.includes(tag)}
-							onChange={() => handleTagChange(tag)}
-						/>
-						<label htmlFor={tag}>{tag}</label>
+				<div onClick={() => setIsOpen(!isOpen)}>
+					<h3>Products</h3>
+				</div>
+				{isOpen && (
+					<div>
+						{tags.map((tag) => (
+							<div key={tag}>
+								<input
+									type='checkbox'
+									id={tag}
+									value={tag}
+									checked={selectedTags.includes(tag)}
+									onChange={() => handleTagChange(tag)}
+								/>
+								<label htmlFor={tag}>{tag}</label>
+							</div>
+						))}
 					</div>
-				))}
+				)}
 			</div>
 
 			<div className={styles.products_container}>
@@ -93,7 +108,7 @@ export const getServerSideProps = async () => {
 	const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
 	console.log(allTags);
 
-	const desiredTags = ["Mugs", "Bottles & Tumblers", "Animals", 'Glass']; // Add more tags as desired
+	const desiredTags = ["Mugs", "Bottles & Tumblers", "Animals", "Glass"]; // Add more tags as desired
 
 	const tags = [...new Set(sanityProducts.flatMap((product) => product.tags))].filter((tag) =>
 		desiredTags.includes(tag)

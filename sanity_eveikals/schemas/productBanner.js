@@ -3,7 +3,6 @@ export default {
 	title: "Products Banner",
 	type: "document",
 	fields: [
-		//...rest of the fields similar to HeroBanner
 		{
 			name: "imageTop",
 			title: "Image of TOP product",

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineCheck } from "react-icons/ai";
-import { FaCheck } from "react-icons/fa";
 import parse from "html-react-parser";
-import { Tooltip } from "react-tooltip";
 import styles from "../../styles/slug.module.css";
 
 import { client, urlFor } from "../../lib/client";

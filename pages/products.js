@@ -121,8 +121,8 @@ export const getServerSideProps = async () => {
 	const bannerQuery = '*[_type == "productsBanner"]';
 	const bannerData = await client.fetch(bannerQuery);
 
-	const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
-	console.log(allTags);
+	// const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
+	// console.log(allTags);
 
 	const desiredTags = ["Mugs", "Bottles & Tumblers", "Animals", "Glass"]; // Add more tags as desired
 

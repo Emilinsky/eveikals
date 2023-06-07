@@ -1,7 +1,7 @@
 .footer {
 	display: flex;
 	flex-flow: row wrap;
-	padding: 80px 10px 50px 70px;
+	padding: 80px 10px 80px 70px;
 	background-color: #366bc0ec;
 	/* border-top: 1px solid #e5e5e5; */
 }

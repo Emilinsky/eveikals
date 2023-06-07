@@ -31,7 +31,6 @@ function Footer() {
 						<Link href='#'>Shopfeast</Link>
 					</h1>
 
-					{/* <h2>Contact</h2> */}
 
 					<address>
 						<Link className={styles.footer__btn} href='mailto:edmund@shopfeast.com'>

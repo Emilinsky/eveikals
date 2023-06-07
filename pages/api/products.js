@@ -53,6 +53,7 @@ const getShopProducts = async (shopId) => {
 		}
 
 		const products = response.data.data;
+		console.log(response, products);
 
 		const savedProducts = await Promise.all(
 			products.map(async (product) => {

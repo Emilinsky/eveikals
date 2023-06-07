@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { urlFor } from "../lib/client";
-import { AiOutlineInstagram, AiOutlineFacebook, AiOutlineMail } from "react-icons/ai";
 
 import styles from "../styles/ProductsBanner.module.css";
 

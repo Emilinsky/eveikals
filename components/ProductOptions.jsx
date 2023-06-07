@@ -8,8 +8,8 @@ function getPerceivedBrightness(color) {
 		return 0;
 	}
 
-	// Assuming color is in hex format
-	const rgb = color.slice(1); // remove #
+	// hex color format
+	const rgb = color.slice(1);
 
 	if (rgb.length !== 6) {
 		return 0;
@@ -34,11 +34,11 @@ function ProductOptions({ options, selectedOptions, handleOptionChange }) {
 						{option.values.map((value, index) => {
 							const isChecked = selectedOptions[option.name] === value.title;
 							const isColorOption = option.name.toLowerCase() === "color";
-							let checkmarkColor = "#ffffff"; // Default color is white
+							let checkmarkColor = "#ffffff";
 							if (isColorOption && isChecked) {
 								const backgroundColor = value.colors[0];
 								const brightness = getPerceivedBrightness(backgroundColor);
-								checkmarkColor = brightness > 215 ? "#366bc0ec" : "#ffffff"; // Switch color based on brightness
+								checkmarkColor = brightness > 215 ? "#366bc0ec" : "#ffffff";
 							}
 
 							return (
@@ -49,7 +49,7 @@ function ProductOptions({ options, selectedOptions, handleOptionChange }) {
 										id={value.title}
 										checked={isChecked}
 										onChange={(e) => handleOptionChange(option.name, e.target.value)}
-										style={{ display: "none" }} // Hide the actual radio button
+										style={{ display: "none" }}
 									/>
 									<label
 										data-tooltip-id={isColorOption ? "my-tooltip" : undefined}

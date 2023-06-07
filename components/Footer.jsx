@@ -1,6 +1,23 @@
 import React from "react";
 import Link from "next/link";
-import { AiFillInstagram, AiOutlineFacebook } from "react-icons/ai";
+import {
+	MdOutlineMarkEmailUnread,
+	MdOutlinePrivacyTip,
+	MdOutlineDocumentScanner,
+	MdProductionQuantityLimits,
+	MdAssignmentReturn,
+	MdFavoriteBorder,
+} from "react-icons/md";
+import {
+	FaCcStripe,
+	FaCcVisa,
+	FaCcMastercard,
+	FaCcPaypal,
+	FaInstagram,
+	FaTiktok,
+	FaFacebookSquare,
+	FaTruck,
+} from "react-icons/fa";
 
 import styles from "../styles/Footer.module.css";
 
@@ -17,9 +34,8 @@ function Footer() {
 					{/* <h2>Contact</h2> */}
 
 					<address>
-						{/* shopfeast@info.com */}
 						<Link className={styles.footer__btn} href='mailto:edmund@shopfeast.com'>
-							Email Us
+							<MdOutlineMarkEmailUnread size={25} style={{ marginRight: 10 }} /> Email Us
 						</Link>
 					</address>
 				</div>
@@ -30,31 +46,38 @@ function Footer() {
 
 						<ul className={styles.nav__ul}>
 							<li>
+								<FaTiktok size={18} />
 								<Link href='#'>TikTok</Link>
 							</li>
 
 							<li>
+								<FaInstagram size={18} />
 								<Link href='#'>Instagram</Link>
 							</li>
 
 							<li>
+								<FaFacebookSquare size={18} />
 								<Link href='#'>Facebook</Link>
 							</li>
 						</ul>
 					</li>
 
-					<li className={(styles.nav__item, styles.nav__item_extra)}>
+					<li className={styles.nav__item}>
 						<h2 className={styles.nav__title}>Shipping</h2>
 						<ul className={styles.nav__ul}>
 							<li>
+								<MdFavoriteBorder size={18} />
 								<Link href='#'>Orders</Link>
 							</li>
 
 							<li>
+								<MdAssignmentReturn size={18} />
 								<Link href='#'>Refunds</Link>
 							</li>
 
 							<li>
+								{/* <FaTruckFast size={18} /> */}
+								<FaTruck size={18} />
 								<Link href='#'>Tracking</Link>
 							</li>
 						</ul>
@@ -64,14 +87,17 @@ function Footer() {
 						<h2 className={styles.nav__title}>About Us</h2>
 						<ul className={styles.nav__ul}>
 							<li>
+								<MdProductionQuantityLimits size={18} />
 								<Link href='#'>Products</Link>
 							</li>
 
 							<li>
+								<MdOutlineDocumentScanner size={18} />
 								<Link href='#'>Terms of Use</Link>
 							</li>
 
 							<li>
+								<MdOutlinePrivacyTip size={18} />
 								<Link href='#'>Privacy Policy</Link>
 							</li>
 						</ul>
@@ -79,8 +105,16 @@ function Footer() {
 				</ul>
 				<div></div>
 			</footer>
-			<div className={styles.legal}>
-				<p>&copy; 2023. Shopfeast. All rights reserved.</p>
+			<div className={styles.copy_cont}>
+				<div className={styles.payments}>
+					<FaCcStripe size={30} style={{ opacity: 0.8, marginRight: 10 }} />
+					<FaCcVisa size={30} style={{ opacity: 0.8, marginRight: 10 }} />
+					<FaCcPaypal size={30} style={{ opacity: 0.8, marginRight: 10 }} />
+					<FaCcMastercard size={30} style={{ opacity: 0.8 }} />
+				</div>
+				<div className={styles.legal}>
+					<p>&copy; 2023. Shopfeast. All rights reserved.</p>
+				</div>
 			</div>
 		</>
 	);

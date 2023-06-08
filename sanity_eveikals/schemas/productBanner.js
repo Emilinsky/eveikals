@@ -68,6 +68,17 @@ export default {
 				},
 			],
 		},
+		{
+			name: "sizes",
+			title: "Sizes",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [{ name: "size", title: "Size", type: "string" }],
+				},
+			],
+		},
 
 		{
 			name: "descNew",

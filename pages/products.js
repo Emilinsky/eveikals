@@ -3,7 +3,7 @@ import { ProductsBanner, Product, Slider } from "../components";
 import { client } from "../lib/client";
 import styles from "../styles/Product.module.css";
 
-const Products = ({ products, bannerData, tags, colors }) => {
+const Products = ({ products, bannerData, tags, colors, sizes }) => {
 	const [priceFilter, setPriceFilter] = useState([1, 50]); // adjust range as per your product pricing
 	const [debouncedPriceFilter, setDebouncedPriceFilter] = useState(priceFilter);
 	const [selectedTags, setSelectedTags] = useState([]);
@@ -68,7 +68,7 @@ const Products = ({ products, bannerData, tags, colors }) => {
 
 	return (
 		<>
-			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} colors={colors} />
+			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} colors={colors} sizes={sizes} />
 			<div className='products-heading'>
 				<h1 className='header'>All Products</h1>
 			</div>
@@ -124,6 +124,9 @@ export const getServerSideProps = async () => {
 	const colorQuery = '*[_type == "productsBanner"]{colors}'; // add the color data to the query
 	const colorData = await client.fetch(colorQuery);
 
+	const sizeQuery = '*[_type == "productsBanner"]{sizes}'; // add the sizes data to the query
+	const sizeData = await client.fetch(sizeQuery);
+
 	// const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
 	// console.log(allTags);
 
@@ -139,6 +142,7 @@ export const getServerSideProps = async () => {
 			bannerData,
 			tags,
 			colors: colorData.length ? colorData[0].colors : [],
+			sizes: sizeData.length ? sizeData[0].sizes : [],
 		},
 	};
 };

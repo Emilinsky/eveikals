@@ -4,7 +4,7 @@ import { urlFor } from "../lib/client";
 
 import styles from "../styles/ProductsBanner.module.css";
 
-const ProductsBanner = ({ ProductsBanner, colors }) => {
+const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 	const [isRightPanelActive, setIsRightPanelActive] = useState(false);
 
 	const handleSignUpClick = () => {
@@ -39,6 +39,22 @@ const ProductsBanner = ({ ProductsBanner, colors }) => {
 								<div className={styles.colors_content} key={color.colorName}>
 									<p className={styles.color_code} style={{ backgroundColor: color.colorCode }}>
 										<span>{color.colorName}</span>
+									</p>
+								</div>
+							))}
+						</div>
+					</div>
+               <div className={styles.sizes_top}>
+						<div className={styles.sizes_cont}>
+							<h2 className={styles.sizes_heading}>
+								Available
+								<br />
+								sizes:
+							</h2>
+							{sizes.map((size) => (
+								<div className={styles.sizes_content} key={size.size}>
+									<p className={styles.size_name}>
+										<span>{size.size}</span>
 									</p>
 								</div>
 							))}

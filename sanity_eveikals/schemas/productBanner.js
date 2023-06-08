@@ -55,6 +55,21 @@ export default {
 			type: "string",
 		},
 		{
+			name: "colors",
+			title: "Colors",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						{ name: "colorName", title: "Color Name", type: "string" },
+						{ name: "colorCode", title: "Color Code", type: "string" },
+					],
+				},
+			],
+		},
+
+		{
 			name: "descNew",
 			title: "Description for NEW product",
 			type: "string",

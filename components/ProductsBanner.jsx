@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { urlFor } from "../lib/client";
 
 import styles from "../styles/ProductsBanner.module.css";
 
-const ProductsBanner = ({ ProductsBanner }) => {
+const ProductsBanner = ({ ProductsBanner, colors }) => {
 	const [isRightPanelActive, setIsRightPanelActive] = useState(false);
 
 	const handleSignUpClick = () => {
@@ -19,6 +19,7 @@ const ProductsBanner = ({ ProductsBanner }) => {
 		<div className={styles.products_container}>
 			<div className={`${styles.container} ${isRightPanelActive ? styles.right_panel_active : ""}`}>
 				{/* NEWST PRODUCT ADDITION */}
+
 				<div className={`${styles.form_container} ${styles.sign_up_container}`}>
 					<div className={styles.div_container}>
 						<h1 className={styles.product_heading}>{ProductsBanner.headingRight}</h1>
@@ -28,6 +29,22 @@ const ProductsBanner = ({ ProductsBanner }) => {
 
 				{/* PRODUCT OF THE WEEK */}
 				<div className={`${styles.form_container} ${styles.sign_in_container}`}>
+					<div className={styles.colors_top}>
+						<div className={styles.colors_cont}>
+							<h2 className={styles.colors_heading}>
+								Available
+								<br />
+								colors:
+							</h2>
+							{colors.map((color) => (
+								<div className={styles.colors_content} key={color.colorName}>
+									<p className={styles.color_code} style={{ backgroundColor: color.colorCode }}>
+										<span>{color.colorName}</span>
+									</p>
+								</div>
+							))}
+						</div>
+					</div>
 					<div className={styles.div_container}>
 						<h1 className={styles.product_heading}>{ProductsBanner.headingLeft}</h1>
 						<img src={urlFor(ProductsBanner.imageTop)} alt='shirts' className={styles.products_banner_img} />

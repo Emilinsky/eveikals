@@ -3,7 +3,7 @@ import { ProductsBanner, Product, Slider } from "../components";
 import { client } from "../lib/client";
 import styles from "../styles/Product.module.css";
 
-const Products = ({ products, bannerData, tags }) => {
+const Products = ({ products, bannerData, tags, colors }) => {
 	const [priceFilter, setPriceFilter] = useState([1, 50]); // adjust range as per your product pricing
 	const [debouncedPriceFilter, setDebouncedPriceFilter] = useState(priceFilter);
 	const [selectedTags, setSelectedTags] = useState([]);
@@ -68,7 +68,7 @@ const Products = ({ products, bannerData, tags }) => {
 
 	return (
 		<>
-			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} />
+			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} colors={colors} />
 			<div className='products-heading'>
 				<h1 className='header'>All Products</h1>
 			</div>
@@ -121,6 +121,9 @@ export const getServerSideProps = async () => {
 	const bannerQuery = '*[_type == "productsBanner"]';
 	const bannerData = await client.fetch(bannerQuery);
 
+	const colorQuery = '*[_type == "productsBanner"]{colors}'; // add the color data to the query
+	const colorData = await client.fetch(colorQuery);
+
 	// const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
 	// console.log(allTags);
 
@@ -131,7 +134,12 @@ export const getServerSideProps = async () => {
 	);
 
 	return {
-		props: { products: { sanity: sanityProducts }, bannerData, tags },
+		props: {
+			products: { sanity: sanityProducts },
+			bannerData,
+			tags,
+			colors: colorData.length ? colorData[0].colors : [],
+		},
 	};
 };
 

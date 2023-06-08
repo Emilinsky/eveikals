@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { urlFor } from "../lib/client";
 
@@ -19,7 +19,6 @@ const ProductsBanner = ({ ProductsBanner, colors }) => {
 		<div className={styles.products_container}>
 			<div className={`${styles.container} ${isRightPanelActive ? styles.right_panel_active : ""}`}>
 				{/* NEWST PRODUCT ADDITION */}
-
 				<div className={`${styles.form_container} ${styles.sign_up_container}`}>
 					<div className={styles.div_container}>
 						<h1 className={styles.product_heading}>{ProductsBanner.headingRight}</h1>

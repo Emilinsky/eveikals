@@ -9,3 +9,4 @@ export { default as ProductsBanner } from "./ProductsBanner";
 export { default as SimilarProducts } from "./SimilarProducts";
 export { default as ProductOptions } from "./ProductOptions";
 export { default as Slider } from "./Slider";
+export { default as BackgroundBlur } from "./BackgroundBlur";

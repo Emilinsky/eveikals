@@ -13,6 +13,7 @@
     "@sanity/client": "^2.23.2",
     "@sanity/image-url": "^1.0.1",
     "@stripe/stripe-js": "^1.25.0",
+    "alea": "^1.0.1",
     "axios": "^1.4.0",
     "canvas-confetti": "^1.5.1",
     "debounce": "^1.2.1",

@@ -8,7 +8,7 @@ import BackgroundBlur from "./BackgroundBlur";
 const Layout = ({ children }) => {
 	return (
 		<div className='layout'>
-			<BackgroundBlur numOrbs={3} />
+			<BackgroundBlur numOrbs={5} />
 			<Head>
 				<title>Store</title>
 			</Head>

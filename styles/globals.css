@@ -4,6 +4,7 @@
 
 :root {
 	--white-color: #ffffff;
+	--white-bleach: #ffffff8a;
 	--red-color: #fa575c;
 	--yellow-color: #ffd900;
 	--greyLight-2: #c8d0e7;
@@ -14,7 +15,8 @@
 	--primary-color: #366bc0ec;
 	--primary-faded-color: #366bc0bc;
 	--primary-faded-color-nav: #366bc0d6;
-	--secondary-color: #306effc2;
+	--secondary-color: #2869ff;
+	--third-color: #00dcc6;
 	--navbar-background: #f7f7f7b0;
 	--banner-shadows: #0036b34e;
 	--banner-background: #ffffff5d;
@@ -348,7 +350,7 @@ span.text-red {
 .products-banner-container {
 	padding: 100px 20px;
 	margin-top: 6.25rem;
-	background-color: var(--banner-background);
+	background-color: var(--white-bleach);
 	border: 1px solid var(--border-color);
 	box-shadow: 0 2px 20px 0 var(--banner-shadows);
 	border-radius: 15px;
@@ -369,12 +371,12 @@ span.text-red {
 	top: 0;
 	left: 0;
 	z-index: 0;
-   height: 100%;
+	height: 100%;
 }
 
 .pixi-container canvas {
 	width: 100%;
-	height: 120vh;
+	height: 80vh;
 	/* background-color: #366ac0; */
 }
 
@@ -415,12 +417,12 @@ span.text-red {
 }
 .hero-banner-container h1,
 .products-banner-container h1 {
-	background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
+	background: linear-gradient(to left, var(--third-color), var(--secondary-color));
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	font-size: 9em;
-
+	width: fit-content;
 	margin: 20px 10px 10px -10px;
 	text-transform: uppercase;
 }

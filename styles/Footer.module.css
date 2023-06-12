@@ -124,7 +124,7 @@
 .nav__ul li:hover {
 	opacity: 1;
 }
-.nav__ul a:hover {
+.nav__ul li:hover a {
 	color: var(--secondary-text-color);
 	padding: 4px;
 }

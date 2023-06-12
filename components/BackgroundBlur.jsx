@@ -61,7 +61,7 @@ class Orb {
 		const originY = 150;
 
 		// maxDist now determines the size of the area within which orbs can move
-		const maxDist = 500; // Orbs will be able to move within a 200px square area
+		const maxDist = 800; // Orbs will be able to move within a 200px square area
 
 		return {
 			x: { min: originX, max: originX + maxDist },

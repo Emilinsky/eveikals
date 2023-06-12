@@ -3,22 +3,19 @@ import Head from "next/head";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import BackgroundBlur from "./BackgroundBlur";
 
 const Layout = ({ children }) => {
 	return (
 		<div className='layout'>
-			<BackgroundBlur numOrbs={5} />
 			<Head>
-				<title>Store</title>
+				<title>Shopfeast</title>
 			</Head>
 			<header>
 				<Navbar />
 			</header>
 			<main className='main-container'>{children}</main>
-			<footer>
-				<Footer />
-			</footer>
+
+			<Footer />
 		</div>
 	);
 };

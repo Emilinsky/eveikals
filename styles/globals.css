@@ -349,7 +349,7 @@ span.text-red {
 .hero-banner-container,
 .products-banner-container {
 	padding: 100px 20px;
-	margin-top: 6.25rem;
+	/* margin-top: 6.25rem; */
 	background-color: var(--white-bleach);
 	border: 1px solid var(--border-color);
 	box-shadow: 0 2px 20px 0 var(--banner-shadows);
@@ -359,7 +359,9 @@ span.text-red {
 	line-height: 0.9;
 	backdrop-filter: blur(11.2px);
 	-webkit-backdrop-filter: blur(11.2px);
-	width: 100%;
+	width: 100vw;
+	height: calc(100vh - 90px);
+	overflow: hidden;
 	/* overflow: hidden; */
 }
 /* .pixi-container{

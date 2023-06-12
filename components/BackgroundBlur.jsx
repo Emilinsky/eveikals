@@ -36,10 +36,10 @@ class Orb {
 
 		// starting points in "time" for the noise/self similar random values
 		this.xOff = random(0, 1500);
-		this.yOff = random(0, 1000);
+		this.yOff = random(0, 8000);
 		// how quickly the noise/self similar random values step through time
 		// VALUE: speed
-		this.inc = 0.003;
+		this.inc = 0.0009;
 
 		// PIXI.Graphics is used to draw 2d primitives (in this case a circle) to the canvas
 		this.graphics = new PIXI.Graphics();
@@ -57,15 +57,15 @@ class Orb {
 	setBounds() {
 		// the { x, y } origin for each orb (the top left of the screen)
 		// VALUE: Position x/y + movement
-		const originX = 1350;
-		const originY = 0;
+		const originX = -250;
+		const originY = 100;
 
 		// maxDist now determines the size of the area within which orbs can move
-		const maxDist = 700; // Orbs will be able to move within a 200px square area
+		const maxDist = 2500; // Orbs will be able to move within a 200px square area
 
 		return {
 			x: { min: originX, max: originX + maxDist },
-			y: { min: originY, max: originY + maxDist },
+			y: { min: originY, max: originY + maxDist / 6 },
 		};
 	}
 
@@ -79,7 +79,7 @@ class Orb {
 		this.y = map(this.noise2D(0, this.yOff), -1, 1, this.bounds["y"].min, this.bounds["y"].max);
 
 		//  VALUE: blobs diameter
-		this.scale = map(Math.sin(this.xOff), -1, 1, 0.6, 0.8);
+		this.scale = map(Math.sin(this.xOff), -1, 1, 0.9, 1.1);
 	}
 
 	render() {
@@ -103,10 +103,10 @@ class ColorPalette {
 	setColors() {
 		// Define your specific colors here
 		// VALUE: setting colors
-		this.complimentaryColor3 = "#72efdc90"; // blue
-		this.baseColor = "#5d7afb90"; // red
-		this.complimentaryColor2 = "#4ea7de90"; // blue
-		this.complimentaryColor1 = "#4ccaf090"; // blue
+		this.complimentaryColor3 = "#72efdc76"; // blue
+		this.baseColor = "#4ca3f046"; // red
+		this.complimentaryColor2 = "#4e7cde50"; // blue
+		this.complimentaryColor1 = "#4ccaf070"; // blue
 		// this.complimentaryColor4 = "#00b4d8"; // green
 
 		this.colorChoices = [
@@ -153,7 +153,7 @@ const BackgroundBlur = ({ numOrbs = 10 }) => {
 			// Change the direction of the gradient to go from bottom to top
 			let gradient = ctx.createLinearGradient(0, canvas.height, 0, 0);
 			//  VALUE: linear-gradient colors
-			gradient.addColorStop(0, "#b0bcff");
+			gradient.addColorStop(0, "#ffffff");
 			gradient.addColorStop(1, "#ffffff");
 
 			ctx.fillStyle = gradient;
@@ -174,7 +174,7 @@ const BackgroundBlur = ({ numOrbs = 10 }) => {
 			pixiContainer.current.appendChild(app.view);
 
 			// VALUE: Changing blobl BLURS
-			app.stage.filters = [new KawaseBlurFilter(15, 15, true)];
+			app.stage.filters = [new KawaseBlurFilter(25, 5, true)];
 
 			const colorPalette = new ColorPalette();
 			const orbs = [];

@@ -23,7 +23,7 @@ const HeroBanner = ({ HeroBanner }) => {
 						{/* <h3>{HeroBanner.midText}</h3> */}
 						{/* <img src={urlFor(HeroBanner.image)} alt='shirts' className='hero-banner-image' /> */}
 
-						<div className=''>
+						<div className='hero-banner-btn'>
 							<Link href={`/product/${HeroBanner.product}`}>
 								<button type='button'>{HeroBanner.buttonText}</button>
 							</Link>
@@ -34,7 +34,9 @@ const HeroBanner = ({ HeroBanner }) => {
 						<p> {HeroBanner.desc}</p>
 					</div> */}
 					</div>
-					<div className='overlay_img'></div>
+					<div className='overlay_img'>
+						<img src={urlFor(HeroBanner.image)} alt='drinks' className='hero-banner-image' />
+					</div>
 				</div>
 			</div>
 		</div>

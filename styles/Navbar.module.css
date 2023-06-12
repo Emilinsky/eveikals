@@ -65,7 +65,7 @@
 	align-items: center;
 }
 .scrolled .logo {
-	background: var(--main-background-first);
+	background: var(--white-color);
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -83,7 +83,7 @@
 }
 
 .scrolled .link:hover {
-	box-shadow: 0 0px 5px 0 var(--main-background-second);
+	box-shadow: 0 0px 5px 0 var(--product-banner-bg1);
 }
 .active {
 	color: var(--secondary-text-color);

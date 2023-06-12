@@ -39,7 +39,7 @@ class Orb {
 		this.yOff = random(0, 1000);
 		// how quickly the noise/self similar random values step through time
 		// VALUE: speed
-		this.inc = 0.004;
+		this.inc = 0.006;
 
 		// PIXI.Graphics is used to draw 2d primitives (in this case a circle) to the canvas
 		this.graphics = new PIXI.Graphics();
@@ -57,11 +57,11 @@ class Orb {
 	setBounds() {
 		// the { x, y } origin for each orb (the top left of the screen)
 		// VALUE: Position x/y + movement
-		const originX = 150;
-		const originY = 150;
+		const originX = 1250;
+		const originY = 0;
 
 		// maxDist now determines the size of the area within which orbs can move
-		const maxDist = 800; // Orbs will be able to move within a 200px square area
+		const maxDist = 700; // Orbs will be able to move within a 200px square area
 
 		return {
 			x: { min: originX, max: originX + maxDist },
@@ -79,7 +79,7 @@ class Orb {
 		this.y = map(this.noise2D(0, this.yOff), -1, 1, this.bounds["y"].min, this.bounds["y"].max);
 
 		//  VALUE: blobs diameter
-		this.scale = map(Math.sin(this.xOff), -1, 1, 0.45, 0.8);
+		this.scale = map(Math.sin(this.xOff), -1, 1, 0.5, 1);
 	}
 
 	render() {
@@ -103,12 +103,19 @@ class ColorPalette {
 	setColors() {
 		// Define your specific colors here
 		// VALUE: setting colors
-		this.baseColor = "#40E0D0"; // red
-		this.complimentaryColor1 = "#0437F2"; // green
-		this.complimentaryColor2 = "#007FFF"; // blue
-		this.complimentaryColor3 = "#00CCFF"; // blue
+		this.baseColor = "#5390d9"; // red
+		this.complimentaryColor1 = "#00b4d8"; // green
+		this.complimentaryColor2 = "#4ea8de"; // blue
+		this.complimentaryColor3 = "#4361ee"; // blue
+		this.complimentaryColor4 = "#72efdd"; // blue
 
-		this.colorChoices = [this.baseColor, this.complimentaryColor1, this.complimentaryColor2, this.complimentaryColor3];
+		this.colorChoices = [
+			this.baseColor,
+			this.complimentaryColor1,
+			this.complimentaryColor2,
+			this.complimentaryColor3,
+			this.complimentaryColor4,
+		];
 	}
 
 	randomColor() {
@@ -146,8 +153,8 @@ const BackgroundBlur = ({ numOrbs = 10 }) => {
 			// Change the direction of the gradient to go from bottom to top
 			let gradient = ctx.createLinearGradient(0, canvas.height, 0, 0);
 			//  VALUE: linear-gradient colors
-			gradient.addColorStop(0, "#cde0ffec");
-			gradient.addColorStop(1, "white");
+			gradient.addColorStop(0, "#9abaee");
+			gradient.addColorStop(1, "#fffffff3");
 
 			ctx.fillStyle = gradient;
 			ctx.fillRect(0, 0, canvas.width, canvas.height);

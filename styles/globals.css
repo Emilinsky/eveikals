@@ -5,17 +5,17 @@
 :root {
 	--white-color: #ffffff;
 	--white-bleach: #ffffff8a;
-	--test: #9abaee;
-	--blob1: #72efdd;
-	--blob2: #4361ee;
-	--blob3: #4ea8de;
-	--blob4: #00b4d8;
+	--test: #b0bcff;
+	--blob1: #72efdc90;
+	--blob2: #5d7afb90;
+	--blob3: #4ea7de90;
+	--blob4: #4ccaf090;
 	--red-color: #fa575c;
 	--yellow-color: #ffd900;
 	--greyLight-2: #c8d0e7;
 	--main-background-first: #f5fdd7;
 	--main-background-second: #acb7d7;
-	--primary-text-color: #4e4e4e;
+	--primary-text-color: #414141;
 	--secondary-text-color: #fffff7;
 	--primary-color: #366bc0ec;
 	--primary-faded-color: #366bc0bc;
@@ -353,7 +353,7 @@ span.text-red {
 
 .hero-banner-container,
 .products-banner-container {
-	padding: 230px 0 140px;
+	padding: 200px 0 110px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -368,7 +368,7 @@ span.text-red {
 	max-width: 1500px;
 	margin: 0 auto;
 	height: 100%;
-	background: rgba(255, 255, 255, 0.35);
+	background: rgba(255, 255, 255, 0.2);
 	border-radius: 16px;
 	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(100px);
@@ -397,14 +397,36 @@ span.text-red {
 .inner_overlay {
 	position: relative;
 	z-index: 1;
+	display: flex;
+	flex-direction: row;
+
 	/* backdrop-filter: blur(11.2px);
 	-webkit-backdrop-filter: blur(11.2px); */
 }
+.overlay_text {
+	display: flex;
+	flex-direction: column;
+	/* flex-grow: 1; */
+	width: 100%;
+}
+.overlay_img {
+	width: 100%;
+}
 .hero-banner-container .cream-solo,
 .products-banner-container .cream-solo {
-	font-size: 1.5rem;
+	font-size: 1.375rem;
 	color: var(--primary-text-color);
 	font-family: "Bai Jamjuree", sans-serif;
+   line-height: 1.7;
+}
+.cream-solo .first-letter {
+	font-size: 2rem;
+}
+.cream-solo .word-bg {
+	background: linear-gradient(to left, #2950fd, #9900ff);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 .hero-banner-container button,
 .products-banner-container button,
@@ -431,7 +453,7 @@ span.text-red {
 }
 .hero-banner-container h1,
 .products-banner-container h1 {
-	background: linear-gradient(to left, var(--third-color), var(--secondary-color));
+	background: linear-gradient(to left, #4361ee, #4cc9f0);
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -476,14 +498,16 @@ span.text-red {
 	margin-bottom: 12px;
 	align-self: flex-end;
 }
-.home-heading,
-.products-heading {
+.home-heading {
 	margin-top: 62.5rem !important;
 	text-align: center;
 	margin: 40px 0px;
 	color: var(--primary-text-color);
 }
 .products-heading {
+	text-align: center;
+	margin: 40px 0px;
+	color: var(--primary-text-color);
 	margin: 100px 0 40px;
 }
 .products-heading h2 {

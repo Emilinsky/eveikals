@@ -35,11 +35,11 @@ class Orb {
 		this.radius = random(window.innerHeight / 8, window.innerHeight / 4);
 
 		// starting points in "time" for the noise/self similar random values
-		this.xOff = random(0, 1500);
-		this.yOff = random(0, 8000);
+		this.xOff = random(0, 1000);
+		this.yOff = random(0, 1000);
 		// how quickly the noise/self similar random values step through time
 		// VALUE: speed
-		this.inc = 0.0009;
+		this.inc = 0.003;
 
 		// PIXI.Graphics is used to draw 2d primitives (in this case a circle) to the canvas
 		this.graphics = new PIXI.Graphics();
@@ -57,15 +57,15 @@ class Orb {
 	setBounds() {
 		// the { x, y } origin for each orb (the top left of the screen)
 		// VALUE: Position x/y + movement
-		const originX = -250;
+		const originX = -200;
 		const originY = 100;
 
 		// maxDist now determines the size of the area within which orbs can move
-		const maxDist = 2500; // Orbs will be able to move within a 200px square area
+		const maxDist = 1500; // Orbs will be able to move within a 200px square area
 
 		return {
 			x: { min: originX, max: originX + maxDist },
-			y: { min: originY, max: originY + maxDist / 6 },
+			y: { min: originY, max: originY + maxDist / 3 },
 		};
 	}
 
@@ -79,7 +79,7 @@ class Orb {
 		this.y = map(this.noise2D(0, this.yOff), -1, 1, this.bounds["y"].min, this.bounds["y"].max);
 
 		//  VALUE: blobs diameter
-		this.scale = map(Math.sin(this.xOff), -1, 1, 0.9, 1.1);
+		this.scale = map(Math.sin(this.xOff), -1, 1, 0.8, 0.95);
 	}
 
 	render() {

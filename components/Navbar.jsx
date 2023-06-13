@@ -74,7 +74,7 @@ const Navbar = () => {
 					<span className='sr-only'>Menu</span>
 				</button>
 				<h1 className='logo'>
-					<Link href='/'>Shopfeast</Link>
+					<Link href='/'>LiquidLuxury</Link>
 				</h1>
 				<ul
 					id='primary-navigation-large'

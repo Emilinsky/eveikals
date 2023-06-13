@@ -28,12 +28,12 @@ function Footer() {
 			<footer className={styles.footer}>
 				<div className={styles.footer__addr}>
 					<h1 className={styles.footer__logo}>
-						<Link href='#'>Shopfeast</Link>
+						<Link href='#'>Liquid Luxury</Link>
 					</h1>
 
 
 					<address>
-						<Link className={styles.footer__btn} href='mailto:edmund@shopfeast.com'>
+						<Link className={styles.footer__btn} href='mailto:edmund@liquidluxury.com'>
 							<MdOutlineMarkEmailUnread size={25} style={{ marginRight: 10 }} /> Email Us
 						</Link>
 					</address>
@@ -112,7 +112,7 @@ function Footer() {
 					<FaCcMastercard size={30} style={{ opacity: 0.8 }} />
 				</div>
 				<div className={styles.legal}>
-					<p>&copy; 2023. Shopfeast. All rights reserved.</p>
+					<p>&copy; 2023. LiquidLuxury. All rights reserved.</p>
 				</div>
 			</div>
 		</>

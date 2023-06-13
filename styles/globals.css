@@ -446,11 +446,10 @@ span.text-red {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-.hero-banner-container button,
-.products-banner-container button,
-.product-filter-btn {
-	border-radius: 8px;
-	padding: 12px 30px;
+
+.btn-cont button {
+	border-radius: 6px;
+	padding: 12px 60px;
 	background: linear-gradient(to left, var(--primary-color), var(--primary-color));
 	color: var(--secondary-text-color);
 	font-size: 1.25rem;
@@ -459,10 +458,25 @@ span.text-red {
 	font-family: "Bai Jamjuree", sans-serif;
 	font-weight: 500;
 	cursor: pointer;
-	z-index: 10000 !important;
+	width: 100%;
 }
-.hero-banner-btn {
+.hero-banner-btn,
+.hero-banner-btn-full {
+	width: 100%;
+}
+.hero-banner-btn .btn-empty {
+	background: transparent;
+	color: var(--product-banner-bg1);
+	border: 2px solid var(--product-banner-bg1);
+}
+/* .hero-banner-btn {
 	opacity: 0;
+} */
+.btn-cont {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 40px;
 }
 
 .hero-banner-container h3,
@@ -1011,7 +1025,7 @@ span.text-red {
 		font-size: 40px;
 	}
 	.hero-banner-container button,
-	.products-banner-container .buttons {
+	.buttons {
 		margin-top: 90px;
 		z-index: 10000;
 	}

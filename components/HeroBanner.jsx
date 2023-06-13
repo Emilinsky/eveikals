@@ -7,7 +7,7 @@ import BackgroundBlur from "./BackgroundBlur";
 const HeroBanner = ({ HeroBanner }) => {
 	return (
 		<div className='hero-banner-container'>
-			<BackgroundBlur numOrbs={10} />
+			<BackgroundBlur numOrbs={6} />
 			{/* <BackgroundBlur numOrbs={10} /> */}
 			<div className='hero-banner-inner-cont-text'>
 				<h1>
@@ -27,19 +27,18 @@ const HeroBanner = ({ HeroBanner }) => {
 							you quench your thirst with our premium collection.
 						</p>
 
-						{/* <h3>{HeroBanner.midText}</h3> */}
-						{/* <img src={urlFor(HeroBanner.image)} alt='shirts' className='hero-banner-image' /> */}
-
-						<div className='hero-banner-btn'>
-							<Link href={`/product/${HeroBanner.product}`}>
-								<button type='button'>{HeroBanner.buttonText}</button>
-							</Link>
+						<div className='btn-cont'>
+							<div className='hero-banner-btn'>
+								<Link href={`/product/${HeroBanner.product}`}>
+									<button className='btn-empty' type='button'>{HeroBanner.buttonText}</button>
+								</Link>
+							</div>
+							<div className='hero-banner-btn-full'>
+								<Link href={`/product/${HeroBanner.product}`}>
+									<button type='button'>{HeroBanner.buttonText}</button>
+								</Link>
+							</div>
 						</div>
-
-						{/* <div className='desc'>
-						<h5>Description</h5>
-						<p> {HeroBanner.desc}</p>
-					</div> */}
 					</div>
 					<div className='overlay_img'>
 						<img src={urlFor(HeroBanner.image)} alt='drinks' className='hero-banner-image' />

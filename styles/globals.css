@@ -371,7 +371,7 @@ span.text-red {
 	height: fit-content;
 	background: rgba(0, 0, 0, 0);
 	border-radius: 16px;
-	box-shadow: 0 -5px 50px 0 rgba(255, 255, 255, 0.7);
+	box-shadow: 0 -5px 40px 0 rgba(255, 255, 255, 1);
 	backdrop-filter: blur(100px);
 	-webkit-backdrop-filter: blur(100px);
 	/* border: 1px solid rgba(255, 255, 255, 0.09); */
@@ -382,11 +382,12 @@ span.text-red {
 }
 .hero-banner-inner-cont-img {
 	width: 33.3%;
+	box-shadow: 0 0 20px 0 var(--white-color);
 	margin: 0;
 	padding: 0;
-	background: transparent;
+	/* background: transparent; */
 	border-radius: 0;
-	box-shadow: none;
+	/* box-shadow: none; */
 }
 /* .pixi-container {
 	backdrop-filter: blur(100px);

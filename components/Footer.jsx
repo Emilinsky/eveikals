@@ -28,15 +28,16 @@ function Footer() {
 			<footer className={styles.footer}>
 				<div className={styles.footer__addr}>
 					<h1 className={styles.footer__logo}>
-						<Link href='#'>Liquid Luxury</Link>
+						<Link href='#'>
+							<img src='./logo-no-background.svg' alt='logo' className={styles.logo} />
+						</Link>
 					</h1>
 
-
-					<address>
+					{/* <address>
 						<Link className={styles.footer__btn} href='mailto:edmund@liquidluxury.com'>
 							<MdOutlineMarkEmailUnread size={25} style={{ marginRight: 10 }} /> Email Us
 						</Link>
-					</address>
+					</address> */}
 				</div>
 
 				<ul className={styles.footer__nav}>
@@ -112,7 +113,7 @@ function Footer() {
 					<FaCcMastercard size={30} style={{ opacity: 0.8 }} />
 				</div>
 				<div className={styles.legal}>
-					<p>&copy; 2023. LiquidLuxury. All rights reserved.</p>
+					<p>&copy; 2023. Liquid Luxury. All rights reserved.</p>
 				</div>
 			</div>
 		</>

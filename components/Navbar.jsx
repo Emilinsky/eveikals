@@ -11,12 +11,19 @@ const Navbar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false); // Add menuOpen state
 
+	const logoBlueSrc = "./logoTextBlue-no-background.svg";
+	const logoWhiteSrc = "./logoWhiteText-no-background.svg";
+
+	const [logoSrc, setLogoSrc] = useState(logoBlueSrc);
+
 	const handleScroll = () => {
 		const offset = window.scrollY;
 		if (offset > 200) {
 			setScrolled(true);
+			setLogoSrc(logoWhiteSrc);
 		} else {
 			setScrolled(false);
+			setLogoSrc(logoBlueSrc);
 		}
 	};
 
@@ -74,7 +81,9 @@ const Navbar = () => {
 					<span className='sr-only'>Menu</span>
 				</button>
 				<h1 className='logo'>
-					<Link href='/'>LiquidLuxury</Link>
+					<Link href='/'>
+						<img src={logoSrc} alt='logo' className='logo' />
+					</Link>
 				</h1>
 				<ul
 					id='primary-navigation-large'

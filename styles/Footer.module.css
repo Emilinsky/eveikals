@@ -27,6 +27,9 @@
 	margin-right: 1.25em;
 	margin-bottom: 2em;
 } */
+.logo{
+   width: 400px;
+}
 
 .footer__logo a {
 	font-family: "Poiret One", sans-serif;
@@ -138,7 +141,7 @@
 	display: absolute;
 	/* justify-content: center; */
 	/* flex-wrap: wrap; */
-	color: var(--navbar-background);
+	color: var(--banner-background);
 	background-color: #366bc0ec;
 	padding: 10px 20px 20px;
 	text-align: center;

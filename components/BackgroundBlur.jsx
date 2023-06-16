@@ -103,10 +103,10 @@ class ColorPalette {
 	setColors() {
 		// Define your specific colors here
 		// VALUE: setting colors
-		this.complimentaryColor3 = "#72efdc36"; // blue
-		this.baseColor = "#4ca3f026"; // red
-		this.complimentaryColor2 = "#4e7cde30"; // blue
-		this.complimentaryColor1 = "#4ccaf030"; // blue
+		this.complimentaryColor3 = "#72efdc56"; // blue
+		this.baseColor = "#4ca3f046"; // red
+		this.complimentaryColor2 = "#4e7cde50"; // blue
+		this.complimentaryColor1 = "#4ccaf050"; // blue
 		// this.complimentaryColor4 = "#00b4d8"; // green
 
 		this.colorChoices = [

@@ -11,8 +11,8 @@ const Navbar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false); // Add menuOpen state
 
-	const logoBlueSrc = "./logoTextBlue-no-background.svg";
-	const logoWhiteSrc = "./logoWhiteText-no-background.svg";
+	const logoBlueSrc = "/logoTextBlue-no-background.svg";
+	const logoWhiteSrc = "/logoWhiteText-no-background.svg";
 
 	const [logoSrc, setLogoSrc] = useState(logoBlueSrc);
 

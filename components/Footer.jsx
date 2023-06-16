@@ -29,7 +29,7 @@ function Footer() {
 				<div className={styles.footer__addr}>
 					<h1 className={styles.footer__logo}>
 						<Link href='#'>
-							<img src='./logo-no-background.svg' alt='logo' className={styles.logo} />
+							<img src='/logo-no-background.svg' alt='logo' className={styles.logo} />
 						</Link>
 					</h1>
 

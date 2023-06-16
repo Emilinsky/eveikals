@@ -13,7 +13,7 @@ export const StateContext = ({ children }) => {
 	let foundProduct;
 	let index;
 
-	const onAdd = (product, quantity, variant) => {
+	const onAdd = (product, quantity = 1, variant) => {
 		let variantImage;
 		if (product.images) {
 			variantImage = product.images.find((image) => image.variant_ids.includes(variant.id));
@@ -50,7 +50,7 @@ export const StateContext = ({ children }) => {
 			productToAdd.quantity = quantity;
 			setCartItems([...cartItems, { ...productToAdd }]);
 		}
-		toast.success(`${qty} ${product.name} added to cart.`);
+		toast.success(`${quantity} ${product.name} added to cart.`);
 	};
 
 	const onRemove = (product) => {

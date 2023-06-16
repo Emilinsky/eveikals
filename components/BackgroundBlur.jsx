@@ -39,7 +39,7 @@ class Orb {
 		this.yOff = random(0, 1000);
 		// how quickly the noise/self similar random values step through time
 		// VALUE: speed
-		this.inc = 0.002;
+		this.inc = 0.003;
 
 		// PIXI.Graphics is used to draw 2d primitives (in this case a circle) to the canvas
 		this.graphics = new PIXI.Graphics();
@@ -58,14 +58,14 @@ class Orb {
 		// the { x, y } origin for each orb (the top left of the screen)
 		// VALUE: Position x/y + movement
 		const originX = -200;
-		const originY = 100;
+		const originY = -100;
 
 		// maxDist now determines the size of the area within which orbs can move
-		const maxDist = 1900; // Orbs will be able to move within a 200px square area
+		const maxDist = 1600; // Orbs will be able to move within a 200px square area
 
 		return {
 			x: { min: originX, max: originX + maxDist },
-			y: { min: originY, max: originY + maxDist / 4 },
+			y: { min: originY, max: originY + maxDist / 3 },
 		};
 	}
 
@@ -103,10 +103,10 @@ class ColorPalette {
 	setColors() {
 		// Define your specific colors here
 		// VALUE: setting colors
-		this.complimentaryColor3 = "#72efdc56"; // blue
-		this.baseColor = "#4ca3f046"; // red
-		this.complimentaryColor2 = "#4e7cde50"; // blue
-		this.complimentaryColor1 = "#4ccaf050"; // blue
+		this.complimentaryColor3 = "#72efdc46"; // blue
+		this.baseColor = "#4ca3f036"; // red
+		this.complimentaryColor2 = "#B6F4E750"; // blue
+		this.complimentaryColor1 = "#4ccaf040"; // blue
 		// this.complimentaryColor4 = "#00b4d8"; // green
 
 		this.colorChoices = [

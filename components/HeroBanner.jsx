@@ -6,7 +6,7 @@ import BackgroundBlur from "./BackgroundBlur";
 const HeroBanner = ({ HeroBanner }) => {
 	return (
 		<div className='hero-banner-container'>
-			<BackgroundBlur numOrbs={4} />
+			<BackgroundBlur numOrbs={8} />
 			<div className='hero-banner-inner'>
 				<div className='hero-banner-inner-cont-text'>
 					<h1>

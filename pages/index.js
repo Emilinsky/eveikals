@@ -1,7 +1,7 @@
 import React from "react";
 
 import { client } from "../lib/client";
-import { Product, FooterBanner, HeroBanner } from "../components";
+import { Product, HeroBanner, Artwork } from "../components";
 import styles from "../styles/Product.module.css";
 
 const Home = ({ products, bannerData }) => {
@@ -9,6 +9,7 @@ const Home = ({ products, bannerData }) => {
 	return (
 		<>
 			<HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
+			<Artwork />
 			<div className='home-heading'>
 				<h2>New products every week</h2>
 				<p>These products were added in the last 7 days:</p>
@@ -18,7 +19,6 @@ const Home = ({ products, bannerData }) => {
 					<Product key={pro._id} product={pro} />
 				))}
 			</div>
-			{/* <FooterBanner footerBanner={bannerData && bannerData[0]} /> */}
 		</>
 	);
 };

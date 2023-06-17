@@ -381,9 +381,9 @@ span.text-red {
 	align-self: flex-end;
 }
 .home-heading {
-	margin-top: 62.5rem !important;
 	text-align: center;
 	margin: 40px 0px;
+	margin-top: 4.5rem;
 	color: var(--primary-text-color);
 }
 .products-heading {

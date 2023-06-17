@@ -3,51 +3,50 @@ import Link from "next/link";
 import { urlFor } from "../lib/client";
 import BackgroundBlur from "./BackgroundBlur";
 
+import styles from "../styles/HeroBanner.module.css";
+
 const HeroBanner = ({ HeroBanner }) => {
 	return (
-		<div className='hero-banner-container'>
+		<div className={styles.hero_banner_container}>
 			<BackgroundBlur numOrbs={12} />
-			<div className='hero-banner-inner'>
-				<div className='hero-banner-inner-cont-text'>
+			<div className={styles.hero_banner_inner}>
+				<div className={styles.hero_banner_inner_cont_text}>
 					<h1>
-						<span className='first_line'>Stay </span>
-						<span className='heading-bg'>{HeroBanner.largeTextLine1}</span>
+						<span className={styles.first_line}>Stay </span>
+						<span className={styles.heading_bg}>{HeroBanner.largeTextLine1}</span>
 						<br />
-						<span className='second_line'>Stay </span>
-						<span className='heading-bg'>{HeroBanner.largeTextLine2}</span>
+						<span className={styles.second_line}>Stay </span>
+						<span className={styles.heading_bg}>{HeroBanner.largeTextLine2}</span>
 					</h1>
-					<div className='inner_overlay'>
-						<div className='overlay_text'>
-							<p className='cream-solo'>
-								<span className='first-letter'>F</span>ind your perfect summer companions at our store. Explore a{" "}
-								<span className='word-bg'>diverse selection</span> of customizable drinkware. Enjoy{" "}
-								<span className='word-bg'>worldwide shipping</span> for our{" "}
-								<span className='word-bg'>high quality</span> items.
+					<div className={styles.inner_overlay}>
+						<div className={styles.overlay_text}>
+							<p className={styles.cream_solo}>
+								<span className={styles.first_letter}>F</span>ind your perfect summer companions at our store. Explore a{" "}
+								<span className={styles.word_bg}>diverse selection</span> of customizable drinkware. Enjoy{" "}
+								<span className={styles.word_bg}>worldwide shipping</span> for our{" "}
+								<span className={styles.word_bg}>high quality</span> items.
 							</p>
 
-							<div className='btn-cont'>
-								<div className='hero-banner-btn'>
+							<div className={styles.btn_cont}>
+								<div className={styles.hero_banner_btn}>
 									<Link href={`/product/${HeroBanner.product}`}>
-										<button className='btn-empty' type='button'>
+										<button className={styles.btn_empty} type='button'>
 											{HeroBanner.buttonText}
 										</button>
 									</Link>
 								</div>
-								<div className='hero-banner-btn-full'>
+								<div className={styles.hero_banner_btn_full}>
 									<Link href={`/product/${HeroBanner.product}`}>
 										<button type='button'>{HeroBanner.buttonText}</button>
 									</Link>
 								</div>
 							</div>
 						</div>
-						<div className='overlay_img'>
-							<img src={urlFor(HeroBanner.image)} alt='drinks' className='hero-banner-image' />
+						<div className={styles.overlay_img}>
+							<img src={urlFor(HeroBanner.image)} alt='drinks' className={styles.hero_banner_image} />
 						</div>
 					</div>
 				</div>
-				{/* <div className='hero-banner-inner-cont-img'>
-					<img src={urlFor(HeroBanner.BGimage)} alt='drinks' className='hero-banner-img' />
-				</div> */}
 			</div>
 		</div>
 	);

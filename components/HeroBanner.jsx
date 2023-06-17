@@ -6,7 +6,7 @@ import BackgroundBlur from "./BackgroundBlur";
 const HeroBanner = ({ HeroBanner }) => {
 	return (
 		<div className='hero-banner-container'>
-			<BackgroundBlur numOrbs={8} />
+			<BackgroundBlur numOrbs={12} />
 			<div className='hero-banner-inner'>
 				<div className='hero-banner-inner-cont-text'>
 					<h1>
@@ -19,8 +19,8 @@ const HeroBanner = ({ HeroBanner }) => {
 					<div className='inner_overlay'>
 						<div className='overlay_text'>
 							<p className='cream-solo'>
-								<span className='first-letter'>F</span>ind your perfect summer companions at our Shopify store. Explore
-								a <span className='word-bg'>diverse selection</span> of customizable drinkware. Enjoy{" "}
+								<span className='first-letter'>F</span>ind your perfect summer companions at our store. Explore a{" "}
+								<span className='word-bg'>diverse selection</span> of customizable drinkware. Enjoy{" "}
 								<span className='word-bg'>worldwide shipping</span> for our{" "}
 								<span className='word-bg'>high quality</span> items.
 							</p>

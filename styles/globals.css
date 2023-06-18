@@ -381,10 +381,12 @@ span.text-red {
 	align-self: flex-end;
 }
 .home-heading {
+   position: relative;
 	text-align: center;
 	margin: 40px 0px;
 	margin-top: 4.5rem;
 	color: var(--primary-text-color);
+   z-index: 2;
 }
 .products-heading {
 	text-align: center;

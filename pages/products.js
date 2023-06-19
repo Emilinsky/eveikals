@@ -88,7 +88,7 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
 						/>
-						<p>
+						<p className={styles.search_output}>
 							Showing {displayedProducts} of {totalProducts} results
 						</p>
 						<button onClick={resetSearch}>Reset Search</button>

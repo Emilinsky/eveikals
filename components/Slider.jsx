@@ -44,7 +44,7 @@ const TwoThumbs = ({ rtl, onPriceChange, value }) => {
 							...props.style,
 							height: "36px",
 							display: "flex",
-							width: "100%",
+							width: "91%",
 						}}
 					>
 						<div

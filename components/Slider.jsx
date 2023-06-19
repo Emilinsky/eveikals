@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 
-const STEP = 1;
+const STEP = 0.1;
 const MIN = 1;
-const MAX = 50;
+const MAX = 40;
 
 const TwoThumbs = ({ rtl, onPriceChange, value }) => {
 	const [values, setValues] = useState(value);
@@ -24,6 +24,9 @@ const TwoThumbs = ({ rtl, onPriceChange, value }) => {
 				flexWrap: "wrap",
 			}}
 		>
+			<output style={{ color: "#414141" }} id='output'>
+				Price Range:
+			</output>
 			<Range
 				values={values}
 				step={STEP}
@@ -47,12 +50,12 @@ const TwoThumbs = ({ rtl, onPriceChange, value }) => {
 						<div
 							ref={props.ref}
 							style={{
-								height: "5px",
+								height: "6px",
 								width: "100%",
 								borderRadius: "4px",
 								background: getTrackBackground({
 									values,
-									colors: ["#ccc", "#548BF4", "#ccc"],
+									colors: ["#ccc", "#00b48dbc", "#ccc"],
 									min: MIN,
 									max: MAX,
 									rtl,
@@ -69,10 +72,10 @@ const TwoThumbs = ({ rtl, onPriceChange, value }) => {
 						{...props}
 						style={{
 							...props.style,
-							height: "42px",
-							width: "42px",
-							borderRadius: "4px",
-							backgroundColor: "#FFF",
+							height: "20px",
+							width: "20px",
+							borderRadius: "20px",
+							backgroundColor: "#00b48dbc",
 							display: "flex",
 							justifyContent: "center",
 							alignItems: "center",
@@ -81,16 +84,29 @@ const TwoThumbs = ({ rtl, onPriceChange, value }) => {
 					>
 						<div
 							style={{
-								height: "16px",
-								width: "5px",
-								backgroundColor: isDragged ? "#548BF4" : "#CCC",
+								height: "14px",
+								width: "14px",
+								borderRadius: "10px",
+								backgroundColor: isDragged ? "#FFF" : "#FFF",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
 							}}
-						/>
+						>
+							<div
+								style={{
+									height: "8px",
+									width: "8px",
+									borderRadius: "10px",
+									backgroundColor: isDragged ? "#00b48dbc" : "#00b48dbc",
+								}}
+							/>
+						</div>
 					</div>
 				)}
 			/>
-			<output style={{ marginTop: "30px" }} id='output'>
-				{values[0].toFixed(1)} - {values[1].toFixed(1)}
+			<output style={{ color: "#414141" }} id='output'>
+				€{values[0].toFixed(2)} - €{values[1].toFixed(2)}
 			</output>
 		</div>
 	);

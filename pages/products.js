@@ -4,7 +4,7 @@ import { client } from "../lib/client";
 import styles from "../styles/Product.module.css";
 
 const Products = ({ products, bannerData, tags, colors, sizes }) => {
-	const [priceFilter, setPriceFilter] = useState([1, 50]); // adjust range as per your product pricing
+	const [priceFilter, setPriceFilter] = useState([1, 40]); // adjust range as per your product pricing
 	const [debouncedPriceFilter, setDebouncedPriceFilter] = useState(priceFilter);
 	const [selectedTags, setSelectedTags] = useState([]);
 	const [isOpen, setIsOpen] = useState(true);
@@ -61,8 +61,8 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 
 	const resetAll = () => {
 		setSelectedTags([]);
-		setPriceFilter([1, 50]);
-		setDebouncedPriceFilter([1, 50]);
+		setPriceFilter([1, 40]);
+		setDebouncedPriceFilter([1, 40]);
 		setSearchTerm("");
 	};
 
@@ -75,21 +75,26 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 
 			<div className={styles.products_container}>
 				<div className={styles.filter_cont}>
-					<button onClick={resetAll}>Reset All</button>
-					<Slider onPriceChange={setPriceFilter} value={priceFilter} />
+					<button onClick={resetAll} className={styles.resetAll}>
+						Reset Filters
+					</button>
+					<div className={styles.slider_cont}>
+						<Slider onPriceChange={setPriceFilter} value={priceFilter} />
+					</div>
+					<div className={styles.search_cont}>
+						<input
+							type='text'
+							placeholder='Search...'
+							value={searchTerm}
+							onChange={(e) => setSearchTerm(e.target.value)}
+						/>
+						<p>
+							Showing {displayedProducts} of {totalProducts} results
+						</p>
+						<button onClick={resetSearch}>Reset Search</button>
+					</div>
 
-					<input
-						type='text'
-						placeholder='Search...'
-						value={searchTerm}
-						onChange={(e) => setSearchTerm(e.target.value)}
-					/>
-					<p>
-						Showing {displayedProducts} of {totalProducts} results
-					</p>
-					<button onClick={resetSearch}>Reset Search</button>
-
-					<div>
+					<div className={styles.tags_cont}>
 						<div onClick={() => setIsOpen(!isOpen)}>
 							<h3>Products</h3>
 						</div>
@@ -109,13 +114,15 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 								))}
 							</div>
 						)}
+						<button onClick={resetTags}>Reset Tags</button>
 					</div>
-					<button onClick={resetTags}>Reset Tags</button>
 				</div>
 				{filteredProducts.length > 0 ? (
 					filteredProducts.map((pro) => <Product key={pro._id} product={pro} />)
 				) : (
-					<p>No matching Products found</p>
+					<p>
+						No matching products found for keyphrase: <span className={styles.searchTerm}>{`"${searchTerm}"`}</span>
+					</p>
 				)}
 			</div>
 		</>

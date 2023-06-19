@@ -73,38 +73,45 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 				<h1 className='header'>All Products</h1>
 			</div>
 
-			<Slider onPriceChange={setPriceFilter} value={priceFilter} />
-			<button onClick={resetTags}>Reset Tags</button>
-			<button onClick={resetSearch}>Reset Search</button>
-			<button onClick={resetAll}>Reset All</button>
-			<input type='text' placeholder='Search...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-			<p>
-				Showing {displayedProducts} of {totalProducts} results
-			</p>
-
-			<div>
-				<div onClick={() => setIsOpen(!isOpen)}>
-					<h3>Products</h3>
-				</div>
-				{isOpen && (
-					<div>
-						{tags.map((tag) => (
-							<div key={tag}>
-								<input
-									type='checkbox'
-									id={tag}
-									value={tag}
-									checked={selectedTags.includes(tag)}
-									onChange={() => handleTagChange(tag)}
-								/>
-								<label htmlFor={tag}>{tag}</label>
-							</div>
-						))}
-					</div>
-				)}
-			</div>
-
 			<div className={styles.products_container}>
+				<div className={styles.filter_cont}>
+					<button onClick={resetAll}>Reset All</button>
+					<Slider onPriceChange={setPriceFilter} value={priceFilter} />
+
+					<input
+						type='text'
+						placeholder='Search...'
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+					/>
+					<p>
+						Showing {displayedProducts} of {totalProducts} results
+					</p>
+					<button onClick={resetSearch}>Reset Search</button>
+
+					<div>
+						<div onClick={() => setIsOpen(!isOpen)}>
+							<h3>Products</h3>
+						</div>
+						{isOpen && (
+							<div>
+								{tags.map((tag) => (
+									<div key={tag}>
+										<input
+											type='checkbox'
+											id={tag}
+											value={tag}
+											checked={selectedTags.includes(tag)}
+											onChange={() => handleTagChange(tag)}
+										/>
+										<label htmlFor={tag}>{tag}</label>
+									</div>
+								))}
+							</div>
+						)}
+					</div>
+					<button onClick={resetTags}>Reset Tags</button>
+				</div>
 				{filteredProducts.length > 0 ? (
 					filteredProducts.map((pro) => <Product key={pro._id} product={pro} />)
 				) : (

@@ -108,7 +108,7 @@
 }
 .container .sales_num {
 	position: absolute;
-	padding: 5px 50px 5px;
+	padding: 5px 10px 5px;
 	margin: 0;
 	font-size: 0.875rem;
 	bottom: 0;
@@ -124,6 +124,8 @@
 	-webkit-user-select: none; /* Safari */
 	-ms-user-select: none; /* IE 10 and IE 11 */
 	user-select: none; /* Standard syntax */
+	text-align: center;
+	width: 250px;
 }
 
 .container .sales_num:hover {
@@ -140,9 +142,11 @@
 
 .container {
 	/* display: flex; */
-	background-color: #fff;
+	background-color: transparent;
 	border-radius: 35px;
 	box-shadow: 0 3px 18px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 	position: relative;
 	overflow: hidden;
 	width: 100%;
@@ -383,6 +387,10 @@
 	.products_banner_img {
 		width: 200px;
 	}
+	.container .sales_num {
+		width: 90%;
+		font-size: 0.875rem;
+	}
 }
 @media (width < 500px) {
 	.container h1 {
@@ -417,5 +425,9 @@
 	}
 	.container .more_btn {
 		padding: 12px 20px;
+	}
+	.container .sales_num {
+		width: 90%;
+		font-size: 0.75rem;
 	}
 }

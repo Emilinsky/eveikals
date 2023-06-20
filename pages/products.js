@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { ProductsBanner, Product, Slider } from "../components";
 import { client } from "../lib/client";
 import styles from "../styles/Product.module.css";
+import { BsFilterSquare } from "react-icons/bs";
 
 const Products = ({ products, bannerData, tags, colors, sizes }) => {
 	const [priceFilter, setPriceFilter] = useState([1, 40]); // adjust range as per your product pricing
 	const [debouncedPriceFilter, setDebouncedPriceFilter] = useState(priceFilter);
 	const [selectedTags, setSelectedTags] = useState([]);
-	const [isOpen, setIsOpen] = useState(true);
+	// const [isOpen, setIsOpen] = useState(true);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+	const [filtersVisible, setFiltersVisible] = useState(true);
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
@@ -21,6 +23,11 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 			clearTimeout(timerId);
 		};
 	}, [priceFilter, selectedTags, searchTerm]);
+
+	const handleFilterButtonClick = () => {
+		// Toggle filtersVisible state
+		setFiltersVisible((prev) => !prev);
+	};
 
 	// Then use debouncedPriceFilter and debouncedSearchTerm for the filtering:
 	const filteredProducts = products.sanity.filter((product) => {
@@ -72,33 +79,37 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 			<div className='products-heading'>
 				<h1 className='header'>All Products</h1>
 			</div>
+			<button onClick={handleFilterButtonClick} className={`${styles.filterBtn}`}>
+				Product filters <BsFilterSquare />
+			</button>
 
-			<div className={styles.products_container}>
-				<div className={styles.filter_cont}>
-					<button onClick={resetAll} className={styles.resetAll}>
-						Reset Filters
-					</button>
-					<div className={styles.slider_cont}>
-						<Slider onPriceChange={setPriceFilter} value={priceFilter} />
-					</div>
-					<div className={styles.search_cont}>
-						<input
-							type='text'
-							placeholder='Search...'
-							value={searchTerm}
-							onChange={(e) => setSearchTerm(e.target.value)}
-						/>
-						<p className={styles.search_output}>
-							Showing {displayedProducts} of {totalProducts} results
-						</p>
-						<button onClick={resetSearch}>Reset Search</button>
-					</div>
-
-					<div className={styles.tags_cont}>
-						<div>
-							<h3 className={styles.tags_heading}>Categories:</h3>
+			<div className={`${styles.products_container} ${filtersVisible ? "" : styles.adjustedMargin}`}>
+				<div className={`${styles.filter_cont} ${filtersVisible ? "" : styles.hidden}`}>
+					<div className={`${styles.filter_inner_cont}`}>
+						<button onClick={resetAll} className={styles.resetAll}>
+							Reset all filters
+						</button>
+						<div className={styles.slider_cont}>
+							<Slider onPriceChange={setPriceFilter} value={priceFilter} />
 						</div>
-						{isOpen && (
+						<div className={styles.search_cont}>
+							<input
+								type='text'
+								placeholder='Search...'
+								value={searchTerm}
+								onChange={(e) => setSearchTerm(e.target.value)}
+							/>
+							<p className={styles.search_output}>
+								Showing {displayedProducts} of {totalProducts} results
+							</p>
+							<button onClick={resetSearch}>Reset Search</button>
+						</div>
+
+						<div className={styles.tags_cont}>
+							<div>
+								<h3 className={styles.tags_heading}>Categories:</h3>
+							</div>
+
 							<div className={styles.radio_cont}>
 								{tags.map((tag) => (
 									<div key={tag}>
@@ -116,11 +127,16 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 									</div>
 								))}
 							</div>
-						)}
-						<button onClick={resetTags}>Reset Tags</button>
+
+							<button onClick={resetTags}>Reset Tags</button>
+						</div>
 					</div>
 				</div>
-				<button onClick={resetAll} className={styles.resetMobile}>
+
+				<button
+					onClick={resetAll}
+					className={`${styles.resetMobile} ${styles.filterBtn} ${filtersVisible ? "" : styles.hidden}`}
+				>
 					Reset Filters
 				</button>
 

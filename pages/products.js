@@ -95,21 +95,24 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 					</div>
 
 					<div className={styles.tags_cont}>
-						<div onClick={() => setIsOpen(!isOpen)}>
-							<h3>Products</h3>
+						<div>
+							<h3 className={styles.tags_heading}>Categories:</h3>
 						</div>
 						{isOpen && (
-							<div>
+							<div className={styles.radio_cont}>
 								{tags.map((tag) => (
 									<div key={tag}>
-										<input
-											type='checkbox'
-											id={tag}
-											value={tag}
-											checked={selectedTags.includes(tag)}
-											onChange={() => handleTagChange(tag)}
-										/>
-										<label htmlFor={tag}>{tag}</label>
+										<label htmlFor={tag}>
+											<input
+												type='checkbox'
+												id={tag}
+												value={tag}
+												checked={selectedTags.includes(tag)}
+												onChange={() => handleTagChange(tag)}
+												className={`${styles.option_input} ${styles.radio}`}
+											/>
+											{tag}
+										</label>
 									</div>
 								))}
 							</div>

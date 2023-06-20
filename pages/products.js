@@ -79,7 +79,7 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 			<div className='products-heading'>
 				<h1 className='header'>All Products</h1>
 			</div>
-			<button onClick={handleFilterButtonClick} className={`${styles.filterBtn}`}>
+			<button onClick={handleFilterButtonClick} className={`${styles.filterBtn} ${styles.topFilterBtn}`}>
 				Product filters <BsFilterSquare />
 			</button>
 
@@ -137,7 +137,7 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 					onClick={resetAll}
 					className={`${styles.resetMobile} ${styles.filterBtn} ${filtersVisible ? "" : styles.hidden}`}
 				>
-					Reset Filters
+					Reset all filters
 				</button>
 
 				{filteredProducts.length > 0 ? (

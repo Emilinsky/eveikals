@@ -120,6 +120,10 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 						<button onClick={resetTags}>Reset Tags</button>
 					</div>
 				</div>
+				<button onClick={resetAll} className={styles.resetMobile}>
+					Reset Filters
+				</button>
+
 				{filteredProducts.length > 0 ? (
 					filteredProducts.map((pro) => <Product key={pro._id} product={pro} />)
 				) : (

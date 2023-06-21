@@ -1,15 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Moirai+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+
 .artwork_cont {
 	position: relative;
-	margin-top: 60rem;
+	margin: 60rem 0 15rem;
 	z-index: 2;
 	width: 100%;
 	height: 100%;
-	/* background-color: #eeeeee; */
 	padding: 50px;
 }
 .artwork_inner_cont {
 	width: 100%;
-	/* background-color: aliceblue; */
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -18,21 +19,40 @@
 	display: flex;
 	width: 100%;
 	justify-content: center;
-	/* background-color: rgba(137, 43, 226, 0.182); */
-	border-bottom: 2px solid green;
+	border-bottom: 2px solid var(--border-color);
 	padding-bottom: 80px;
+}
+.upper_text_bg {
+	position: absolute;
+	top: -180px;
+	left: -150px;
+}
+.upper_text_bg p {
+	opacity: 0.2;
+	font-size: 10rem;
+	font-family: "Monoton", cursive;
+	color: var(--border-color);
+}
+.lower_text_bg {
+	position: absolute;
+	bottom: -180px;
+	left: -150px;
+}
+.lower_text_bg p {
+	opacity: 0.2;
+	font-size: 10rem;
+	font-family: "Monoton", cursive;
+	color: var(--border-color);
 }
 .lower_img_cont {
 	width: 100%;
-	/* background-color: rgba(255, 0, 0, 0.149); */
 }
 /* ART GALLERY CSS */
 .art_gallery {
 	display: grid;
-	width: min(550px, 100%); /* control the size here */
-	/* margin: 50px auto; */
+	width: min(1200px, 100%);
 	grid: 3fr 1fr 2fr 2fr/1fr 1fr 2fr 3fr 5fr;
-	aspect-ratio: 3/2;
+	aspect-ratio: 6/2;
 }
 .art_gallery img {
 	height: 100%;
@@ -77,7 +97,7 @@
 	gap: 12px;
 	grid-auto-flow: column;
 	place-items: center;
-	margin-top: 80px;
+	margin: 80px 40px 0;
 }
 .example_gallery:hover img {
 	filter: grayscale();
@@ -99,4 +119,14 @@
 .example_gallery > img:hover {
 	width: 12vw;
 	opacity: 1;
+}
+.example_gallery > img:first-child {
+	min-width: calc(100% + var(--s) / 2);
+	place-self: start;
+	clip-path: polygon(0 0, 100% 0, calc(100% - var(--s)) 100%, 0 100%);
+}
+.example_gallery > img:last-child {
+	min-width: calc(100% + var(--s) / 2);
+	place-self: end;
+	clip-path: polygon(var(--s) 0, 100% 0, 100% 100%, 0 100%);
 }

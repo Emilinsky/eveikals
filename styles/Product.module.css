@@ -8,6 +8,8 @@
 	width: 100%;
 	justify-items: center;
 	align-items: center;
+	transition: margin 0.5s;
+	transition-delay: 0;
 }
 .wrapper {
 	width: 300px;
@@ -44,9 +46,13 @@
 .filter_cont {
 	width: 300px;
 	position: absolute;
-	top: -550px;
+	top: -570px;
 	left: 50%;
 	transform: translateX(-50%);
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.2s, transform 0.2s, visibility 0.1s;
+	transition-delay: 0.4s;
 }
 .filter_inner_cont {
 	margin: 0 auto;
@@ -178,22 +184,31 @@
 .resetMobile {
 	background-color: var(--product-banner-bg2);
 	position: absolute;
-	top: -60px;
+	top: -80px;
 	left: 50%;
 	transform: translateX(-50%);
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.2s, transform 0.2s, visibility 0.1s;
+	transition-delay: 0.4s;
 }
 .hidden {
-	display: none;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s, transform 1s, visibility 0.1s;
+	transition-delay: 0s;
 }
 
 .adjustedMargin {
 	margin: 120px auto 0;
+	transition: margin 0.5s;
+	transition-delay: 0.2s; /* 0.5s delay when the class is added */
 }
 @media (width > 650px) {
 	.products_container {
 		--column-count: 2;
 		max-width: 650px;
-		margin: 610px auto 0;
+		margin: 590px auto 0;
 	}
 	.filter_cont {
 		display: flex;
@@ -206,6 +221,9 @@
 	.filterBtn {
 		width: 450px;
 	}
+	.topFilterBtn {
+		display: none;
+	}
 }
 @media (width > 900px) {
 	.products_container {
@@ -214,9 +232,9 @@
 	.topFilterBtn {
 		display: none;
 	}
-   .filter_cont {
-      top: -425px;
-    }
+	.filter_cont {
+		top: -425px;
+	}
 	.filter_inner_cont {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);

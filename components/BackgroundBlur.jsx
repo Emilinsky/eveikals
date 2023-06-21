@@ -57,15 +57,15 @@ class Orb {
 	setBounds() {
 		// the { x, y } origin for each orb (the top left of the screen)
 		// VALUE: Position x/y + movement
-		const originX = -300;
+		const originX = -200;
 		const originY = -50;
 
 		// maxDist now determines the size of the area within which orbs can move
-		const maxDist = 1600; // Orbs will be able to move within a 200px square area
+		const maxDist = 1700; // Orbs will be able to move within a 200px square area
 
 		return {
 			x: { min: originX, max: originX + maxDist },
-			y: { min: originY, max: originY + maxDist / 3 },
+			y: { min: originY, max: originY + maxDist / 2.8 },
 		};
 	}
 
@@ -79,7 +79,7 @@ class Orb {
 		this.y = map(this.noise2D(0, this.yOff), -1, 1, this.bounds["y"].min, this.bounds["y"].max);
 
 		//  VALUE: blobs diameter
-		this.scale = map(Math.sin(this.xOff), -1, 1, 0.8, 1);
+		this.scale = map(Math.sin(this.xOff), -1, 1, 0.7, 0.85);
 	}
 
 	render() {

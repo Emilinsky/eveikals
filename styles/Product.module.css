@@ -20,7 +20,7 @@
 	overflow: hidden;
 	border-radius: 10px;
 	box-shadow: 0;
-	transform: translateY(10px);
+	transform: translateY(5px);
 	transition: all 0.5s, transform 0.5s;
 }
 .filterBtn {

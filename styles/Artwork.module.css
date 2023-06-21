@@ -1,5 +1,102 @@
 .artwork_cont {
 	position: relative;
-	margin-top: 62.5rem;
+	margin-top: 60rem;
 	z-index: 2;
+	width: 100%;
+	height: 100%;
+	/* background-color: #eeeeee; */
+	padding: 50px;
+}
+.artwork_inner_cont {
+	width: 100%;
+	/* background-color: aliceblue; */
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.upper_img_cont {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	/* background-color: rgba(137, 43, 226, 0.182); */
+	border-bottom: 2px solid green;
+	padding-bottom: 80px;
+}
+.lower_img_cont {
+	width: 100%;
+	/* background-color: rgba(255, 0, 0, 0.149); */
+}
+/* ART GALLERY CSS */
+.art_gallery {
+	display: grid;
+	width: min(550px, 100%); /* control the size here */
+	/* margin: 50px auto; */
+	grid: 3fr 1fr 2fr 2fr/1fr 1fr 2fr 3fr 5fr;
+	aspect-ratio: 3/2;
+}
+.art_gallery img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	cursor: pointer;
+	filter: grayscale(80%);
+	transition: 0.4s;
+}
+.art_gallery:hover img {
+	filter: grayscale();
+}
+.art_gallery img:hover {
+	filter: grayscale(0%);
+}
+.art_gallery img:nth-child(1) {
+	grid-area: 1/1 / span 2 / span 3;
+	clip-path: polygon(0 0, 100% 0, 0 100%);
+	z-index: 1;
+}
+.art_gallery img:nth-child(2) {
+	grid-area: 1/2 / span 3 / span 3;
+}
+.art_gallery img:nth-child(3) {
+	grid-area: 1 / span 2/-1/-1;
+	clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+.art_gallery img:nth-child(4) {
+	grid-area: span 3/1/-1 / span 3;
+	clip-path: polygon(0 -20%, 150% 100%, 0 100%);
+}
+.art_gallery img:nth-child(5) {
+	grid-area: span 3 / span 3/-1/-1;
+	clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+/* EXAMPLE GALLERY CSS */
+.example_gallery {
+	--s: 50px;
+
+	display: grid;
+	height: 400px;
+	gap: 12px;
+	grid-auto-flow: column;
+	place-items: center;
+	margin-top: 80px;
+}
+.example_gallery:hover img {
+	filter: grayscale();
+}
+.example_gallery img:hover {
+	filter: grayscale(0%);
+}
+.example_gallery > img {
+	width: 0;
+	height: 0;
+	min-width: calc(100% + var(--s));
+	min-height: 100%;
+	object-fit: cover;
+	cursor: pointer;
+	opacity: 0.8;
+	clip-path: polygon(var(--s) 0, 100% 0, calc(100% - var(--s)) 100%, 0 100%);
+	transition: 0.5s;
+}
+.example_gallery > img:hover {
+	width: 12vw;
+	opacity: 1;
 }

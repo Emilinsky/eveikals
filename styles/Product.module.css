@@ -413,9 +413,10 @@
 	padding: 10px 15px;
 	width: calc(84% - 40px);
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: flex-start;
 	flex-direction: column;
+	height: 50%;
 }
 
 .wrapper .container .bottom .right .done {
@@ -452,6 +453,7 @@
 }
 .wrapper .product_name_added {
 	color: var(--secondary-text-color);
+	font-size: 0.85rem;
 }
 .wrapper .product_name {
 	font-weight: 500;
@@ -484,7 +486,7 @@
 	right: 0;
 	top: 0;
 	border-radius: 0;
-	height: 80%;
+	height: 78%;
 }
 
 .wrapper .inside .icon {
@@ -518,7 +520,7 @@
 
 .wrapper .inside .contents p {
 	color: white;
-	font-size: 1.125rem;
+	font-size: 1rem;
 	line-height: 1.3;
 }
 /* .resetAll {

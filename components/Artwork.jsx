@@ -17,11 +17,6 @@ const Artwork = () => {
 					</div>
 					<div className={styles.art_gallery}>
 						<AnimatedText />
-						{/* <img src='https://picsum.photos/id/25/500/500' alt='small trees' />
-						<img src='https://picsum.photos/id/454/500/500' alt='a girl with a camera' />
-						<img src='https://picsum.photos/id/222/600/600' alt='the sky' />
-						<img src='https://picsum.photos/id/152/500/500' alt='some purple flowers' />
-						<img src='https://picsum.photos/id/564/800/400' alt='a canyon' /> */}
 					</div>
 				</div>
 				<div className={styles.lower_img_cont}>
@@ -35,6 +30,7 @@ const Artwork = () => {
 							alt='Frosted Glass Mug'
 						/>
 						<img
+							className={styles.hide_below_1400}
 							src='https://images-api.printify.com/mockup/64707cb32b8a44735f010239/71935/17375/metallic-mug-silvergold.jpg?camera_label=context-2'
 							alt='Metallic Mug'
 						/>
@@ -43,12 +39,13 @@ const Artwork = () => {
 							alt='Stainless Steel Travel Mug'
 						/>
 						<img
-							src='https://images-api.printify.com/mockup/648c47efe8dbb048ae0455af/74419/19090/mason-jar.jpg?camera_label=context-2'
-							alt='Mason Jar'
-						/>
-						<img
+							className={styles.hide_below_1100}
 							src='https://images-api.printify.com/mockup/646c825e1f2353efcd0b3467/65216/71738/ceramic-mug-11oz.jpg?camera_label=context-5'
 							alt='Ceramic Mug'
+						/>
+						<img
+							src='https://images-api.printify.com/mockup/648c47efe8dbb048ae0455af/74419/19090/mason-jar.jpg?camera_label=context-2'
+							alt='Mason Jar'
 						/>
 					</div>
 				</div>

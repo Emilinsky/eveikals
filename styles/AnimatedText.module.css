@@ -14,15 +14,15 @@
 }
 
 .background path {
-	animation: pulse 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
-	transform-origin: 50% 50%;
+	animation: pulse 5s cubic-bezier(0.255, 0.03, 0.515, 0.955) infinite;
+	transform-origin: 40% 40%;
 	transform-box: fill-box;
 }
 
 @keyframes pulse {
 	0%,
 	100% {
-		transform: scale(0) rotate(50deg);
+		transform: scale(0) rotate(210deg);
 	}
 	35%,
 	65% {

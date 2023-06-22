@@ -6,19 +6,21 @@ const AnimatedText = () => {
 	const textClipRef = useRef(null);
 	const [currCount, setCurrCount] = useState(0);
 
-	const colors = ["#10af8c", "#00dcc6", "#00c49a", "#00dcc6"];
+	const colors = ["#048987", "#02b18bd6", "#125d30", "#10af8c"];
 	const numLines = 2;
 
 	const colorBlobs = () => {
 		if (backgroundRef.current) {
 			const blobs = backgroundRef.current.querySelectorAll("path");
 			blobs.forEach((blob) => {
-				blob.style.fill = colors[Math.floor(Math.random() * colors.length)];
+				const color = colors[Math.floor(Math.random() * colors.length)];
+				blob.style.fill = color;
 			});
 		}
 	};
 
 	const nextIteration = useCallback(() => {
+		colorBlobs();
 		const texts = textClipRef.current.querySelectorAll("text");
 
 		// Hide all text elements

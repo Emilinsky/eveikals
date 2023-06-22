@@ -25,7 +25,7 @@
 	top: -40px;
 	left: 50%;
 	transform: translateX(-50%);
-	letter-spacing: -18px;
+	letter-spacing: 0px;
 	text-align: center;
 }
 .upper_text_bg p {

@@ -1,17 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap");
+
 /* Basic styling */
 .esvigi {
 	width: 100%;
 }
-.filled_heading {
+.filled_heading text {
 	text-transform: uppercase;
-	font-family: "Source Sans Pro", sans-serif;
+	font-family: "Londrina Shadow", cursive;
 	font-size: 6rem;
 	line-height: 0.9;
+	letter-spacing: 6px;
 }
 
 /* Animate the background shapes */
 .background path {
-	transform-origin: 50% 50%;
+	transform-origin: 60% 60%;
 	transform-box: fill-box;
 }
 .background path:nth-of-type(2n) {

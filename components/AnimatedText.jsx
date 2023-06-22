@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "../styles/AnimatedText.module.css";
 
 const AnimatedText = () => {
-	const colors = ["#10af8c", "#00dcc6", "#048987"];
+	const colors = ["#10af8c", "#00dcc6", "#00c49a", "#00dcc6"];
 	const backgroundRef = useRef(null);
 
 	useEffect(() => {
@@ -16,12 +16,12 @@ const AnimatedText = () => {
 
 	return (
 		<>
-			<svg className={styles.esvigi} viewBox='0 0 700 160'>
+			<svg className={styles.esvigi} viewBox='0 0 600 180'>
 				<clipPath id='textClip' className={styles.filled_heading}>
-					<text x='40%' y='70' textAnchor='middle'>
+					<text x='40%' y='80' textAnchor='middle'>
 						AI art
 					</text>
-					<text x='50%' y='160' textAnchor='middle'>
+					<text x='50%' y='170' textAnchor='middle'>
 						Funky
 					</text>
 					{/* <text x='60%' y='250' textAnchor='middle'>

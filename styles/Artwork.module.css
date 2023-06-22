@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Moirai+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap");
 
 .artwork_cont {
 	position: relative;
@@ -22,22 +22,27 @@
 }
 .upper_text_bg {
 	position: absolute;
-	top: -180px;
-	left: -150px;
+	top: 40px;
+	left: 50%;
+	transform: translateX(-55%);
+	letter-spacing: -22px;
 }
 .upper_text_bg p {
-	opacity: 0.2;
-	font-size: 10rem;
+	opacity: 0.3;
+	font-size: 18rem;
 	font-family: "Monoton", cursive;
 	color: var(--border-color);
 }
 .lower_text_bg {
+	width: 100%;
 	position: absolute;
 	bottom: -180px;
-	left: -150px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
 }
 .lower_text_bg p {
-	opacity: 0.2;
+	opacity: 0.5;
 	font-size: 10rem;
 	font-family: "Monoton", cursive;
 	color: var(--border-color);
@@ -45,49 +50,7 @@
 .lower_img_cont {
 	width: 100%;
 }
-/* ART GALLERY CSS */
-/* .art_gallery {
-	display: flex;
-	width: min(1200px, 100%);
-	grid: 3fr 1fr 2fr 2fr/1fr 1fr 2fr 3fr 5fr;
-	aspect-ratio: 6/2;
-	justify-content: center;
-	align-items: center;
-} */
-.art_gallery img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	cursor: pointer;
-	filter: grayscale(80%);
-	transition: 0.4s;
-}
-.art_gallery:hover img {
-	filter: grayscale();
-}
-.art_gallery img:hover {
-	filter: grayscale(0%);
-}
-.art_gallery img:nth-child(1) {
-	grid-area: 1/1 / span 2 / span 3;
-	clip-path: polygon(0 0, 100% 0, 0 100%);
-	z-index: 1;
-}
-.art_gallery img:nth-child(2) {
-	grid-area: 1/2 / span 3 / span 3;
-}
-.art_gallery img:nth-child(3) {
-	grid-area: 1 / span 2/-1/-1;
-	clip-path: polygon(0 0, 100% 0, 100% 100%);
-}
-.art_gallery img:nth-child(4) {
-	grid-area: span 3/1/-1 / span 3;
-	clip-path: polygon(0 -20%, 150% 100%, 0 100%);
-}
-.art_gallery img:nth-child(5) {
-	grid-area: span 3 / span 3/-1/-1;
-	clip-path: polygon(50% 0, 100% 100%, 0 100%);
-}
+
 /* EXAMPLE GALLERY CSS */
 .example_gallery {
 	--s: 50px;

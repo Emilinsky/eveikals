@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap");
 
-/* Basic styling */
 .esvigi {
 	width: 100%;
 }
@@ -11,24 +10,27 @@
 	line-height: 0.9;
 	letter-spacing: 6px;
 }
+.filled_heading text {
+	display: none;
+}
 
-/* Animate the background shapes */
+.filled_heading text:nth-of-type(n + 1):nth-of-type(-n + 2) {
+	display: inline;
+}
+
 .background path {
-	transform-origin: 60% 60%;
+	animation: pulse 4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+	transform-origin: 50% 50%;
 	transform-box: fill-box;
 }
-.background path:nth-of-type(2n) {
-	animation: rotate 10s linear infinite;
-}
-.background path:nth-of-type(2n + 1) {
-	animation: rotate 20s linear reverse infinite;
-}
 
-@keyframes rotate {
-	0% {
-		transform: rotate(0);
-	}
+@keyframes pulse {
+	0%,
 	100% {
-		transform: rotate(360deg);
+		transform: scale(0) rotate(33deg);
+	}
+	35%,
+	65% {
+		transform: scale(1) rotate(0deg);
 	}
 }

@@ -144,6 +144,9 @@
 	.artwork_cont {
 		padding: 40px;
 	}
+   .upper_img_cont {
+      padding-bottom: 40px;
+   }
 	.example_gallery {
 		--s: 30px;
 

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "../styles/AnimatedText.module.css";
 
 const AnimatedText = () => {
 	const backgroundRef = useRef(null);
 	const textClipRef = useRef(null);
-	const [currCount, setCurrCount] = useState(2);
+	const [currCount, setCurrCount] = useState(0);
 
 	const colors = ["#10af8c", "#00dcc6", "#00c49a", "#00dcc6"];
 	const numLines = 2;
@@ -18,28 +18,25 @@ const AnimatedText = () => {
 		}
 	};
 
-	const nextIteration = () => {
-		colorBlobs();
-
+	const nextIteration = useCallback(() => {
 		const texts = textClipRef.current.querySelectorAll("text");
 
-		let startVal = currCount - numLines;
-		if (startVal < 0) {
-			startVal = texts.length - numLines;
-		}
-
-		for (let i = startVal; i < startVal + numLines; i++) {
-			texts[i].style.display = "none";
-		}
-
-		for (let j = currCount; j < currCount + numLines; j++) {
-			texts[j].style.display = "inline";
-		}
-
-		setCurrCount((prevCount) => {
-			return (prevCount + numLines) % texts.length;
+		// Hide all text elements
+		texts.forEach((text) => {
+			text.style.display = "none";
 		});
-	};
+
+		// Update currCount
+		setCurrCount((prevCount) => {
+			const newIndex = (prevCount + numLines) % texts.length;
+
+			// Show the next pair of text elements
+			texts[newIndex].style.display = "inline";
+			texts[(newIndex + 1) % texts.length].style.display = "inline";
+
+			return newIndex;
+		});
+	}, []);
 
 	useEffect(() => {
 		if (backgroundRef.current) {
@@ -47,7 +44,13 @@ const AnimatedText = () => {
 			if (blobs && blobs.length > 0) {
 				blobs[0].addEventListener("animationiteration", nextIteration);
 			}
+			colorBlobs();
 		}
+
+		// Show the first two lines initially
+		const texts = textClipRef.current.querySelectorAll("text");
+		texts[0].style.display = "inline";
+		texts[1].style.display = "inline";
 
 		return () => {
 			if (backgroundRef.current) {
@@ -61,25 +64,25 @@ const AnimatedText = () => {
 
 	return (
 		<>
-			<svg className={styles.esvigi} viewBox='0 0 600 180'>
+			<svg className={styles.esvigi} viewBox='-30 0 550 160'>
 				<clipPath id='textClip' ref={textClipRef} className={styles.filled_heading}>
-					<text x='40%' y='80' textAnchor='middle'>
-						First Line
+					<text x='40%' y='50' textAnchor='middle'>
+						Original logos
 					</text>
-					<text x='50%' y='170' textAnchor='middle'>
-						Second Line
+					<text x='50%' y='120' textAnchor='middle'>
+						Diverse Selection
 					</text>
-					<text x='40%' y='80' textAnchor='middle'>
-						Third Line
+					<text x='40%' y='50' textAnchor='middle'>
+						Bulk Ordering
 					</text>
-					<text x='50%' y='170' textAnchor='middle'>
-						Fourth Line
+					<text x='50%' y='120' textAnchor='middle'>
+						Special Discounts
 					</text>
-					<text x='40%' y='80' textAnchor='middle'>
-						Fifth Line
+					<text x='40%' y='50' textAnchor='middle'>
+						Design Consultation
 					</text>
-					<text x='50%' y='170' textAnchor='middle'>
-						Sixth Line
+					<text x='50%' y='120' textAnchor='middle'>
+						Branding Solutions
 					</text>
 				</clipPath>
 

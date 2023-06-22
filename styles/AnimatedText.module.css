@@ -3,23 +3,18 @@
 .esvigi {
 	width: 100%;
 }
+
 .filled_heading text {
 	text-transform: uppercase;
 	font-family: "Londrina Shadow", cursive;
-	font-size: 6rem;
+	font-size: 3.5rem;
 	line-height: 0.9;
-	letter-spacing: 6px;
-}
-.filled_heading text {
-	display: none;
-}
-
-.filled_heading text:nth-of-type(n + 1):nth-of-type(-n + 2) {
-	display: inline;
+	letter-spacing: 1px;
+	display: none; /* Hide all text elements initially */
 }
 
 .background path {
-	animation: pulse 4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+	animation: pulse 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
 	transform-origin: 50% 50%;
 	transform-box: fill-box;
 }
@@ -27,10 +22,10 @@
 @keyframes pulse {
 	0%,
 	100% {
-		transform: scale(0) rotate(33deg);
+		transform: scale(0) rotate(50deg);
 	}
 	35%,
 	65% {
-		transform: scale(1) rotate(0deg);
+		transform: scale(1.5) rotate(0deg);
 	}
 }

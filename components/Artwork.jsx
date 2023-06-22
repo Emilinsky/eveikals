@@ -9,7 +9,7 @@ const Artwork = () => {
 			<div className={styles.artwork_inner_cont}>
 				<div className={styles.upper_img_cont}>
 					<div className={styles.upper_text_bg}>
-						<p className={styles.text}>CUSTOM</p>
+						<p className={styles.text}>CUSTOM SOLUTIONS</p>
 					</div>
 					{/* <AnimatedText /> */}
 					<div className={styles.lower_text_bg}>

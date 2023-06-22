@@ -1,4 +1,6 @@
 import React from "react";
+import { AnimatedText } from "../components";
+
 import styles from "../styles/Artwork.module.css";
 
 const Artwork = () => {
@@ -6,18 +8,20 @@ const Artwork = () => {
 		<div className={styles.artwork_cont}>
 			<div className={styles.artwork_inner_cont}>
 				<div className={styles.upper_img_cont}>
-               <div className={styles.upper_text_bg}>
-                  <p className={styles.text}>CUSTOMIZE</p>
-               </div>
-               <div className={styles.lower_text_bg}>
-                  <p className={styles.text}>SUMMER TASTE</p>
-               </div>
+					<div className={styles.upper_text_bg}>
+						<p className={styles.text}>CUSTOMIZE</p>
+					</div>
+					{/* <AnimatedText /> */}
+					<div className={styles.lower_text_bg}>
+						<p className={styles.text}>SUMMER TASTE</p>
+					</div>
 					<div className={styles.art_gallery}>
-						<img src='https://picsum.photos/id/25/500/500' alt='small trees' />
+						<AnimatedText />
+						{/* <img src='https://picsum.photos/id/25/500/500' alt='small trees' />
 						<img src='https://picsum.photos/id/454/500/500' alt='a girl with a camera' />
 						<img src='https://picsum.photos/id/222/600/600' alt='the sky' />
 						<img src='https://picsum.photos/id/152/500/500' alt='some purple flowers' />
-						<img src='https://picsum.photos/id/564/800/400' alt='a canyon' />
+						<img src='https://picsum.photos/id/564/800/400' alt='a canyon' /> */}
 					</div>
 				</div>
 				<div className={styles.lower_img_cont}>

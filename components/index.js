@@ -11,3 +11,4 @@ export { default as ProductOptions } from "./ProductOptions";
 export { default as Slider } from "./Slider";
 export { default as BackgroundBlur } from "./BackgroundBlur";
 export { default as Artwork } from "./Artwork";
+export { default as AnimatedText } from "./AnimatedText";

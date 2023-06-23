@@ -12,12 +12,9 @@ export default {
 			},
 		},
 		{
-			name: "BGimage",
-			title: "BGimage",
-			type: "image",
-			options: {
-				hotspot: true,
-			},
+			name: "productButton",
+			title: "Link to products",
+			type: "string",
 		},
 		{
 			name: "buttonText",
@@ -35,16 +32,6 @@ export default {
 			type: "string",
 		},
 		{
-			name: "smallText",
-			title: "SmallText",
-			type: "string",
-		},
-		{
-			name: "midText",
-			title: "MidText",
-			type: "string",
-		},
-		{
 			name: "largeTextLine1",
 			title: "HeroBanner 1st line",
 			type: "string",
@@ -52,11 +39,6 @@ export default {
 		{
 			name: "largeTextLine2",
 			title: "HeroBanner 2nd line",
-			type: "string",
-		},
-		{
-			name: "largeText2",
-			title: "LargeText2",
 			type: "string",
 		},
 		{

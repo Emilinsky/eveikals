@@ -6,7 +6,7 @@ const AnimatedText = () => {
 	const textClipRef = useRef(null);
 	const [currCount, setCurrCount] = useState(0);
 
-	const colors = ["#048987", "#02b18bd6", "#125d30", "#10af8c"];
+	const colors = ["#048987", "#02b18bd6", "#007830", "#10af8c"];
 	const numLines = 2;
 
 	const colorBlobs = () => {

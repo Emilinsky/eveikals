@@ -14,7 +14,7 @@
 }
 
 .background path {
-	animation: pulse 5s cubic-bezier(0.255, 0.03, 0.515, 0.955) infinite;
+	animation: pulse 4s cubic-bezier(0.255, 0.03, 0.515, 0.955) infinite;
 	transform-origin: 40% 40%;
 	transform-box: fill-box;
 }

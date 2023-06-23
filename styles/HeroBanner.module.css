@@ -103,6 +103,7 @@
 	justify-content: space-between;
 	align-items: center;
 	gap: 40px;
+	margin-top: 40px;
 }
 .btn_cont button {
 	border-radius: 6px;
@@ -111,17 +112,18 @@
 	color: var(--secondary-text-color);
 	font-size: 1.25rem;
 	border: none;
-	margin-top: 40px;
 	font-family: "Bai Jamjuree", sans-serif;
 	font-weight: 500;
 	cursor: pointer;
 	width: 100%;
+	transition: all 0.3s;
 }
 
 .hero_banner_btn,
 .hero_banner_btn_full {
 	width: 100%;
 }
+
 .hero_banner_btn .btn_empty {
 	background: transparent;
 	color: var(--product-banner-bg1);
@@ -234,7 +236,12 @@
 		width: 90%;
 	}
 	.hero_banner_container button {
-		margin-top: 40px;
+		margin-top: 0px;
+	}
+	.hero_banner_btn:hover button,
+	.hero_banner_btn_full:hover button {
+		transform: translateY(-3px);
+		box-shadow: 0 10px 15px 2px var(--border-color);
 	}
 	.overlay_img {
 		margin-top: 45px;
@@ -256,6 +263,8 @@
 	}
 	.btn_cont button {
 		font-size: 1rem;
+		gap: 20px;
+		padding: 12px 0;
 	}
 }
 
@@ -277,22 +286,24 @@
 	}
 	.btn_cont button {
 		font-size: 0.875rem;
-		padding: 12px 40px;
+		padding: 12px 10px;
 	}
 	.hero_banner_image {
 		width: 350px;
 	}
 }
 
-@media (width < 360px) {
-	.hero_banner_container h1 {
-		font-size: 1.375rem;
-	}
+@media (width < 400px) {
 	.btn_cont {
 		flex-direction: column;
 		gap: 0px;
 	}
 	.hero_banner_btn_full button {
 		margin-top: 25px;
+	}
+}
+@media (width < 360px) {
+	.hero_banner_container h1 {
+		font-size: 1.375rem;
 	}
 }

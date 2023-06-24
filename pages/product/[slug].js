@@ -193,7 +193,7 @@ const ProductDetails = ({ product, products }) => {
 							</div>
 						</div>
 
-						<p className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</p>
+						<span className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</span>
 						<div className={styles.buttons}>
 							<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
 								Add to cart

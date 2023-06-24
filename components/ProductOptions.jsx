@@ -38,7 +38,7 @@ function ProductOptions({ options, selectedOptions, handleOptionChange }) {
 							if (isColorOption && isChecked) {
 								const backgroundColor = value.colors[0];
 								const brightness = getPerceivedBrightness(backgroundColor);
-								checkmarkColor = brightness > 215 ? "#366bc0ec" : "#ffffff";
+								checkmarkColor = brightness > 215 ? "#00b48dbc" : "#ffffff";
 							}
 
 							return (

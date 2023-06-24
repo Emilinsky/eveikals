@@ -10,8 +10,10 @@ const Home = ({ products, bannerData }) => {
 		<>
 			<HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
 			<Artwork />
-			<div className='home-heading'>
-				<h2>New products every week</h2>
+			<div className={styles.home_heading}>
+				<h2>
+               New products <span className={styles.heading_bg}>every week</span>
+				</h2>
 				<p>These products were added in the last 7 days:</p>
 			</div>
 			<div className={styles.products_container}>

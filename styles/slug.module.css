@@ -3,7 +3,7 @@
 }
 /* Heading cont */
 .heading_cont {
-	border-bottom: 1px solid var(--border-color);
+	/* border-bottom: 1px solid var(--border-color); */
 	margin: 0px auto 40px;
 	width: 90%;
 }
@@ -45,7 +45,7 @@
 	justify-content: flex-start;
 	align-items: center;
 	max-width: 450px;
-	box-shadow: inset 0 0 20px 0 #d9d9f1, inset 0 0 1px 0 var(--secondary-text-color);
+	/* box-shadow: inset 0 0 20px 0 var(--border-color), inset 0 0 1px 0 var(--border-color); */
 	border-radius: 12px 0 0 12px;
 	padding: 40px 20px;
 }
@@ -55,7 +55,7 @@
 }
 
 .image_container {
-	border-bottom: 1px solid var(--border-color);
+	/* border-bottom: 1px solid var(--border-color); */
 	padding-bottom: 30px;
 }
 .product_detail_image {
@@ -96,28 +96,6 @@
 /* PRODUCT DESC CONT */
 .product_detail_desc {
 	max-width: 60%;
-	/* border: 1px solid blue; */
-	background-image: linear-gradient(
-		to bottom,
-		#d8e6ff,
-		#dce7ff,
-		#e0e9ff,
-		#e4eaff,
-		#e8ecff,
-		#eaedff,
-		#eceeff,
-		#eeefff,
-		#eef0ff,
-		#eff1ff,
-		#eff2ff,
-		#f0f3ff
-	);
-	background-size: 400% 400%;
-	animation: gradient 10s infinite;
-
-	/* background-size: 400%; */
-	box-shadow: inset 0 0 23px 0 #ffffff97, inset 0 0 1px 0 var(--secondary-text-color);
-	border-radius: 0 15px 15px 0;
 	padding: 40px 30px;
 	transition: all 1s ease-in-out;
 }
@@ -133,12 +111,11 @@
 	font-size: 2rem;
 }
 .printify_desc {
+	min-height: 300px;
 	font-size: 1.125rem;
 	border-radius: 10px;
-	/* border: 1px solid var(--primary-color); */
-	background: rgba(39, 59, 134, 0.07);
+	/* border: 1px solid var(--border-color); */
 	border-radius: 16px;
-	box-shadow: inset 0 0 25px 0 #ffffff4d, inset 0 0 1px 0 var(--secondary-text-color);
 	backdrop-filter: blur(11.2px);
 	-webkit-backdrop-filter: blur(11.2px);
 	padding: 20px;
@@ -149,7 +126,7 @@
 	margin-top: 10px;
 }
 .product_detail_desc table {
-	border: 1px solid var(--primary-text-color);
+	/* border: 1px solid var(--primary-text-color); */
 	display: none;
 }
 .product_detail_desc p {
@@ -171,9 +148,8 @@
 } */
 .product_detail_desc .quantity {
 	display: flex;
-	background: rgba(39, 59, 134, 0.07);
 	border-radius: 10px;
-	/* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+	border: 1px solid var(--border-color);
 	backdrop-filter: blur(11.2px);
 	-webkit-backdrop-filter: blur(11.2px);
 	gap: 20px;
@@ -181,7 +157,6 @@
 	padding: 15px;
 	align-items: center;
 	color: var(--primary-text-color);
-	box-shadow: inset 0 0 15px 0 #ffffff19, inset 0 0 1px 0 var(--secondary-text-color);
 }
 .quantity h3 {
 	width: 110px;
@@ -205,7 +180,7 @@
 	color: var(--primary-text-color);
 	border-radius: 40px;
 	overflow: hidden;
-	border: 1px solid var(--primary-text-color);
+	border: 2px solid var(--primary-faded-color);
 }
 .quantity_desc p {
 	padding: 6px 18px;
@@ -218,7 +193,7 @@
 	border: none;
 	background-color: transparent;
 	font-size: 1.75rem;
-	color: var(--primary-text-color);
+	color: var(--primary-faded-color);
 	cursor: pointer;
 	padding: 10px;
 	overflow: hidden;
@@ -226,7 +201,7 @@
 }
 .quantity_desc .minus:hover,
 .quantity_desc .plus:hover {
-	background-color: var(--primary-text-color);
+	background-color: var(--primary-faded-color);
 	color: var(--secondary-text-color);
 }
 .quantity_desc .num {
@@ -242,6 +217,7 @@
 .buttons .buy_now {
 	width: 150px;
 	border-radius: 8px;
+	width: 300px;
 }
 
 .buttons .add_to_cart {
@@ -250,10 +226,9 @@
 	margin-top: 20px;
 	font-size: 1.125rem;
 	font-weight: 500;
-	background-color: var(--secondary-text-color);
+	background-color: var(--white-color);
 	color: var(--primary-color);
 	cursor: pointer;
-	width: 200px;
 	transform: scale(1, 1);
 	transition: transform 0.25s ease;
 }
@@ -261,7 +236,6 @@
 	transform: scale(1.05);
 }
 .buttons .buy_now {
-	width: 200px;
 	padding: 10px 20px;
 	background-color: var(--primary-faded-color);
 	color: var(--secondary-text-color);
@@ -325,7 +299,7 @@
 	}
 	.image_container {
 		border: none;
-		border-right: 1px solid var(--border-color);
+		/* border-right: 1px solid var(--border-color); */
 		padding-right: 20px;
 		/* width: 350px; */
 	}
@@ -357,7 +331,7 @@
 		display: flex;
 		justify-content: center;
 		border: none;
-		border-bottom: 1px solid var(--border-color);
+		/* border-bottom: 1px solid var(--border-color); */
 		padding-right: 0px;
 	}
 	.small_images_container {
@@ -384,7 +358,6 @@
 		width: 100%;
 		max-width: 100%;
 		border-radius: 0;
-		box-shadow: inset 0 0 20px 0 #00000090, inset 0 0 1px 0 var(--secondary-text-color);
 	}
 	.product_detail_desc {
 		border-radius: 0;
@@ -439,7 +412,7 @@
 	.buttons .buy_now {
 		padding: 12px 20px;
 		font-size: 1.125rem;
-		width: 200px;
+		width: 100%;
 	}
 }
 

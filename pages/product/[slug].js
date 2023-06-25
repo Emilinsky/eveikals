@@ -214,7 +214,7 @@ const ProductDetails = ({ product, products }) => {
 					</div>
 				</div>
 			</div>
-			<SimilarProducts products={products} />
+			<SimilarProducts products={products} currentTag={product.tags || []} />
 		</>
 	);
 };

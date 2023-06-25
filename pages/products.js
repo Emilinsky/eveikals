@@ -167,7 +167,7 @@ export const getServerSideProps = async () => {
 	// const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
 	// console.log(allTags);
 
-	const desiredTags = ["Mugs", "Bottles & Tumblers", "Animals", "Glass"]; // Add more tags as desired
+	const desiredTags = ["Mugs", "Bottles & Tumblers", "Outdoor", "Glass"]; // Add more tags as desired
 
 	const tags = [...new Set(sanityProducts.flatMap((product) => product.tags))].filter((tag) =>
 		desiredTags.includes(tag)

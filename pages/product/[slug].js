@@ -3,8 +3,8 @@ import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineChec
 import parse from "html-react-parser";
 import styles from "../../styles/slug.module.css";
 
-import { client, urlFor } from "../../lib/client";
-import { Product, SimilarProducts, ProductOptions } from "../../components";
+import { client } from "../../lib/client";
+import { SimilarProducts, ProductOptions } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
 const getOptionId = (allOptions, name, value) => {
@@ -192,8 +192,17 @@ const ProductDetails = ({ product, products }) => {
 								</button>
 							</div>
 						</div>
-
-						<span className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</span>
+						<div className={styles.price_cont}>
+							<div className={styles.one_price_cont}>
+								<span className={styles.priceDesc}>Price for 1 item:</span>
+								<span className={styles.price}>€{selectedVariant ? selectedVariant.price : price}</span>
+							</div>
+							<div className={`${styles.middle_border} ${qty > 1 ? styles.visible : styles.hidden}`}></div>
+							<div className={`${styles.multiple_price_cont} ${qty > 1 ? styles.visible : styles.hidden}`}>
+								<span className={styles.priceDesc}>{`Price for ${qty} items: `}</span>
+								<span className={styles.price}>€{selectedVariant ? selectedVariant.price * qty : price * qty}</span>
+							</div>
+						</div>
 						<div className={styles.buttons}>
 							<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
 								Add to cart

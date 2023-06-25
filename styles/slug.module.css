@@ -128,20 +128,61 @@
 .product_detail_desc p {
 	font-size: 1.125rem;
 }
+.price_cont {
+	margin: 20px auto 0;
+	padding: 0 0 0 20px;
+	max-width: 600px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.middle_border {
+	height: 100%;
+	border-left: 2px solid var(--primary-color);
+	padding: 20px 0;
+	margin: 0 20px;
+}
+
+.one_price_cont,
+.multiple_price_cont {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: fit-content;
+	transition-property: opacity, transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+}
+.product_detail_desc .priceDesc {
+	font-size: 1rem;
+	color: var(--primary-text-color);
+	padding-right: 10px;
+}
 
 .product_detail_desc .price {
 	text-align: center;
 	font-weight: 700;
 	font-size: 2.5rem;
-	margin-top: 20px;
 	color: var(--primary-text-color);
 }
-/* .price .old-price,
-.product-price .old-price,
-.price .old-price {
-	color: var(--primary-text-color);
-	text-decoration: line-through;
-} */
+
+.visible {
+	opacity: 1;
+	transform: translateY(0);
+	transition-property: opacity, transform;
+	transition-duration: 0.2s;
+	transition-delay: 0.1s, 0s; /* delay for opacity transition, no delay for transform */
+}
+.hidden {
+	opacity: 0;
+	transform: translateY(-20px);
+	pointer-events: none;
+	transition-property: opacity, transform, margin-top;
+	transition-duration: 0.2s;
+	transition-delay: 0s, 0.2s, 0.2s; /* no delay for opacity and transform, delay for margin-top transition */
+}
+
 .product_detail_desc .quantity {
 	display: flex;
 	border-radius: 10px;
@@ -438,6 +479,33 @@
 		padding: 10px 16px;
 		font-size: 1rem;
 		width: 180px;
+	}
+	.price_cont {
+		margin: 20px auto 0;
+		padding: 0 0 0 20px;
+		max-width: 600px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: column;
+	}
+	.middle_border {
+		display: none;
+	}
+	.visible {
+		transition-property: opacity, transform, margin-top;
+		transition-duration: 0.2s;
+		transition-delay: 0.2s, 0s, 0s;
+	}
+	.hidden {
+		margin-top: -40px;
+		transition-property: opacity, transform, margin-top;
+		transition-duration: 0.2s;
+		transition-delay: 0s, 0.2s, 0.2s; /* no delay for opacity and transform, delay for margin-top transition */
+	}
+
+	.product_detail_desc .price {
+		font-size: 2rem;
 	}
 }
 

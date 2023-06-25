@@ -641,13 +641,19 @@ span.text-red {
 	opacity: 1;
 }
 .size-option label:nth-child(2) {
-	border: 2px solid var(--primary-faded-color);
+	border: 2px solid var(--primary-text-color);
 	width: 100%;
 	border-radius: 4px;
 	line-height: 32px;
 	box-shadow: none !important;
 	color: var(--primary-text-color);
 	background-color: transparent;
+}
+.size-option input:checked + label {
+	border: 2px solid var(--primary-color);
+}
+.size-option input + label {
+	opacity: 0.5;
 }
 /* .input-cont:nth-child(2) .product-color:nth-child(1) {
 	margin: 5px 8px 5px 0;

@@ -307,27 +307,54 @@
 .similar_products_container {
 	display: flex;
 	justify-content: center;
-	gap: 15px;
+	gap: 20px;
 	margin-top: 20px;
 }
 
 .track {
-	position: absolute;
-	white-space: nowrap;
-	will-change: transform;
-	animation: marquee 15s linear infinite;
-	width: 280%;
+	position: relative;
+	width: fit-content;
+	margin: 0 auto;
+	padding: 0 80px;
 }
 .track:hover {
 	animation-play-state: paused;
 }
-@keyframes marquee {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(-50%);
-	}
+.button {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	padding: 10px;
+	background-color: var(--primary-color);
+	border-radius: 50%;
+	color: var(--secondary-text-color);
+	border: none;
+	font-size: 18px;
+	cursor: pointer;
+}
+.button:disabled {
+	background-color: var(--primary-text-color);
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+.prev_btn {
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+}
+.next_btn {
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+}
+/* ANIMATIONS */
+.similar_products_container {
+	transition: transform 0.5s ease-in-out;
+}
+
+.fade-in {
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
 }
 
 /* media queries */

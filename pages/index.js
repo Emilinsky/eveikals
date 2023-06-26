@@ -16,7 +16,7 @@ const Home = ({ products, bannerData }) => {
 				</h2>
 				<p>These products were added in the last 7 days:</p>
 			</div>
-			<div className={styles.products_container}>
+			<div className={styles.products_container_home}>
 				{products?.map((pro) => (
 					<Product key={pro._id} product={pro} />
 				))}

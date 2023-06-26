@@ -96,8 +96,7 @@
 
 .container .div_container_new,
 .container .div_container_top {
-	background-color: #fff;
-
+	background-color: transparent;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -106,6 +105,7 @@
 	height: 100%;
 	text-align: center;
 }
+
 .products_banner_img {
 	width: 135px;
 	margin: 20px 0;

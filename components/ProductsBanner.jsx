@@ -6,15 +6,17 @@ import styles from "../styles/ProductsBanner.module.css";
 
 const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 	const [isRightPanelActive, setIsRightPanelActive] = useState(false);
+	const [showDivContainerTop, setShowDivContainerTop] = useState(true);
 
 	const handleSignUpClick = () => {
 		setIsRightPanelActive(true);
+		setShowDivContainerTop(false);
 	};
 
 	const handleSignInClick = () => {
 		setIsRightPanelActive(false);
+		setShowDivContainerTop(true);
 	};
-
 	return (
 		<div className={styles.products_container}>
 			<div className={`${styles.container} ${isRightPanelActive ? styles.right_panel_active : ""}`}>
@@ -27,7 +29,10 @@ const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 				</div>
 
 				{/* PRODUCT OF THE WEEK */}
-				<div className={`${styles.form_container} ${styles.sign_in_container}`}>
+				<div
+					className={`${styles.form_container} ${styles.sign_in_container}`}
+					style={{ opacity: showDivContainerTop ? "1" : "0" }}
+				>
 					<div className={styles.div_container_top}>
 						<h1 className={styles.product_heading}>{ProductsBanner.headingLeft}</h1>
 						<img src={urlFor(ProductsBanner.imageTop)} alt='shirts' className={styles.products_banner_img} />

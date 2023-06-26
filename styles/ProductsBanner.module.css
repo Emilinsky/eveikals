@@ -7,7 +7,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(100vh - 150px);
+	height: 100%;
 }
 .container h1 {
 	font-weight: bold;
@@ -107,8 +107,8 @@
 }
 
 .products_banner_img {
-	width: 135px;
-	margin: 20px 0;
+	width: 120px;
+	margin: 30px 0;
 }
 .container .sales_num {
 	position: absolute;
@@ -123,7 +123,7 @@
 	left: 50%;
 	transform: translateX(-50%);
 	/* color: var(--banner-shadows); */
-	opacity: 0.7;
+	opacity: 0.5;
 	transition: all 0.3s ease-in-out;
 	-webkit-user-select: none; /* Safari */
 	-ms-user-select: none; /* IE 10 and IE 11 */
@@ -144,7 +144,7 @@
 	overflow: hidden;
 	width: 100%;
 	max-width: 1300px;
-	margin: 0 10px 100px;
+	margin: 120px 10px 100px;
 	min-height: 400px;
 	height: 550px;
 	backdrop-filter: blur(6px);

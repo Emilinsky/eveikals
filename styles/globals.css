@@ -51,6 +51,7 @@ a {
 
 .layout {
 	background: white;
+	overflow-x: hidden;
 }
 
 .main-container {
@@ -340,7 +341,6 @@ span.text-red {
 	margin-bottom: 12px;
 	align-self: flex-end;
 }
-
 
 .footer-banner-container {
 	padding: 50px 30px;

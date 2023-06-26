@@ -22,6 +22,27 @@
 	font-size: 1.125rem;
 }
 
+/* PRODUCTS.JS STYLES */
+.products_heading {
+	text-align: center;
+	position: relative;
+	margin: 40px 0px;
+	color: var(--primary-text-color);
+	margin: 150px 0 80px;
+	padding: 20px 0;
+}
+.products_heading h1 {
+	font-size: 2.5rem;
+	font-weight: 800;
+}
+.border {
+	position: absolute;
+	left: -30%;
+	bottom: 0;
+	right: -30%;
+	/* width: 160%; */
+	border: 2px solid var(--border-color);
+}
 .products_container {
 	position: relative;
 	--column-count: 1;

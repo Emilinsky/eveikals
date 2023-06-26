@@ -76,8 +76,9 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 	return (
 		<>
 			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} colors={colors} sizes={sizes} />
-			<div className='products-heading'>
-				<h1 className='header'>All Products</h1>
+			<div className={styles.products_heading}>
+				<h1 className={styles.header}>All Products</h1>
+            <div className={styles.border}></div>
 			</div>
 			<button onClick={handleFilterButtonClick} className={`${styles.filterBtn} ${styles.topFilterBtn}`}>
 				Product filters <BsFilterSquare />
@@ -167,7 +168,7 @@ export const getServerSideProps = async () => {
 	// const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
 	// console.log(allTags);
 
-	const desiredTags = ["Mugs", "Bottles & Tumblers", "Outdoor", "Glass"]; // Add more tags as desired
+	const desiredTags = ["Mugs", "Bottles & Tumblers", "Outdoor", "Glassware"]; // Add more tags as desired
 
 	const tags = [...new Set(sanityProducts.flatMap((product) => product.tags))].filter((tag) =>
 		desiredTags.includes(tag)

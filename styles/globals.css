@@ -341,20 +341,7 @@ span.text-red {
 	align-self: flex-end;
 }
 
-.products-heading {
-	text-align: center;
-	margin: 40px 0px;
-	color: var(--primary-text-color);
-	margin: 100px 0 40px;
-}
-.products-heading h2 {
-	font-size: 40px;
-	font-weight: 800;
-}
-.products-heading p {
-	font-size: 16px;
-	font-weight: 200;
-}
+
 .footer-banner-container {
 	padding: 50px 30px;
 	background-color: var(--banner-background-dark);

@@ -252,7 +252,7 @@
 }
 
 .adjustedMargin {
-	margin: 120px auto 0;
+	margin: 175px auto 0;
 	transition: margin 0.5s;
 	transition-delay: 0.2s; /* 0.5s delay when the class is added */
 }
@@ -304,6 +304,9 @@
 	}
 }
 @media (width > 900px) {
+	.products_container {
+		margin: 420px auto 0;
+	}
 	.topFilterBtn {
 		display: none;
 	}

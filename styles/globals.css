@@ -10,7 +10,7 @@
 	--blob2: #b6f0f470;
 	--blob3: #b6f4e770;
 	--blob4: #4ccaf090;
-	--red-color: #fa575c;
+	--red-color: #ff6267;
 	--cyan-color: #00b5ec;
 	--greenCyan-color: #07d3a7;
 	--greyLight-2: #c8d0e7;
@@ -30,6 +30,7 @@
 	--product-banner-bg1: #00c49a;
 	--product-banner-bg2: #048987;
 	--border-color: #8bccb06a;
+	--border-for-colors: #8bccb0bd;
 }
 
 html,

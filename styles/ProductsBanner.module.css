@@ -1,9 +1,9 @@
 .products_container {
-	background: url(../public/patternV1.png);
+	background: url(../public/patternV2.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 150%;
-	box-shadow: inset 0 0 30px 15px var(--white-color);
+	box-shadow: inset 0 0 20px 14px var(--white-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -49,6 +49,9 @@
 	margin: 20px 0 30px;
 	overflow: scroll;
 }
+.container .sizes_content p {
+	overflow: visible;
+}
 
 .container span {
 	font-size: 0.85rem;
@@ -56,7 +59,7 @@
 
 .container a {
 	color: #333;
-	font-size: 1rem;
+	font-size: 0.9375rem;
 	text-decoration: none;
 	margin: 15px 0;
 }
@@ -73,7 +76,7 @@
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 	cursor: pointer;
-	font-size: 0.9375rem;
+	font-size: 0.875rem;
 }
 .container .more_btn {
 	width: 100%;
@@ -160,8 +163,8 @@
 	margin: 80px 10px 100px;
 	min-height: 400px;
 	height: 550px;
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
 }
 .options_cont {
 	display: flex;
@@ -210,7 +213,7 @@
 	width: 35px;
 	height: 35px;
 	border-radius: 100%;
-	border: 1px solid var(--primary-color);
+	border: 1px solid var(--border-for-colors);
 }
 .sizes_content p,
 .colors_content p {
@@ -219,7 +222,7 @@
 
 .sizes_cont p {
 	background-color: var(--white-color);
-	border: 2px solid var(--product-banner-bg1);
+	border: 2px solid var(--primary-faded-color);
 	color: var(--primary-text-color);
 	padding: 0px 20px;
 	height: 34px;
@@ -326,6 +329,9 @@
 
 .overlay_left {
 	transform: translateX(-20%);
+	background: url(../public/rombPatternV2.png);
+	background-size: 115%;
+	background-position: 75% 90%;
 }
 
 .container.right_panel_active .overlay_left {
@@ -333,9 +339,9 @@
 }
 
 .overlay_right {
-	background: url(../public/patternV1.png);
-	background-size: 250%;
-	background-position: -5% 15%;
+	background: url(../public/patternReduced.png);
+	background-size: 150%;
+	background-position: 35% 65%;
 	right: 0;
 	transform: translateX(0);
 }

@@ -76,6 +76,9 @@ const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 						{/* NEW product desc */}
 						<div className={`${styles.overlay_panel} ${styles.overlay_left}`}>
 							<h1>{ProductsBanner.descHeading}</h1>
+							<div className={styles.product_name}>
+								<h2>{ProductsBanner.productNewName}</h2>
+							</div>
 							<p>{ProductsBanner.descNew}</p>
 							<Link href={`/product/${ProductsBanner.productNew}`}>
 								<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>
@@ -88,6 +91,9 @@ const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 						{/* TOP product desc */}
 						<div className={`${styles.overlay_panel} ${styles.overlay_right}`}>
 							<h1>{ProductsBanner.descHeading}</h1>
+							<div className={styles.product_name}>
+								<h2>{ProductsBanner.productTopName}</h2>
+							</div>
 							<p>{ProductsBanner.descTop}</p>
 							<Link href={`/product/${ProductsBanner.productTop}`}>
 								<button className={styles.more_btn}>{ProductsBanner.moreInfo}</button>

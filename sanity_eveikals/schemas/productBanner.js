@@ -50,6 +50,16 @@ export default {
 			type: "string",
 		},
 		{
+			name: "productNewName",
+			title: "Name of the NEW product",
+			type: "string",
+		},
+		{
+			name: "productTopName",
+			title: "Name of the TOP product",
+			type: "string",
+		},
+		{
 			name: "descTop",
 			title: "Description for TOP product",
 			type: "string",

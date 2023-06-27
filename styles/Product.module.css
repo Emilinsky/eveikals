@@ -36,9 +36,9 @@
 }
 .border {
 	position: absolute;
-	left: -30%;
+	left: -5%;
 	bottom: 0;
-	right: -30%;
+	right: -5%;
 	/* width: 160%; */
 	border: 2px solid var(--border-color);
 }

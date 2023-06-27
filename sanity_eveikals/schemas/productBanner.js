@@ -65,8 +65,8 @@ export default {
 			type: "string",
 		},
 		{
-			name: "colors",
-			title: "Colors",
+			name: "colorsTop",
+			title: "Colors for TOP Product",
 			type: "array",
 			of: [
 				{
@@ -79,8 +79,33 @@ export default {
 			],
 		},
 		{
-			name: "sizes",
-			title: "Sizes",
+			name: "sizesTop",
+			title: "Sizes for TOP Product",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [{ name: "size", title: "Size", type: "string" }],
+				},
+			],
+		},
+		{
+			name: "colorsNew",
+			title: "Colors for NEW Product",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					fields: [
+						{ name: "colorName", title: "Color Name", type: "string" },
+						{ name: "colorCode", title: "Color Code", type: "string" },
+					],
+				},
+			],
+		},
+		{
+			name: "sizesNew",
+			title: "Sizes for NEW Product",
 			type: "array",
 			of: [
 				{

@@ -4,7 +4,7 @@ import { urlFor } from "../lib/client";
 
 import styles from "../styles/ProductsBanner.module.css";
 
-const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
+const ProductsBanner = ({ ProductsBanner, colorsTop, colorsNew, sizesTop, sizesNew }) => {
 	const [isRightPanelActive, setIsRightPanelActive] = useState(false);
 	const [showDivContainerTop, setShowDivContainerTop] = useState(true);
 
@@ -31,7 +31,7 @@ const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 								<div className={styles.colors_cont}>
 									<h2 className={styles.colors_heading}>Available colors:</h2>
 									<div className={styles.colors_outter_cont}>
-										{colors.map((color) => (
+										{colorsNew.map((color) => (
 											<div className={styles.colors_content} key={color.colorName}>
 												<p className={styles.color_code} style={{ backgroundColor: color.colorCode }}>
 													{/* <span>{color.colorName}</span> */}
@@ -46,7 +46,7 @@ const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 								<div className={styles.sizes_cont}>
 									<h2 className={styles.sizes_heading}>Available sizes:</h2>
 									<div className={styles.sizes_outter_cont}>
-										{sizes.map((size) => (
+										{sizesNew.map((size) => (
 											<div className={styles.sizes_content} key={size.size}>
 												<p className={styles.size_name}>
 													<span>{size.size}</span>
@@ -74,7 +74,7 @@ const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 								<div className={styles.colors_cont}>
 									<h2 className={styles.colors_heading}>Available colors:</h2>
 									<div className={styles.colors_outter_cont}>
-										{colors.map((color) => (
+										{colorsTop.map((color) => (
 											<div className={styles.colors_content} key={color.colorName}>
 												<p className={styles.color_code} style={{ backgroundColor: color.colorCode }}>
 													{/* <span>{color.colorName}</span> */}
@@ -89,7 +89,7 @@ const ProductsBanner = ({ ProductsBanner, colors, sizes }) => {
 								<div className={styles.sizes_cont}>
 									<h2 className={styles.sizes_heading}>Available sizes:</h2>
 									<div className={styles.sizes_outter_cont}>
-										{sizes.map((size) => (
+										{sizesTop.map((size) => (
 											<div className={styles.sizes_content} key={size.size}>
 												<p className={styles.size_name}>
 													<span>{size.size}</span>

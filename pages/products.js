@@ -4,7 +4,7 @@ import { client } from "../lib/client";
 import styles from "../styles/Product.module.css";
 import { BsFilterSquare } from "react-icons/bs";
 
-const Products = ({ products, bannerData, tags, colors, sizes }) => {
+const Products = ({ products, bannerData, tags, colorsTop, colorsNew, sizesTop, sizesNew }) => {
 	const [priceFilter, setPriceFilter] = useState([1, 40]); // adjust range as per your product pricing
 	const [debouncedPriceFilter, setDebouncedPriceFilter] = useState(priceFilter);
 	const [selectedTags, setSelectedTags] = useState([]);
@@ -75,10 +75,16 @@ const Products = ({ products, bannerData, tags, colors, sizes }) => {
 
 	return (
 		<>
-			<ProductsBanner ProductsBanner={bannerData.length && bannerData[0]} colors={colors} sizes={sizes} />
+			<ProductsBanner
+				ProductsBanner={bannerData.length && bannerData[0]}
+				colorsTop={colorsTop}
+				colorsNew={colorsNew}
+				sizesTop={sizesTop}
+				sizesNew={sizesNew}
+			/>
 			<div className={styles.products_heading}>
 				<h1 className={styles.header}>All Products</h1>
-            <div className={styles.border}></div>
+				<div className={styles.border}></div>
 			</div>
 			<button onClick={handleFilterButtonClick} className={`${styles.filterBtn} ${styles.topFilterBtn}`}>
 				Product filters <BsFilterSquare />
@@ -159,14 +165,15 @@ export const getServerSideProps = async () => {
 	const bannerQuery = '*[_type == "productsBanner"]';
 	const bannerData = await client.fetch(bannerQuery);
 
-	const colorQuery = '*[_type == "productsBanner"]{colors}'; // add the color data to the query
-	const colorData = await client.fetch(colorQuery);
+	const colorsAndSizesQuery = `
+       *[_type == "productsBanner"]{
+           colorsTop,
+           colorsNew,
+           sizesTop,
+           sizesNew
+       }`;
 
-	const sizeQuery = '*[_type == "productsBanner"]{sizes}'; // add the sizes data to the query
-	const sizeData = await client.fetch(sizeQuery);
-
-	// const allTags = [...new Set(sanityProducts.flatMap((product) => product.tags))];
-	// console.log(allTags);
+	const colorsAndSizesData = await client.fetch(colorsAndSizesQuery);
 
 	const desiredTags = ["Mugs", "Bottles & Tumblers", "Outdoor", "Glassware"]; // Add more tags as desired
 
@@ -179,8 +186,10 @@ export const getServerSideProps = async () => {
 			products: { sanity: sanityProducts },
 			bannerData,
 			tags,
-			colors: colorData.length ? colorData[0].colors : [],
-			sizes: sizeData.length ? sizeData[0].sizes : [],
+			colorsTop: colorsAndSizesData.length ? colorsAndSizesData[0].colorsTop : [],
+			colorsNew: colorsAndSizesData.length ? colorsAndSizesData[0].colorsNew : [],
+			sizesTop: colorsAndSizesData.length ? colorsAndSizesData[0].sizesTop : [],
+			sizesNew: colorsAndSizesData.length ? colorsAndSizesData[0].sizesNew : [],
 		},
 	};
 };

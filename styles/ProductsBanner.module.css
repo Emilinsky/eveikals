@@ -123,7 +123,7 @@
 }
 
 .products_banner_img {
-	width: 130px;
+	width: 180px;
 	margin: 30px 0 10px;
 }
 .container .sales_num {
@@ -375,7 +375,6 @@
 	}
 	.products_banner_img {
 		margin-top: 30px;
-		width: 120px;
 	}
 	.colors_heading,
 	.sizes_heading {
@@ -405,7 +404,7 @@
 	}
 	.products_banner_img {
 		margin: 30px 0 10px;
-		width: 115px;
+		width: 160px;
 	}
 	.colors_heading,
 	.sizes_heading {
@@ -421,11 +420,12 @@
 		font-size: 1.25rem;
 	}
 	.container {
-		margin: 75px 10px 0;
+		margin: 35px 0 0;
 		min-height: 400px;
+		border-radius: 0;
 	}
 	.overlay_panel {
-		padding: 40px 20px 0;
+		padding: 0 20px;
 	}
 
 	.container p {
@@ -478,14 +478,14 @@
 	}
 
 	.container {
-		margin: 55px 10px 0;
+		margin: 35px 0 0;
 		min-height: 350px;
-		border-radius: 20px;
+		border-radius: 0;
 		box-shadow: 0 3px 18px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.1);
 	}
 	.products_banner_img {
 		margin: 30px 0 30px;
-		width: 100px;
+		width: 130px;
 	}
 	.colors_heading,
 	.sizes_heading {

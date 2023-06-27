@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 import { client } from "../lib/client";
 import { Product, HeroBanner, Artwork } from "../components";
@@ -12,7 +13,7 @@ const Home = ({ products, bannerData }) => {
 			<Artwork />
 			<div className={styles.home_heading}>
 				<h2>
-               New products <span className={styles.heading_bg}>every week</span>
+					New products <span className={styles.heading_bg}>every week</span>
 				</h2>
 				<p>These products were added in the last 7 days:</p>
 			</div>

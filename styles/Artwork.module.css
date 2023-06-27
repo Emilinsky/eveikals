@@ -64,6 +64,7 @@
 	place-items: center;
 	margin: 80px 40px 0;
 }
+
 .example_gallery::before {
 	content: "";
 	position: absolute;

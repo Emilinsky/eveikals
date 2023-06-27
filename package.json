@@ -17,7 +17,6 @@
     "axios": "^1.4.0",
     "canvas-confetti": "^1.5.1",
     "debounce": "^1.2.1",
-    "framer-motion": "^10.12.17",
     "hsl-to-hex": "^1.0.0",
     "html-react-parser": "^3.0.16",
     "next-sanity-image": "^3.2.1",

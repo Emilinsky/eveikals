@@ -33,9 +33,8 @@ const ProductsBanner = ({ ProductsBanner, colorsTop, colorsNew, sizesTop, sizesN
 									<div className={styles.colors_outter_cont}>
 										{colorsNew.map((color) => (
 											<div className={styles.colors_content} key={color.colorName}>
-												<p className={styles.color_code} style={{ backgroundColor: color.colorCode }}>
-													{/* <span>{color.colorName}</span> */}
-												</p>
+												<span className={styles.tooltip}>{color.colorName}</span>
+												<span className={styles.color_code} style={{ backgroundColor: color.colorCode }}></span>
 											</div>
 										))}
 									</div>
@@ -76,9 +75,8 @@ const ProductsBanner = ({ ProductsBanner, colorsTop, colorsNew, sizesTop, sizesN
 									<div className={styles.colors_outter_cont}>
 										{colorsTop.map((color) => (
 											<div className={styles.colors_content} key={color.colorName}>
-												<p className={styles.color_code} style={{ backgroundColor: color.colorCode }}>
-													{/* <span>{color.colorName}</span> */}
-												</p>
+												<span className={styles.tooltip}>{color.colorName}</span>
+												<span className={styles.color_code} style={{ backgroundColor: color.colorCode }}></span>
 											</div>
 										))}
 									</div>

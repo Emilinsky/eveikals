@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 import { client } from "../lib/client";
 import { Product, HeroBanner, Artwork } from "../components";

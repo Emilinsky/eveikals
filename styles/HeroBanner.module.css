@@ -118,6 +118,15 @@
 	cursor: pointer;
 	width: 100%;
 	transition: all 0.3s;
+	box-shadow: 6px 6px 12px #c5c5c57f, -6px -6px 12px #00ffa625;
+}
+.btn_cont button:hover {
+   box-shadow: 6px 6px 12px #c5c5c5af, -6px -6px 12px #00ffa62d;
+	scale: 1.03;
+}
+.btn_cont button:active {
+   box-shadow: none;
+	scale: 1;
 }
 
 .hero_banner_btn,

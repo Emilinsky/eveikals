@@ -73,7 +73,7 @@ function ProductOptions({ options, selectedOptions, handleOptionChange }) {
 											paddingRight: 25,
 											paddingTop: 13,
 											paddingBottom: 13,
-											backgroundColor: "#366bc0ec",
+											backgroundColor: "#00b48dbc",
 											borderRadius: 6,
 										}}
 									/>

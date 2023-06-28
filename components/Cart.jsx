@@ -36,14 +36,17 @@ const Cart = () => {
 		<div className={styles.cart_wrapper} ref={cartRef}>
 			<div className={styles.cart_container}>
 				<button type='button' className={styles.cart_heading} onClick={() => setShowCart(false)}>
-					<AiOutlineLeft />
-					<span className={styles.heading}>Your Cart</span>
+					<AiOutlineLeft size={30} />
+					<span className={styles.heading}>Your Cart:</span>
 					<span className={styles.cart_num_items}>{totalQuantities} items</span>
 				</button>
 				{cartItems.length < 1 && (
 					<div className={styles.empty_cart}>
-						<AiOutlineShopping size={150} />
 						<h3>Your cart is empty</h3>
+						{/* <AiOutlineShopping size={150} /> */}
+						<div className={styles.shoppingCart_cont}>
+							<img src='/shoppingCart.png' alt='Shopping cart' className={styles.empty_cart_img} />
+						</div>
 						<Link href='/'>
 							<button type='button' onClick={() => setShowCart(false)} className={styles.btn}>
 								Continue shopping

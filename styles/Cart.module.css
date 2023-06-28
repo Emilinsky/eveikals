@@ -19,11 +19,13 @@
 	display: flex;
 	align-items: center;
 	font-size: 18px;
+	border: 2px solid var(--border-color);
+   border-radius: 10px;
+   padding: 5px 10px;
 	font-weight: 500;
 	cursor: pointer;
 	gap: 2px;
 	margin-left: 10px;
-	border: none;
 	background-color: transparent;
 }
 .cart_heading .heading {
@@ -33,9 +35,17 @@
 	margin-left: 10px;
 	color: var(--red-color);
 }
+/* EMPTY CART STYLES */
 .empty_cart {
 	margin: 40px;
 	text-align: center;
+}
+.shoppingCart_cont {
+	width: 100%;
+	height: 300px;
+}
+.empty_cart_img {
+	height: 100%;
 }
 .empty_cart h3 {
 	font-weight: 600;

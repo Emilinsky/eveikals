@@ -96,22 +96,23 @@ const Cart = () => {
 											{item.name}
 											{item.variant ? ` - ${item.variant.title}` : ""}
 										</h5>
-										<h4>€{item.variant ? item.variant.price : item.price}</h4>
 									</div>
 									<div className={`${styles.flex} ${styles.bottom}`}>
-										<div>
+										<div className={styles.qty_btn}>
 											<p className={styles.quantity_desc}>
 												<span className={styles.minus} onClick={() => toggleCartItemQuantity(item.variant.id, "dec")}>
 													<AiOutlineMinus />
 												</span>
 												<span className={styles.num}>{item.quantity}</span>
+
 												<span className={styles.plus} onClick={() => toggleCartItemQuantity(item.variant.id, "inc")}>
 													<AiOutlinePlus />
 												</span>
 											</p>
 										</div>
+										<h4>€{item.variant ? item.variant.price : item.price}</h4>
 										<button type='button' className={styles.remove_item} onClick={() => onRemove(item)}>
-											<TiDeleteOutline />
+											<TiDeleteOutline size={35} />
 										</button>
 									</div>
 								</div>

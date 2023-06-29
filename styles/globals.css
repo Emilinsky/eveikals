@@ -61,6 +61,10 @@ a {
 	padding-top: 90px;
 }
 /* NAVIGATION BAR START */
+.no-scroll {
+	overflow: hidden;
+	height: 100%;
+}
 .navbar-container {
 	position: fixed;
 	top: 0;

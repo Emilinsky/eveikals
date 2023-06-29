@@ -9,11 +9,19 @@
 }
 .cart_container {
 	height: 100vh;
-	width: 600px;
-	background: var(--white-color);
+	width: 700px;
+	background-color: var(--white-color);
 	float: right;
 	padding: 40px 10px;
 	position: relative;
+	background-image: url(../public/patternReduced.png);
+	background-position: cover;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.no-scroll {
+	overflow: hidden;
+	height: 100%;
 }
 .cart_container svg {
 	color: var(--primary-faded-color-nav);
@@ -58,7 +66,7 @@
 	width: 325px;
 	height: 325px;
 	border-radius: 50%;
-	box-shadow: 0 0 100px 20px var(--border-color), inset 0 0 160px 0px var(--shadow-color-empty-cart);
+	box-shadow: 0 0 50px 20px var(--border-color), inset 0 0 160px 0px var(--shadow-color-empty-cart);
 	border: 2px solid transparent;
 	transition: all 0.5s;
 }

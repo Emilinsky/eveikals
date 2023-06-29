@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineCloseSquare, AiOutlineShopping } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
@@ -11,7 +11,27 @@ import styles from "../styles/Cart.module.css";
 
 const Cart = () => {
 	const cartRef = useRef();
+	const cartContainerRef = useRef(); // Create a new ref for cart_container div
+
 	const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
+
+	// Attach an event listener to check for clicks outside the cart_container
+	useEffect(() => {
+		const handleOutsideClick = (event) => {
+			// Check if the user clicked outside of the cart_container
+			if (cartContainerRef.current && !cartContainerRef.current.contains(event.target)) {
+				setShowCart(false); // Close the cart
+			}
+		};
+
+		// Attach the event listener
+		document.addEventListener("mousedown", handleOutsideClick);
+
+		// Clean up the event listener on component unmount
+		return () => {
+			document.removeEventListener("mousedown", handleOutsideClick);
+		};
+	}, []);
 
 	const handleCheckout = async () => {
 		const stripe = await getStripe();
@@ -34,7 +54,7 @@ const Cart = () => {
 
 	return (
 		<div className={styles.cart_wrapper} ref={cartRef}>
-			<div className={styles.cart_container}>
+			<div className={styles.cart_container} ref={cartContainerRef}>
 				<button type='button' className={styles.cart_heading} onClick={() => setShowCart(false)}>
 					<AiOutlineCloseSquare size={40} />
 					<span className={styles.heading}>Close Cart</span>
@@ -44,7 +64,6 @@ const Cart = () => {
 					<span className={styles.heading}>Your Cart:</span>
 					<span className={styles.cart_num_items}>{totalQuantities} items</span>
 				</div>
-
 				{cartItems.length < 1 && (
 					<div className={styles.empty_cart}>
 						<div className={styles.shoppingCart_cont}>
@@ -58,7 +77,6 @@ const Cart = () => {
 						</Link>
 					</div>
 				)}
-
 				<div className={styles.product_container}>
 					{cartItems.length >= 1 &&
 						cartItems.map((item, i) => (

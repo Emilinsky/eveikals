@@ -49,6 +49,15 @@ const Navbar = () => {
 		}
 	};
 
+	// disble scroll on cart open
+	useEffect(() => {
+		if (showCart) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+	}, [showCart]);
+
 	useEffect(() => {
 		const navToggle = navToggleRef.current;
 		const handleClick = () => toggleMenu();

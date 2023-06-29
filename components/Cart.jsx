@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Link from "next/link";
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineCloseSquare, AiOutlineShopping } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import toast from "react-hot-toast";
 
@@ -36,20 +36,24 @@ const Cart = () => {
 		<div className={styles.cart_wrapper} ref={cartRef}>
 			<div className={styles.cart_container}>
 				<button type='button' className={styles.cart_heading} onClick={() => setShowCart(false)}>
-					<AiOutlineLeft size={30} />
+					<AiOutlineCloseSquare size={40} />
+					<span className={styles.heading}>Close Cart</span>
+				</button>
+				<div className={styles.cart_heading_div}>
+					<AiOutlineShopping size={40} />
 					<span className={styles.heading}>Your Cart:</span>
 					<span className={styles.cart_num_items}>{totalQuantities} items</span>
-				</button>
+				</div>
+
 				{cartItems.length < 1 && (
 					<div className={styles.empty_cart}>
-						<h3>Your cart is empty</h3>
-						{/* <AiOutlineShopping size={150} /> */}
 						<div className={styles.shoppingCart_cont}>
 							<img src='/shoppingCart.png' alt='Shopping cart' className={styles.empty_cart_img} />
 						</div>
-						<Link href='/'>
+						<h3>Your cart is empty</h3>
+						<Link href='/products'>
 							<button type='button' onClick={() => setShowCart(false)} className={styles.btn}>
-								Continue shopping
+								Go to products
 							</button>
 						</Link>
 					</div>

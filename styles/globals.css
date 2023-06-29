@@ -31,6 +31,7 @@
 	--product-banner-bg1: #00c49a;
 	--product-banner-bg2: #048987;
 	--border-color: #8bccb06a;
+	--shadow-color-empty-cart: #5ed4a14a;
 	--border-for-colors: #8bccb0bd;
 }
 html,
@@ -130,7 +131,7 @@ a {
 		display: none;
 	}
 	.link:hover {
-		box-shadow: 0 0px 10px 0 var(--banner-shadows);
+		box-shadow: 0 0px 3px 0 var(--banner-shadows);
 	}
 }
 @media (max-width: 900px) {
@@ -694,9 +695,11 @@ span.text-red {
 		}
 	}
 }
-@media (width > 768px) {
+@media (width > 900px) {
 	.link {
 		padding: 8px 16px;
+		cursor: pointer;
+		border-radius: 16px;
 	}
 	.link a {
 		color: var(--primary-color);

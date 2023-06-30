@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineCloseSquare, AiOutlineShopping } from "react-icons/ai";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { TiDeleteOutline } from "react-icons/ti";
 import toast from "react-hot-toast";
 
@@ -55,14 +56,16 @@ const Cart = () => {
 	return (
 		<div className={styles.cart_wrapper} ref={cartRef}>
 			<div className={styles.cart_container} ref={cartContainerRef}>
-				<button type='button' className={styles.cart_heading} onClick={() => setShowCart(false)}>
-					<AiOutlineCloseSquare size={40} />
-					<span className={styles.heading}>Close Cart</span>
-				</button>
-				<div className={styles.cart_heading_div}>
-					<AiOutlineShopping size={40} />
-					<span className={styles.heading}>Your Cart:</span>
-					<span className={styles.cart_num_items}>{totalQuantities} items</span>
+				<div className={styles.cart_info_cont}>
+					<button type='button' className={styles.cart_heading} onClick={() => setShowCart(false)}>
+						<AiOutlineCloseSquare />
+						<span className={styles.heading}>Close</span>
+					</button>
+					<div className={styles.cart_heading_div}>
+						<AiOutlineShopping  />
+						<span className={styles.heading}>Your Cart:</span>
+						<span className={styles.cart_num_items}>{totalQuantities} items</span>
+					</div>
 				</div>
 				{cartItems.length < 1 && (
 					<div className={styles.empty_cart}>
@@ -98,6 +101,7 @@ const Cart = () => {
 										</h5>
 									</div>
 									<div className={`${styles.flex} ${styles.bottom}`}>
+										<h4>€{item.variant ? item.variant.price : item.price}</h4>
 										<div className={styles.qty_btn}>
 											<p className={styles.quantity_desc}>
 												<span className={styles.minus} onClick={() => toggleCartItemQuantity(item.variant.id, "dec")}>
@@ -110,9 +114,9 @@ const Cart = () => {
 												</span>
 											</p>
 										</div>
-										<h4>€{item.variant ? item.variant.price : item.price}</h4>
+
 										<button type='button' className={styles.remove_item} onClick={() => onRemove(item)}>
-											<TiDeleteOutline size={35} />
+											<IoIosCloseCircleOutline size={25} />
 										</button>
 									</div>
 								</div>

@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineCloseSquare, AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineClose, AiOutlineShopping } from "react-icons/ai";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { TiDeleteOutline } from "react-icons/ti";
 import toast from "react-hot-toast";
 
 import { useStateContext } from "../context/StateContext";
@@ -58,12 +57,12 @@ const Cart = () => {
 			<div className={styles.cart_container} ref={cartContainerRef}>
 				<div className={styles.cart_info_cont}>
 					<button type='button' className={styles.cart_heading} onClick={() => setShowCart(false)}>
-						<AiOutlineCloseSquare />
-						<span className={styles.heading}>Close</span>
+						<AiOutlineClose />
+						<span className={styles.heading}>Close cart</span>
 					</button>
 					<div className={styles.cart_heading_div}>
-						<AiOutlineShopping  />
-						<span className={styles.heading}>Your Cart:</span>
+						<AiOutlineShopping />
+						<span className={styles.heading}>Items in cart:</span>
 						<span className={styles.cart_num_items}>{totalQuantities} items</span>
 					</div>
 				</div>

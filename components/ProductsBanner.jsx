@@ -24,7 +24,12 @@ const ProductsBanner = ({ ProductsBanner, colorsTop, colorsNew, sizesTop, sizesN
 				<div className={`${styles.form_container} ${styles.sign_up_container}`}>
 					<div className={styles.div_container_new}>
 						<h1 className={styles.product_heading}>{ProductsBanner.headingRight}</h1>
-						<img src={urlFor(ProductsBanner.imageNew)} alt='shirts' className={styles.products_banner_img} />
+						<img
+							src={urlFor(ProductsBanner.imageNew)}
+							loading='lazy'
+							alt='shirts'
+							className={styles.products_banner_img}
+						/>
 						<div className={styles.options_cont}>
 							{/* colors opt */}
 							<div className={styles.colors_top}>

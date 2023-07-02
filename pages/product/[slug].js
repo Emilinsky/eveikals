@@ -152,7 +152,7 @@ const ProductDetails = ({ product, products }) => {
 						<div className={styles.big_small_img_cont}>
 							<div className={styles.image_container}>
 								{/* Show main image from selectedImages */}
-								<img src={selectedImages[index]?.src} className={styles.product_detail_image} />
+								<img src={selectedImages[index]?.src} loading="lazy" className={styles.product_detail_image} />
 							</div>
 							<div className={styles.small_images_container}>
 								{/* Show only the images associated with the selected variant */}
@@ -160,6 +160,7 @@ const ProductDetails = ({ product, products }) => {
 									<img
 										key={item.src}
 										src={item.src}
+										loading='lazy'
 										className={i === index ? `${styles.small_image} ${styles.selected_image}` : styles.small_image}
 										onMouseEnter={() => setIndex(i)}
 									/>

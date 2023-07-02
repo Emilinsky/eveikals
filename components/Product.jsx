@@ -50,7 +50,7 @@ const Product = ({ product }) => {
 					<div className={styles.container}>
 						<div className={styles.top}>
 							<Link href={`/product/${slug.current}`}>
-								<img src={urlFor(image && image[0])} />
+								<img src={urlFor(image && image[0])} loading='lazy' />
 							</Link>
 						</div>
 						<div className={`${styles.bottom} ${isClicked ? styles.clicked : ""}`}>

@@ -9,8 +9,9 @@ class MyDocument extends Document {
 	render() {
 		const csp = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://js.stripe.com;
   script-src-elem 'self' 'unsafe-inline' https://js.stripe.com;
+  worker-src 'self' blob:;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   img-src 'self' data: https: http:;
   font-src 'self' data: https://fonts.gstatic.com;

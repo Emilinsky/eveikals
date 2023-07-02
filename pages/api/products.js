@@ -3,12 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 
 const PRINTIFY_ACCESS_TOKEN = process.env.PRINTIFY_ACCESS_TOKEN;
 const SHOP_ID = "8832572"; // replace with your shop id
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 async function uploadImageToSanity(imageUrl) {
 	console.time(`uploadImageToSanity for ${imageUrl}`);
 	try {
 		// console.time(`uploadImageToSanity for ${imageUrl}`);
-		const response = await axios.post("http://localhost:3000/api/uploadImage", {
+		const response = await axios.post(`${NEXT_PUBLIC_API_URL}/api/uploadImage`, {
 			url: imageUrl,
 		});
 		console.timeEnd(`uploadImageToSanity for ${imageUrl}`);
@@ -94,7 +95,7 @@ const getShopProducts = async (shopId) => {
 					})),
 				};
 
-				const existingProduct = await axios.get(`http://localhost:3000/api/getProductBySlug?slug=${product.id}`);
+				const existingProduct = await axios.get(`${NEXT_PUBLIC_API_URL}/api/getProductBySlug?slug=${product.id}`);
 
 				if (!existingProduct.data) {
 					// Product not found in Sanity, proceed with image upload
@@ -119,7 +120,7 @@ const getShopProducts = async (shopId) => {
 				}
 
 				if (!existingProduct.data) {
-					const res = await axios.post("http://localhost:3000/api/saveProduct", formattedProduct);
+					const res = await axios.post(`${NEXT_PUBLIC_API_URL}/api/saveProduct`, formattedProduct);
 					const productUrl = `https://printify.com/app/store/products/${formattedProduct.slug.current}`; // replace with your actual product URL pattern
 					// New code to set product publish status
 					await setProductPublishStatus(shopId, product.id, productUrl);

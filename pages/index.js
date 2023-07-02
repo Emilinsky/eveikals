@@ -4,12 +4,12 @@ import { client } from "../lib/client";
 import { Product, HeroBanner, Artwork } from "../components";
 import styles from "../styles/Product.module.css";
 
-const Home = ({ products, bannerData }) => {
+const Home = ({ products, bannerData, images }) => {
 	// console.log(products);
 	return (
 		<>
 			<HeroBanner HeroBanner={bannerData.length && bannerData[0]} />
-			<Artwork />
+			<Artwork images={images} />
 			<div className={styles.home_heading}>
 				<h2>
 					New products <span className={styles.heading_bg}>every week</span>
@@ -31,9 +31,18 @@ export const getServerSideProps = async () => {
 	const products = await client.fetch(query);
 	const bannerQuery = '*[_type == "banner"]';
 	const bannerData = await client.fetch(bannerQuery);
+	const imageQuery = `*[_type == "images"]{
+      image {
+        file,
+        altText,
+        sizes
+      }
+    }`;
+
+	const images = await client.fetch(imageQuery);
 
 	return {
-		props: { products, bannerData },
+		props: { products, bannerData, images },
 	};
 };
 

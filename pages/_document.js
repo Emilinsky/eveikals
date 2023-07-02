@@ -3,12 +3,14 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const initialProps = await Document.getInitialProps(ctx);
-		return { ...initialProps };
+		return {
+			...initialProps,
+		};
 	}
 
 	render() {
 		const csp = `
-  default-src 'self';
+    default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://js.stripe.com;
   script-src-elem 'self' 'unsafe-inline' https://js.stripe.com;
   worker-src 'self' blob:;
@@ -24,12 +26,12 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
-					<meta httpEquiv='Content-Security-Policy' content={csp} />
-				</Head>
+					<meta httpEquiv='Content-Security-Policy' content={csp} />{" "}
+				</Head>{" "}
 				<body>
 					<Main />
 					<NextScript />
-				</body>
+				</body>{" "}
 			</Html>
 		);
 	}

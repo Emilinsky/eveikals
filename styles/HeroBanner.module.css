@@ -7,6 +7,7 @@
 	right: 0;
 	width: 100%;
 	height: 100%;
+	font-family: "Bai Jamjuree", cursive;
 }
 .hero_banner_inner {
 	width: 100%;
@@ -121,11 +122,11 @@
 	box-shadow: 6px 6px 12px #c5c5c57f, -6px -6px 12px #00ffa625;
 }
 .btn_cont button:hover {
-   box-shadow: 6px 6px 12px #c5c5c5af, -6px -6px 12px #00ffa62d;
+	box-shadow: 6px 6px 12px #c5c5c5af, -6px -6px 12px #00ffa62d;
 	scale: 1.03;
 }
 .btn_cont button:active {
-   box-shadow: none;
+	box-shadow: none;
 	scale: 1;
 }
 

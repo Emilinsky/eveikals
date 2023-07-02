@@ -40,8 +40,8 @@ body,
 * {
 	padding: 0;
 	margin: 0;
-	font-family: "Bai Jamjuree", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-		Droid Sans, Helvetica Neue, sans-serif;
+	/* font-family: "Bai Jamjuree", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans; */
+
 	box-sizing: border-box;
 }
 ::-webkit-scrollbar {
@@ -54,12 +54,14 @@ a {
 .layout {
 	background: white;
 	overflow-x: hidden;
+	font-family: "Bai Jamjuree", cursive;
 }
 .main-container {
 	max-width: 1500px;
 	margin: auto;
 	width: 100%;
 	padding-top: 90px;
+	font-family: "Bai Jamjuree", cursive;
 }
 /* NAVIGATION BAR START */
 .no-scroll {
@@ -218,6 +220,7 @@ a {
 }
 .link a {
 	color: var(--secondary-text-color);
+	font-family: "Bai Jamjuree", cursive;
 }
 .scrolled .link:hover {
 	box-shadow: 0 0px 3px 0px var(--third-color);

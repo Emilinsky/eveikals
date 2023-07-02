@@ -5,6 +5,7 @@
 	padding: 40px 10px 40px 70px;
 	background-color: var(--primary-color);
 	z-index: 2;
+	font-family: "Bai Jamjuree", cursive;
 }
 .svg_bg {
 	position: relative;

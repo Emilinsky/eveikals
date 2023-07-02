@@ -2,11 +2,11 @@
 
 .esvigi {
 	width: 100%;
+	font-family: "Londrina Shadow", cursive;
 }
 
 .filled_heading text {
 	text-transform: uppercase;
-	font-family: "Londrina Shadow", cursive;
 	font-size: 3.5rem;
 	line-height: 0.9;
 	letter-spacing: 2px;

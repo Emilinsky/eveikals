@@ -6,6 +6,7 @@
 	top: 0;
 	z-index: 200;
 	transition: all 1s ease-in-out;
+	font-family: "Bai Jamjuree", cursive;
 }
 .cart_container {
 	height: 100vh;
@@ -62,6 +63,7 @@
 	font-weight: 500;
 	cursor: pointer;
 	gap: 5px;
+	font-family: "Bai Jamjuree", cursive;
 	transition: all 0.3s;
 }
 .cart_heading_div {

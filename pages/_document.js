@@ -28,7 +28,7 @@ class MyDocument extends Document {
 				<Head>
 					{/* <meta httpEquiv='Content-Security-Policy' content={csp} /> */}
 					<link
-						href='https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600&display=swap'
+						href='https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600|Londrina+Shadow|Antonio:wght@500&display=swap'
 						rel='stylesheet'
 					/>{" "}
 				</Head>{" "}

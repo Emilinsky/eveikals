@@ -69,23 +69,29 @@ const AnimatedText = () => {
 		<>
 			<svg className={styles.esvigi} viewBox='0 0 500 160'>
 				<clipPath id='textClip' ref={textClipRef} className={styles.filled_heading}>
-					<text x='50%' y='120' textAnchor='middle'>
-						Diverse Selection
+					<text x='50%' y='60' textAnchor='middle'>
+						Original
 					</text>
-					<text x='40%' y='50' textAnchor='middle'>
-						Original logos
+					<text x='50%' y='140' textAnchor='middle'>
+						logos
 					</text>
-					<text x='40%' y='50' textAnchor='middle'>
-						Bulk Ordering
+					<text x='50%' y='60' textAnchor='middle'>
+						Diverse
 					</text>
-					<text x='50%' y='120' textAnchor='middle'>
-						Fast Shipping
+					<text x='50%' y='140' textAnchor='middle'>
+						selection
 					</text>
-					<text x='50%' y='120' textAnchor='middle'>
-						Size Guide
+					<text x='50%' y='60' textAnchor='middle'>
+						Worldwide
 					</text>
-					<text x='40%' y='50' textAnchor='middle'>
-						Gift Cards
+					<text x='50%' y='140' textAnchor='middle'>
+						shipping
+					</text>
+					<text x='50%' y='60' textAnchor='middle'>
+						Bulk
+					</text>
+					<text x='50%' y='140' textAnchor='middle'>
+						ordering
 					</text>
 				</clipPath>
 

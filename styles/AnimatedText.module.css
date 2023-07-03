@@ -7,7 +7,7 @@
 
 .filled_heading text {
 	text-transform: uppercase;
-	font-size: 3.5rem;
+	font-size: 4.5rem;
 	line-height: 0.9;
 	letter-spacing: 2px;
 	display: none; /* Hide all text elements initially */
@@ -27,5 +27,16 @@
 	35%,
 	65% {
 		transform: scale(1.5) rotate(0deg);
+	}
+}
+@media (width < 1000px) {
+	.filled_heading text {
+		font-size: 5rem;
+	}
+}
+@media (width < 700px) {
+	.filled_heading text {
+		font-size: 5.5rem;
+		transform: translateY(10px);
 	}
 }

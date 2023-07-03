@@ -69,7 +69,7 @@ const Cart = () => {
 				{cartItems.length < 1 && (
 					<div className={styles.empty_cart}>
 						<div className={styles.shoppingCart_cont}>
-							<img src='/shoppingCart.png' alt='Shopping cart' className={styles.empty_cart_img} />
+							<img src='/shoppingCart.png' loading='lazy' alt='Shopping cart' className={styles.empty_cart_img} />
 						</div>
 						<h3>Your cart is empty</h3>
 						<Link href='/products'>
@@ -88,7 +88,8 @@ const Cart = () => {
 									className='cart-product-image'
 								/> */}
 								<img
-									src={item.variantImage ? item.variantImage.src : urlFor(item.image[0]).url()}
+                           src={item.variantImage ? item.variantImage.src : urlFor(item.image[0]).url()}
+                           loading='lazy'
 									className={styles.cart_product_image}
 								/>
 

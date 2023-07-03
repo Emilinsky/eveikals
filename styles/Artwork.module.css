@@ -17,7 +17,7 @@
 .upper_img_cont {
 	width: 100%;
 	border-bottom: 2px solid var(--border-color);
-	padding-bottom: 80px;
+	padding-bottom: 10px;
 }
 .upper_text_bg {
 	position: absolute;
@@ -92,7 +92,6 @@
 	object-fit: cover;
 	cursor: pointer;
 	opacity: 0.9;
-	box-shadow: inset 0px 0px 20px 30px var(--greenCyan-color);
 	border-top: 3px solid var(--greenCyan-color);
 	border-bottom: 3px solid var(--greenCyan-color);
 	clip-path: polygon(var(--s) 0, 100% 0, calc(100% - var(--s)) 100%, 0 100%);
@@ -132,7 +131,7 @@
 }
 @media (width < 1100px) {
 	.example_gallery {
-		margin: 80px 0 0;
+		margin: 40px 0 0;
 	}
 	.example_gallery > img:hover {
 		width: 20vw;
@@ -182,7 +181,7 @@
 }
 @media (width < 800px) {
 	.upper_text_bg {
-		top: -40px;
+		top: -20px;
 	}
 	.upper_text_bg p {
 		font-size: 7rem;

@@ -63,6 +63,7 @@
 	min-height: 600px;
 }
 .products_container_home {
+	gap: 30px 30px;
 	margin: 20px auto 0;
 	min-height: fit-content;
 }
@@ -279,7 +280,7 @@
 	}
 	.products_container_home {
 		--column-count: 2;
-		max-width: 650px;
+		max-width: min-content;
 		align-items: flex-start;
 	}
 	.heading_bg,
@@ -360,7 +361,7 @@
 	}
 	.products_container_home {
 		--column-count: 3;
-		max-width: 850px;
+		max-width: min-content;
 	}
 	.filter_cont {
 		display: block;
@@ -406,7 +407,7 @@
 	}
 	.products_container_home {
 		--column-count: 4;
-		max-width: 1150px;
+		max-width: min-content;
 		justify-items: center;
 	}
 	.filter_cont {
@@ -424,7 +425,7 @@
 	}
 	.products_container_home {
 		--column-count: 5;
-		max-width: 1350px;
+		max-width: min-content;
 	}
 }
 

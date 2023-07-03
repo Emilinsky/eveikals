@@ -13,7 +13,7 @@
 	width: 100%;
 	height: 250px;
 	margin-top: 100px;
-	background: url(../public/wave-haikeiV2.svg);
+	background: url(/wave-haikeiV2.svg);
 	background-position: bottom;
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -252,7 +252,7 @@
 		width: 100%;
 		height: 150px;
 		margin-top: 150px;
-		background: url(../public/wave-haikeiXS.svg);
+		background: url(/wave-haikeiXS.svg);
 		background-position: bottom;
 		background-repeat: no-repeat;
 		background-size: 100%;

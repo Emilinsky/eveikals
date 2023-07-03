@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600&display=swap");
 .products_container {
-	background: url(../public/patternV2.png);
+	background: url(/patternV2.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 150%;
@@ -378,7 +378,7 @@
 
 .overlay_left {
 	transform: translateX(-20%);
-	background: url(../public/rombPatternV2.png);
+	background: url(/rombPatternV2.png);
 	background-size: 115%;
 	background-position: 75% 90%;
 }
@@ -388,7 +388,7 @@
 }
 
 .overlay_right {
-	background: url(../public/patternReduced.png);
+	background: url(/patternReduced.png);
 	background-size: 150%;
 	background-position: 35% 65%;
 	right: 0;

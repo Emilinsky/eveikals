@@ -32,7 +32,7 @@ const Artwork = ({ images }) => {
 										.join(", ")}
 									alt={item.image.altText}
 									loading='lazy'
-									className={styles.image_class} // Add your class here
+									className={`${styles.image_class} ${index >= images.length - 2 ? styles.hide_below_1400 : ""}`}
 								/>
 							))}
 					</div>

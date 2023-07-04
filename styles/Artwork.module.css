@@ -2,7 +2,7 @@
 
 .artwork_cont {
 	position: relative;
-	margin: 60rem 0 15rem;
+	margin: 60rem 0 12rem;
 	z-index: 2;
 	width: 100%;
 	height: 100%;
@@ -37,7 +37,7 @@
 .lower_text_bg {
 	width: 100%;
 	position: absolute;
-	bottom: -180px;
+	bottom: -160px;
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
@@ -113,9 +113,6 @@
 }
 
 @media (width < 1400px) {
-	.hide_below_1400 {
-		display: none;
-	}
 	.upper_text_bg {
 		top: -40px;
 	}
@@ -123,7 +120,7 @@
 		font-size: 12rem;
 	}
 	.lower_text_bg {
-		bottom: -140px;
+		bottom: -120px;
 	}
 	.lower_text_bg p {
 		font-size: 7.5rem;
@@ -146,13 +143,16 @@
 		font-size: 10rem;
 	}
 	.lower_text_bg {
-		bottom: -100px;
+		bottom: -80px;
 	}
 	.lower_text_bg p {
 		font-size: 5.5rem;
 	}
 }
 @media (width < 900px) {
+	.hide_below_1400 {
+		display: none;
+	}
 	.artwork_cont {
 		padding: 40px;
 	}
@@ -180,6 +180,9 @@
 	}
 }
 @media (width < 800px) {
+	.artwork_cont {
+		margin: 55rem 0 6rem;
+	}
 	.upper_text_bg {
 		top: -20px;
 	}
@@ -198,6 +201,7 @@
 	.artwork_cont {
 		padding: 30px;
 		margin-top: 55rem;
+		margin: 55rem 0 12rem;
 	}
 	.example_gallery {
 		--s: 20px;
@@ -242,7 +246,7 @@
 		font-size: 4.5rem;
 	}
 	.lower_text_bg {
-		bottom: -180px;
+		bottom: -150px;
 	}
 	.lower_text_bg p {
 		font-size: 4rem;
@@ -262,7 +266,7 @@
 		grid-auto-flow: unset;
 	}
 	.lower_text_bg {
-		bottom: -160px;
+		bottom: -130px;
 	}
 	.lower_text_bg p {
 		font-size: 3.5rem;

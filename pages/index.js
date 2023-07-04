@@ -1,6 +1,8 @@
 import React from "react";
+import Link from "next/link";
 
 import { client } from "../lib/client";
+import { HiArrowSmRight } from "react-icons/hi";
 import { Product, HeroBanner, Artwork } from "../components";
 import styles from "../styles/Product.module.css";
 
@@ -20,6 +22,14 @@ const Home = ({ products, bannerData, images }) => {
 				{products?.map((pro) => (
 					<Product key={pro._id} product={pro} />
 				))}
+			</div>
+			<div className={styles.similar_btn}>
+				<Link href={`/products`}>
+					<button type='button'>
+						All products
+						<HiArrowSmRight size={30} />
+					</button>
+				</Link>
 			</div>
 		</>
 	);

@@ -256,6 +256,10 @@ span.text-red {
 	border-radius: 5px;
 	border: 1px solid #ffffff20;
 	box-shadow: 0 1px 5px 0 rgba(31, 38, 135, 0.25);
+	transition: all 0.3s;
+}
+.cart-cont:hover {
+	box-shadow: 0 1px 10px 0 rgba(31, 38, 135, 0.25);
 }
 .cart-icon {
 	font-size: 2rem;
@@ -271,16 +275,17 @@ span.text-red {
 }
 .cart-item-qty {
 	position: absolute;
-	right: -8px;
-	font-size: 12px;
+	right: -5px;
+	font-size: 11px;
 	color: var(--secondary-text-color);
 	background-color: var(--red-color);
-	width: 18px;
-	height: 18px;
-	line-height: 1.4;
+	/* width: 16px; */
+	/* height: 16px; */
+	/* line-height: 1.4; */
 	border-radius: 50%;
-	text-align: center;
+	/* text-align: center; */
 	font-weight: 600;
+	padding: 2px 5px;
 }
 .product-card {
 	cursor: pointer;

@@ -302,12 +302,13 @@
 .similar_btn button svg {
 	opacity: 0;
 	transition: all 0.3s ease-in-out;
+	margin-left: -30px;
 	padding: 4px 0 0 0;
 }
 .similar_btn button:hover svg {
 	opacity: 1;
 	padding: 4px 0 0 0;
-	margin-left: 10px;
+	margin-left: 6px;
 }
 .similar_btn button:hover {
 	box-shadow: 6px 6px 12px #c5c5c5af, -6px -6px 12px #00ffa62d;

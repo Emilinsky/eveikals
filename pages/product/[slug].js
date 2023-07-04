@@ -171,7 +171,9 @@ const ProductDetails = ({ product, products }) => {
 
 					<div className={styles.product_detail_desc}>
 						<h2 className={styles.details_heading}>Details:</h2>
-						<div className={styles.printify_desc}>{parse(description)}</div>
+                  <div className={styles.printify_desc}>{parse(description)}
+                  SIZE TABLE</div>
+
 
 						{/* DETAILS OPTIONS */}
 						<ProductOptions

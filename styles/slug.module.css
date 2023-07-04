@@ -120,8 +120,7 @@
 	margin-top: 10px;
 }
 .product_detail_desc table {
-	/* border: 1px solid var(--primary-text-color); */
-	display: none;
+	display: block;
 }
 .product_detail_desc p {
 	font-size: 1.125rem;

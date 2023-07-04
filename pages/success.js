@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { BsBagCheckFill } from "react-icons/bs";
 import { runFireworks } from "../lib/utils";
+import styles from "../styles/success.module.css";
 
 import { useStateContext } from "../context/StateContext";
 
@@ -19,22 +20,31 @@ const Success = () => {
 	return (
 		<div className='success-wrapper'>
 			<div className='success'>
-				<p className='icon'>
-					<BsBagCheckFill />
-				</p>
-				<h2 className=''>Thank you for your purchase!</h2>
-				<p className='email-msg'>All the necessary info was sent to your email.</p>
-				<p className='description'>
-					If you have any questions send us an email at:
-					<a className='email' href='mailto:edmundseizentals@gmail.com'>
-						store@info.com
-					</a>
-				</p>
-				<Link href='/products'>
-					<button type='button' width='250px' className='btn'>
-						Take a look at other products
-					</button>
-				</Link>
+				<div className={styles.top_heading}>
+					<p className={styles.icon}>
+						<BsBagCheckFill />
+					</p>
+					<h2 className=''>Thank you for your purchase!</h2>
+					<p className='email-msg'>All the necessary info was sent to your email.</p>
+					<Link href='/products'>
+						<button type='button' width='250px' className='btn'>
+							Take a look at other products
+						</button>
+					</Link>
+				</div>
+				<div className={styles.bottom_heading}>
+					<p className={styles.icon}>
+						<BsBagCheckFill />
+					</p>
+					<h2 className=''>Thank you for your purchase!</h2>
+					<p className='description'>
+						We emailed your receipt to your email <br />
+						If you have any questions send us an email at:
+						<a className='email' href='mailto:edmundseizentals@gmail.com'>
+							store@info.com
+						</a>
+					</p>
+				</div>
 			</div>
 		</div>
 	);

@@ -9,10 +9,20 @@ import { useStateContext } from "../context/StateContext";
 const Success = () => {
 	const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
 
+	const [boughtItems, setBoughtItems] = useState([]);
+	const [boughtTotalPrice, setBoughtTotalPrice] = useState(0);
+
 	useEffect(() => {
+		const savedBoughtItems = JSON.parse(localStorage.getItem("purchasedItems"));
+		const savedBoughtTotalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+
+		if (savedBoughtItems && savedBoughtTotalPrice) {
+			setBoughtItems(savedBoughtItems);
+			setBoughtTotalPrice(savedBoughtTotalPrice);
+		}
+
 		localStorage.clear();
 		setCartItems([]);
-		setTotalPrice(0);
 		setTotalQuantities(0);
 		runFireworks();
 	}, []);
@@ -44,6 +54,17 @@ const Success = () => {
 							store@info.com
 						</a>
 					</p>
+					{boughtItems.map((item) => (
+						<div key={item.variant.id}>
+							<p>
+								{item.name}
+								{item.variant ? ` - ${item.variant.title}` : ""}
+							</p>
+							<p>Price: €{item.variant ? item.variant.price : item.price}</p>
+							<p>Quantity: {item.quantity}</p>
+						</div>
+					))}
+					<p>Total: €{boughtTotalPrice}</p>
 				</div>
 			</div>
 		</div>

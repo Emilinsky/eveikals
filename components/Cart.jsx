@@ -34,6 +34,10 @@ const Cart = () => {
 	}, []);
 
 	const handleCheckout = async () => {
+		// Add this line to save cart items in local storage before checkout
+		localStorage.setItem("purchasedItems", JSON.stringify(cartItems));
+		localStorage.setItem("totalPrice", JSON.stringify(totalPrice.toFixed(2)));
+
 		const stripe = await getStripe();
 		const response = await fetch("/api/stripe", {
 			method: "POST",
@@ -88,8 +92,8 @@ const Cart = () => {
 									className='cart-product-image'
 								/> */}
 								<img
-                           src={item.variantImage ? item.variantImage.src : urlFor(item.image[0]).url()}
-                           loading='lazy'
+									src={item.variantImage ? item.variantImage.src : urlFor(item.image[0]).url()}
+									loading='lazy'
 									className={styles.cart_product_image}
 								/>
 

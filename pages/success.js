@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { BsBagCheckFill } from "react-icons/bs";
+import { GiCheckMark } from "react-icons/gi";
 import { runFireworks } from "../lib/utils";
 import styles from "../styles/Success.module.css";
 
 import { useStateContext } from "../context/StateContext";
 
 const Success = () => {
-	const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
+	const { setCartItems, setTotalQuantities } = useStateContext();
 
 	const [boughtItems, setBoughtItems] = useState([]);
 	const [boughtTotalPrice, setBoughtTotalPrice] = useState(0);
@@ -28,43 +28,43 @@ const Success = () => {
 	}, []);
 
 	return (
-		<div className='success-wrapper'>
-			<div className='success'>
+		<div className={styles.success_wrapper}>
+			<div className={styles.success}>
 				<div className={styles.top_heading}>
-					<p className={styles.icon}>
-						<BsBagCheckFill />
-					</p>
-					<h2 className=''>Thank you for your purchase!</h2>
-					<p className='email-msg'>All the necessary info was sent to your email.</p>
+					<div className={styles.icon}>
+						<img src='/mcDark.svg' alt='mc' />
+					</div>
+					<h2 className={styles.top_heading_text}>Great news! Your products are being carefully crafted,</h2>
+					<p className={styles.email_msg}>and will soon be on their way to you.</p>
 					<Link href='/products'>
 						<button type='button' width='250px' className='btn'>
-							Take a look at other products
+							Return to product page
 						</button>
 					</Link>
 				</div>
 				<div className={styles.bottom_heading}>
 					<p className={styles.icon}>
-						<BsBagCheckFill />
+						<GiCheckMark />
 					</p>
-					<h2 className=''>Thank you for your purchase!</h2>
-					<p className='description'>
+					<h2 className=''>Thank you for your order!</h2>
+					<p className={styles.description}>
 						We emailed your receipt to your email <br />
 						If you have any questions send us an email at:
-						<a className='email' href='mailto:edmundseizentals@gmail.com'>
+						<a className={styles.email} href='mailto:edmundseizentals@gmail.com'>
 							store@info.com
 						</a>
 					</p>
 					{boughtItems.map((item) => (
-						<div key={item.variant.id}>
-							<p>
+						<div className={styles.product_cont} key={item.variant.id}>
+							<p className={styles.product_name}>
 								{item.name}
 								{item.variant ? ` - ${item.variant.title}` : ""}
 							</p>
-							<p>Price: €{item.variant ? item.variant.price : item.price}</p>
-							<p>Quantity: {item.quantity}</p>
+							<p className={styles.product_price}>Price: €{item.variant ? item.variant.price : item.price}</p>
+							<p className={styles.product_qty}>Quantity: {item.quantity}</p>
 						</div>
 					))}
-					<p>Total: €{boughtTotalPrice}</p>
+					<p className={styles.total_price}>Total: €{boughtTotalPrice}</p>
 				</div>
 			</div>
 		</div>

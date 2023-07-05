@@ -36,7 +36,9 @@ const Success = () => {
 						<img src='/mcDark.jpg' alt='mc' className={styles.logo_img} />
 					</div>
 					<h2 className={styles.top_heading_text}>
-						<span className={styles.heading_bg}>Great news!</span> <br /> Your products are being designed
+						Your {""}
+						products
+						{""} are being designed
 					</h2>
 					<p className={styles.email_msg}>and will soon be on their way to you.</p>
 					<div className={styles.btn_cont}>
@@ -52,7 +54,7 @@ const Success = () => {
 					<p className={styles.icon}>
 						<GiCheckMark />
 					</p>
-					<h2 className={styles.top_heading_text}>Thank you for your order!</h2>
+					<h2 className={`${styles.top_heading_text} ${styles.bottom}`}>Thank you for your order!</h2>
 					<p className={styles.description}>
 						We emailed your receipt to your email <br />
 						If you have any questions send us an email at:
@@ -73,13 +75,19 @@ const Success = () => {
 										{item.name}
 										{item.variant ? ` - ${item.variant.title}` : ""}
 									</p>
-									<p className={styles.product_price}>Price: €{item.variant ? item.variant.price : item.price}</p>
-									<p className={styles.product_qty}>Quantity: {item.quantity}</p>
+									<div className={styles.price_qty}>
+										<div className={styles.product_qty}>Quantity: {item.quantity}</div>
+										<div className={styles.product_price}>Price: €{item.variant ? item.variant.price : item.price}</div>
+									</div>
 								</div>
 							</div>
 						))}
 					</div>
-					<p className={styles.total_price}>Total: €{boughtTotalPrice}</p>
+					{boughtItems.length > 0 && (
+						<p className={styles.total_price}>
+							Total: <span className={styles.total_num}>€{boughtTotalPrice}</span>
+						</p>
+					)}
 				</div>
 			</div>
 		</div>

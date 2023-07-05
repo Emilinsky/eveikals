@@ -64,7 +64,7 @@
 }
 .products_container_home {
 	gap: 30px 30px;
-	margin: 20px auto 0;
+	margin: 50px auto 70px;
 	min-height: fit-content;
 }
 .wrapper {
@@ -336,7 +336,9 @@
 		--column-count: 2;
 		max-width: min-content;
 		align-items: flex-start;
+      margin: 90px auto ;
 	}
+   
 	.heading_bg,
 	.home_heading h2 {
 		font-size: 2.5rem;

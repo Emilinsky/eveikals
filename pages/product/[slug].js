@@ -110,9 +110,7 @@ const ProductDetails = ({ product, products }) => {
 		  }, {})
 		: {};
 
-	const selectedImages = selectedVariant
-		? images.filter((image) => image.variant_ids.includes(selectedVariant.id))
-		: [];
+	const selectedImages = selectedVariant ? images.filter((image) => image.variant_ids.includes(selectedVariant.id)) : [];
 
 	const handleOptionChange = (optionName, optionValue) => {
 		const newSelectedVariant = findVariant({ ...selectedOptions, [optionName]: optionValue }, options, variants);
@@ -160,7 +158,7 @@ const ProductDetails = ({ product, products }) => {
 									<img
 										key={item.src}
 										src={item.src}
-										loading='lazy'
+										loading="lazy"
 										className={i === index ? `${styles.small_image} ${styles.selected_image}` : styles.small_image}
 										onMouseEnter={() => setIndex(i)}
 									/>
@@ -171,26 +169,24 @@ const ProductDetails = ({ product, products }) => {
 
 					<div className={styles.product_detail_desc}>
 						<h2 className={styles.details_heading}>Details:</h2>
-                  <div className={styles.printify_desc}>{parse(description)}
-                  SIZE TABLE</div>
-
+						<div className={styles.printify_desc}>{parse(description)}</div>
+						<div class="size__table">
+							<span class="size__table_tooltip">TablePlaceholder</span>
+							<span>SIZE TABLE</span>
+						</div>
 
 						{/* DETAILS OPTIONS */}
-						<ProductOptions
-							options={options}
-							selectedOptions={selectedOptions}
-							handleOptionChange={handleOptionChange}
-						/>
+						<ProductOptions options={options} selectedOptions={selectedOptions} handleOptionChange={handleOptionChange} />
 						{/* END OF DETAILS */}
 
 						<div className={styles.quantity}>
 							<h3>Quantity:</h3>
 							<div className={styles.quantity_desc}>
-								<button type='button' className={styles.minus} onClick={decQty} aria-label='Decrease quantity'>
+								<button type="button" className={styles.minus} onClick={decQty} aria-label="Decrease quantity">
 									<AiOutlineMinus />
 								</button>
 								<p className={styles.num}>{qty}</p>
-								<button type='button' className={styles.plus} onClick={incQty} aria-label='Increase quantity'>
+								<button type="button" className={styles.plus} onClick={incQty} aria-label="Increase quantity">
 									<AiOutlinePlus />
 								</button>
 							</div>
@@ -207,10 +203,10 @@ const ProductDetails = ({ product, products }) => {
 							</div>
 						</div>
 						<div className={styles.buttons}>
-							<button type='button' className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
+							<button type="button" className={styles.add_to_cart} onClick={() => onAdd(product, qty, selectedVariant)}>
 								Add to cart
 							</button>
-							<button type='button' className={styles.buy_now} onClick={handleBuyNow}>
+							<button type="button" className={styles.buy_now} onClick={handleBuyNow}>
 								Buy now
 							</button>
 						</div>

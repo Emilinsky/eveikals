@@ -113,6 +113,9 @@
 .shoppingCart_cont:hover .empty_cart_img {
 	width: 73%;
 }
+.heart_bottom {
+	margin-bottom: 30px;
+}
 .empty_cart h3,
 .heart_bottom h3 {
 	font-weight: 600;
@@ -129,10 +132,10 @@
 	max-width: 350px;
 	border: none;
 	font-size: 1.25rem;
-	border-radius: 15px;
+	border-radius: 8px;
 	border: 1px solid var(--primary-faded-color);
 	box-shadow: 0 0 15px 8px var(--border-color);
-	padding: 18px 20px;
+	padding: 14px 22px;
 	margin-top: 40px;
 	text-transform: uppercase;
 	cursor: pointer;

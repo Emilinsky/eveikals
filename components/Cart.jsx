@@ -100,8 +100,8 @@ const Cart = () => {
 								<div className={styles.item_desc}>
 									<div className={`${styles.flex} ${styles.top}`}>
 										<h5>
-											{item.name}
-											{item.variant ? ` - ${item.variant.title}` : ""}
+											{item.name} <br />
+											{item.variant ? `${item.variant.title}` : ""}
 										</h5>
 									</div>
 									<div className={`${styles.flex} ${styles.bottom}`}>
